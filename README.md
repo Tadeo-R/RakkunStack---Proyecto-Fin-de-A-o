@@ -1,2 +1,2 @@
-# RakkunStack---Proyecto-Fin-de-A-o
-Proyecto de Find e Año de egreso 2026
+# RakkunStack-Proyecto-de-Fin-de-Año
+Proyecto Final de Egreso 2026

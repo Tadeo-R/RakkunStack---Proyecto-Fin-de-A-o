@@ -2,8 +2,232 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Lexend, sans-serif;
+    color: inherit;
+    text-decoration: none;
 }
 
-main {
-    background-color: #2E1A47;
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+/* Configuración del Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de la Barra */
+.sidebar-btn,
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Posición fija para el botón X dentro del menú */
+.close-btn {
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    left: 75%;
+}
+
+.fa-bell {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Contenedor del Sidebar con efecto FADE */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100vh;
+    background: rgba(10, 10, 25, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 80px 20px 20px;
+    box-sizing: border-box;
+
+    /* Oculto por defecto con opacidad y sin interacción */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Estado Activo: Se desvanece hacia adelante */
+.sidebar.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enlaces de Navegación */
+.sidebar nav a {
+    display: block;
+    color: #fff;
+    padding: 12px 0;
+}
+
+.section-principal {
+    background: linear-gradient(to right, #152b53, #2a5298);
+}
+
+/* --- CONFIGURACIÓN DEL HERO (MÓVIL POR DEFECTO) --- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    /* Se asegura de tener una buena altura en móviles */
+    background: #06101e;
+    /* Fondo oscuro base por si las imágenes tardan en cargar */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Contenedor de las 5 imágenes */
+.hero-images {
+    display: flex;
+    width: 100%;
+    height: 60vh;
+    /* En móvil, las imágenes toman la parte superior */
+    position: relative;
+}
+
+/* El truco mágico para las etiquetas <img> */
+.hero-images img {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+
+    /* Evita que se distorsionen y fuerza el "corte" */
+    object-fit: cover;
+    object-position: center;
+
+    /* El corte diagonal inclinado de cada barra */
+    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+
+    /* Desplazamos un poco para compensar los huecos del clip-path */
+    margin-right: -4%;
+    transition: flex 0.3s ease;
+    /* Efecto suave opcional si pasas el mouse */
+}
+
+/* Corregimos los extremos del contenedor de imágenes para que no queden huecos */
+.hero-images img:first-child {
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+.hero-images img:last-child {
+    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+    margin-right: 0;
+}
+
+/* Bloque de información (Vista Móvil) */
+.hero-info {
+    padding: 30px 20px;
+    background: linear-gradient(to bottom, rgba(6, 16, 30, 0.8), #06101e);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 5;
+}
+
+.hero-info h1 {
+    color: #cbd5e1;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.hero-info .highlight {
+    color: #3b82f6;
+    /* Tu azul brillante */
+}
+
+.hero-info p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    max-width: 90%;
+}
+
+/* Estilos para el botón */
+.btn-primary {
+    display: inline-block;
+    background: #2563eb;
+    color: white !important;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #ffffff;
+}
+
+/* --- VISTA ESCRITORIO (DESKTOP) --- */
+@media (min-width: 992px) {
+    .hero {
+        height: 85vh;
+        /* Altura fija para pantallas grandes */
+        flex-direction: row;
+        /* Ponemos texto e imágenes lado a lado */
+    }
+
+    /* Las imágenes ahora ocupan todo el fondo de la pantalla */
+    .hero-images {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 65%;
+        /* Ocupan el 65% derecho */
+        height: 100%;
+    }
+
+    /* Capa de corte general para separar el texto de las fotos */
+    .hero-images::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Difuminado oscuro hacia la izquierda para legibilidad del texto */
+        background: linear-gradient(to right, #06101e 0%, transparent 40%);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* Reposicionamos la información a la izquierda */
+    .hero-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 45%;
+        /* Llega hasta solapar elegantemente con las imágenes */
+        height: 100%;
+        background: transparent;
+        /* Eliminamos el fondo móvil */
+        padding: 0 0 0 80px;
+        /* Margen generoso a la izquierda */
+    }
+
+    .hero-info h1 {
+        font-size: 3.5rem;
+    }
+
 }

@@ -1,0 +1,80 @@
+/* Configuración del Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de la Barra */
+.sidebar-btn,
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Posición fija para el botón X dentro del menú */
+.close-btn {
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    left: 75%;
+}
+
+.fa-bell {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Contenedor del Sidebar con efecto FADE */
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100vh;
+    background: rgba(10, 10, 25, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 80px 20px 20px;
+    box-sizing: border-box;
+
+    /* Oculto por defecto con opacidad y sin interacción */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Estado Activo: Se desvanece hacia adelante */
+.sidebar.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enlaces de Navegación */
+.sidebar nav a {
+    display: block;
+    color: #fff;
+    padding: 12px 0;
+}
+
+.section-principal {
+    background: linear-gradient(to right, #152b53, #2a5298);
+}
+
+/* --- CONFIGURACIÓN DEL HERO (MÓVIL POR DEFECTO) --- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    /* Se asegura de tener una buena altura en móviles */
+    background: #06101e;
+    /* Fondo oscuro base por si las imágenes tardan en cargar */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}

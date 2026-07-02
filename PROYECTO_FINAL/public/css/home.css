@@ -1,166 +1,604 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Lexend, sans-serif;
-    color: inherit;
-    text-decoration: none;
+/* ==========================================================================
+   ESTILOS BASE / VISTA MÓVIL (Mobile-First)
+   ========================================================================== */
+
+.main-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-body {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-}
-
-
-/* --- CONFIGURACIÓN DEL HERO (MÓVIL POR DEFECTO) --- */
+/* 1. HERO SECTION */
 .hero {
-    position: relative;
-    width: 100%;
-    min-height: 80vh;
-    /* Se asegura de tener una buena altura en móviles */
-    background: #06101e;
-    /* Fondo oscuro base por si las imágenes tardan en cargar */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    background: linear-gradient(135deg, #070f26 0%, #1a2950 100%);
+    color: var(--white);
+    padding: 35px 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
 }
 
-/* Contenedor de las 5 imágenes */
-.hero-images {
-    display: flex;
-    width: 100%;
-    height: 60vh;
-    /* En móvil, las imágenes toman la parte superior */
-    position: relative;
-}
-
-/* El truco mágico para las etiquetas <img> */
-.hero-images img {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-
-    /* Evita que se distorsionen y fuerza el "corte" */
-    object-fit: cover;
-    object-position: center;
-
-    /* El corte diagonal inclinado de cada barra */
-    clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
-
-    /* Desplazamos un poco para compensar los huecos del clip-path */
-    margin-right: -4%;
-    transition: flex 0.3s ease;
-    /* Efecto suave opcional si pasas el mouse */
-}
-
-/* Corregimos los extremos del contenedor de imágenes para que no queden huecos */
-.hero-images img:first-child {
-    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
-}
-
-.hero-images img:last-child {
-    clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
-    margin-right: 0;
-}
-
-/* Bloque de información (Vista Móvil) */
-.hero-info {
-    padding: 30px 20px;
-    background: linear-gradient(to bottom, rgba(6, 16, 30, 0.8), #06101e);
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 5;
-}
-
-.hero-info h1 {
-    color: #cbd5e1;
-    font-size: 2.5rem;
-    font-weight: 800;
+.hero h1 {
+    font-size: 32px;
     line-height: 1.2;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.hero .highlight {
+    color: var(--primary-color);
+}
+
+.hero p {
+    color: #b0b7c7;
+    margin-bottom: 25px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hero-gallery {
+    display: none;
+    /* Se oculta en móvil para priorizar rendimiento */
+}
+
+/* 2. BUSCADOR Y FILTROS */
+.search-filter-section {
+    margin: 10px 0;
+}
+
+.search-wrapper {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+}
+
+.search-icon {
+    color: var(--text-muted);
+    margin-right: 12px;
+}
+
+.search-wrapper input {
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+}
+
+.filter-controls {
+    display: none;
+    /* Se oculta en móvil, pasa a menú o se expande en desktop */
+}
+
+/* 3. SECCIONES GENERALES (Headers) */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
 }
 
-.hero-info .highlight {
-    color: #3b82f6;
-    /* Tu azul brillante */
+.section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.hero-info p {
-    color: #cbd5e1;
-    font-size: 1rem;
-    margin-bottom: 25px;
-    max-width: 90%;
+.view-all {
+    font-size: 13px;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
-/* Estilos para el botón */
-.btn-primary {
-    display: inline-block;
-    background: #2563eb;
-    color: white !important;
-    padding: 12px 24px;
+/* 4. DISCIPLINAS (Carrusel Horizontal en Móvil) */
+.disciplines-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+    /* Oculta scroll en Firefox */
+}
+
+.disciplines-grid::-webkit-scrollbar {
+    display: none;
+    /* Oculta scroll en Chrome/Safari */
+}
+
+.discipline-card {
+    background: var(--white);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    min-width: 95px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.discipline-card.active {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.discipline-card i {
+    font-size: 22px;
+}
+
+/* 5. TARJETAS DE TORNEOS */
+.tournaments-grid,
+.matches-list {
+    display: grid;
+    gap: 15px;
+}
+
+.tournament-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.card-img {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    padding: 12px;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    color: white;
+    font-weight: 600;
+}
+
+.badge-live {
+    background: #198754;
+}
+
+.badge-upcoming {
+    background: #ffc107;
+    color: #000;
+}
+
+.badge-ended {
+    background: #6c757d;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.card-body p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-details {
+    display: block;
+    text-align: center;
+    background: #f1f5f9;
+    padding: 10px;
     border-radius: 8px;
     font-weight: 600;
+    font-size: 13px;
+    margin-top: 12px;
+    color: var(--text-main);
+}
+
+/* 6. COLUMNA SECUNDARIA (Contenedores de soporte en Móvil) */
+.secondary-column {
+    display: grid;
+    gap: 20px;
+}
+
+.stats-section,
+.quick-actions-section,
+.promo-banner {
+    background: var(--white);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid #e2e8f0;
+}
+
+.stats-section h3,
+.quick-actions-section h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Estadísticas Cajas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    transition: background 0.2s;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
 }
 
-.btn-primary:hover {
-    background: #ffffff;
+.stat-box i {
+    font-size: 20px;
+    margin-bottom: 6px;
 }
 
-/* --- VISTA ESCRITORIO (DESKTOP) --- */
+.stat-box strong {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.stat-box span {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.text-blue {
+    color: #0d6efd;
+}
+
+.text-green {
+    color: #198754;
+}
+
+.text-purple {
+    color: #6f42c1;
+}
+
+.text-orange {
+    color: #fd7e14;
+}
+
+/* Accesos rápidos listado */
+.action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.action-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.action-item span i {
+    margin-right: 8px;
+    color: var(--text-muted);
+}
+
+/* Banner Promocional */
+.promo-banner {
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+    color: #0369a1;
+    border: none;
+}
+
+.promo-banner h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.promo-banner p {
+    font-size: 13px;
+    margin-bottom: 15px;
+    color: #0c4a6e;
+}
+
+/* 7. BENEFICIOS (Valores al final en móvil) */
+.benefits-section {
+    margin-top: 10px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.benefit-item {
+    text-align: center;
+    padding: 15px;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    border: 1px solid #e2e8f0;
+}
+
+.benefit-item i {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.benefit-item h4 {
+    font-size: 13px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.benefit-item p {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+
+/* ==========================================================================
+   VISTA ESCRITORIO (Media query adaptable para pantallas grandes)
+   ========================================================================== */
+
 @media (min-width: 992px) {
+    .main-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 15px;
+        gap: 35px;
+    }
+
+    /* Rediseño del Hero con imágenes sesgadas en Desktop */
     .hero {
-        height: 85vh;
-        /* Altura fija para pantallas grandes */
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        text-align: left;
+        align-items: center;
+        padding: 0 0 0 50px;
+        overflow: hidden;
+        height: 380px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        word-wrap: break-word;
+        max-width: 400px;
+    }
+
+    .hero-buttons {
         flex-direction: row;
-        /* Ponemos texto e imágenes lado a lado */
     }
 
-    /* Las imágenes ahora ocupan todo el fondo de la pantalla */
-    .hero-images {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 65%;
-        /* Ocupan el 65% derecho */
+    /* El contenedor inclinado de las 5 fotos */
+    .hero-gallery {
+        margin-left: 20px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
         height: 100%;
+        width: 110%;
+        gap: 4px;
+        transform: skewX(-12deg) scale(1.1);
+        transform-origin: top right;
     }
 
-    /* Capa de corte general para separar el texto de las fotos */
-    .hero-images::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+    .gallery-item {
+        background-size: cover;
+        background-position: center;
         height: 100%;
-        /* Difuminado oscuro hacia la izquierda para legibilidad del texto */
-        background: linear-gradient(to right, #06101e 0%, transparent 40%);
-        z-index: 2;
-        pointer-events: none;
+        transition: filter 0.3s ease;
+        filter: brightness(0.9);
     }
 
-    /* Reposicionamos la información a la izquierda */
-    .hero-info {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 45%;
-        /* Llega hasta solapar elegantemente con las imágenes */
-        height: 100%;
-        background: transparent;
-        /* Eliminamos el fondo móvil */
-        padding: 0 0 0 80px;
-        /* Margen generoso a la izquierda */
+    .gallery-item:hover {
+        filter: brightness(1.1);
     }
 
-    .hero-info h1 {
-        font-size: 3.5rem;
+    /* Buscador unificado con filtros laterales inline */
+    .search-filter-section {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        background: var(--white);
+        padding: 15px;
+        border-radius: var(--border-radius);
+        border: 1px solid #e2e8f0;
     }
 
+    .search-wrapper {
+        border: none;
+        background: #f1f5f9;
+        padding: 12px 18px;
+    }
+
+    .filter-controls {
+        display: flex;
+        gap: 12px;
+    }
+
+    .filter-controls select {
+        padding: 0 20px;
+        border-radius: var(--border-radius);
+        border: 1px solid #f0e2e2;
+        background: var(--white);
+        font-weight: 500;
+        min-width: 140px;
+        cursor: pointer;
+    }
+
+    /* Disciplinas estáticas sin scroll */
+    .disciplines-grid {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        overflow: visible;
+        gap: 15px;
+    }
+
+    .discipline-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* DISTRIBUCIÓN ASIMÉTRICA: 2 COLUMNAS (Contenido | Lateral) */
+    .content-layout {
+        display: grid;
+        grid-template-columns: 2.1fr 0.9fr;
+        gap: 30px;
+        align-items: start;
+    }
+
+    .secondary-column {
+        margin-top: 0;
+        gap: 25px;
+    }
+
+    /* Grillas internas expandidas */
+    .tournaments-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    /* ==========================================================================
+   PRÓXIMOS PARTIDOS
+   ========================================================================== */
+
+    .matches-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .match-row {
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        /* Fondo blanco igual al mockup */
+        border: 1px solid #e2e8f0;
+        border-radius: var(--border-radius, 12px);
+        padding: 16px;
+        gap: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    /* Bloque izquierdo de la hora */
+    .time-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 65px;
+        border-right: 1px solid #e2e8f0;
+        padding-right: 12px;
+    }
+
+    .time-block span {
+        font-size: 11px;
+        color: var(--text-muted, #6c757d);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .time-block strong {
+        font-size: 15px;
+        color: var(--text-main, #212529);
+        font-weight: 700;
+    }
+
+    /* Bloque derecho con los equipos */
+    .teams-block {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: space-around;
+        /* Reparte el espacio simétricamente */
+        gap: 10px;
+    }
+
+    .team {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .team-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-main, #212529);
+    }
+
+    .vs {
+        font-size: 12px;
+        color: var(--text-muted, #6c757d);
+        font-weight: 500;
+        text-transform: lowercase;
+        background: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    /* Ajuste específico si está dentro de la barra lateral en Desktop */
+    @media (min-width: 992px) {
+        .secondary-column .match-row {
+            padding: 14px;
+        }
+
+        .secondary-column .team-name {
+            font-size: 13px;
+            /* Un pelo más compacto para que no se rompa si el nombre es largo */
+        }
+    }
+
+    .time-block {
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .time-block strong {
+        display: block;
+        color: var(--text-main);
+        font-size: 15px;
+    }
+
+    .teams-block {
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .teams-block span {
+        color: var(--primary-color);
+    }
 }

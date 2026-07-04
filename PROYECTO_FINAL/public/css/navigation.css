@@ -1,0 +1,193 @@
+/* MOBILE-FIRST NAVIGATION */
+.main-header {
+    background-color: var(--bg-dark);
+    color: var(--white);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo-icon { font-size: 24px; }
+.logo-text strong { display: block; font-size: 16px; }
+.logo-text span { font-size: 10px; color: var(--text-muted); display: none; }
+
+.desktop-nav, .auth-buttons, .search-trigger, .theme-trigger, .desktop-only {
+    display: none;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 20px;
+}
+
+/* SIDEBAR MÓVIL */
+.sidebar-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+}
+.sidebar-overlay.active { opacity: 1; pointer-events: auto; }
+
+.mobile-sidebar {
+    position: fixed;
+    top: 0; left: -280px; width: 220px; height: 100vh;
+    background: var(--bg-dark);
+    z-index: 999;
+    padding: 20px;
+    transition: left 0.3s ease;
+}
+.mobile-sidebar.active { left: 0; }
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.sidebar-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 30px;
+}
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: rgba(255,255,255,0.8);
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* BOTTOM NAVIGATION (MÓVIL) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: var(--white);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 100;
+}
+.bottom-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.bottom-link i { font-size: 18px; margin-bottom: 4px; }
+.bottom-link.active { color: var(--primary-color); }
+
+/* ==========================================================================
+   BOTONES DE AUTENTICACIÓN EN SIDEBAR (MOBILE)
+   ========================================================================== */
+
+/* Convertimos el sidebar en un contenedor flex vertical para distribuir el espacio */
+.mobile-sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Forzamos a la navegación a estirarse, empujando la autenticación al fondo */
+.sidebar-nav {
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de botones de autenticación */
+.sidebar-auth-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea sutil divisoria */
+}
+
+/* Estilo base para ambos botones en móvil */
+.btn-auth-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* Iniciar Sesión (Estilo Secundario/Transparente) */
+.btn-login-mobile {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.btn-login-mobile:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Registrarse (Estilo Destacado con el azul de tu app) */
+.btn-register-mobile {
+    color: #ffffff;
+    background-color: var(--primary-color, #0d6efd);
+}
+.btn-register-mobile:active {
+    background-color: var(--primary-hover, #0b5ed7);
+}
+
+/* VISTA ESCRITORIO (RESPONSIVE) */
+@media (min-width: 992px) {
+    .sidebar-toggle, .bottom-nav, .mobile-only { display: none !important; }
+    .desktop-nav, .auth-buttons, .search-trigger, .theme-trigger, .desktop-only { display: flex; }
+    
+    .logo-text span { display: block; }
+    
+    .desktop-nav {
+        gap: 20px;
+    }
+    .desktop-nav a {
+        color: rgba(255,255,255,0.7);
+        font-weight: 500;
+    }
+    .desktop-nav a:hover { color: var(--white); }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .auth-buttons {
+        gap: 10px;
+        margin-left: 10px;
+    }
+    .btn-login { color: var(--white); padding: 8px 15px; }
+    .btn-register { background-color: var(--primary-color); color: var(--white); padding: 8px 15px; border-radius: 6px; }
+}

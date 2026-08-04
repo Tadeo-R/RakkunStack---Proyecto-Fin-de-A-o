@@ -1,0 +1,52 @@
+:root {
+    --primary-color: #0d6efd;
+    --primary-hover: #0b5ed7;
+    --bg-dark: #070f26;
+    --bg-light: #f8f9fa;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --white: #ffffff;
+    --border-radius: 12px;
+    --font-family: 'Lexend', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+}
+
+/* Agrega o corrige esto en tu archivo CSS global */
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary { background-color: var(--primary-color); color: var(--white); }
+.btn-secondary { background-color: rgba(255,255,255,0.15); color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+
+@media (min-width: 992px) {
+    body { padding-bottom: 0; }
+}

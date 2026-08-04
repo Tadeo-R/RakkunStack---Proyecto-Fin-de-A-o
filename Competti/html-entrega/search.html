@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Torneos - COMPETTI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <div class="logo">
+                <img class="logoRueda" src="img/logoRueda.svg" alt="logo">
+                <img class="logoTrebol" src="img/LogoTrebol.svg" alt="logo">
+                <div class="logo-text">
+                    <strong>COMPETTI</strong>
+                    <span>Compite. Conecta. Gana.</span>
+                </div>
+            </div>
+
+            <nav class="desktop-nav">
+                <a class="a-btn" href="index.html">Inicio</a>
+                <a class="a-btn" href="torneos.html">Torneos</a>
+                <a class="a-btn" href="equipos.html">Equipos</a>
+                <a class="a-btn" href="resultados.html">Resultados</a>
+                <a class="a-btn" href="calendario.html">Calendario</a>
+                <a class="a-btn" href="quienesSomos.html">Quienes Somos</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="search.html">
+                    <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </a>
+                <button class="icon-btn theme-trigger"><i class="fa-regular fa-moon"></i></button>
+                <a href="notificaciones.html">
+                    <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
+                </a>
+                <a href="profile.html">
+                    <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
+                </a>
+
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn-login">Iniciar Sesión</a>
+                    <a href="register.html" class="btn-register">Registrarse</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <button class="hamburger hamburger--emphatic" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <div class="sidebar-overlay"></div>
+
+    <aside class="mobile-sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🏆</span>
+                <div class="logo-text"><strong style="color: white;">TORNEOS</strong></div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="enlace-nav" href="index.html"><i class="fa-regular fa-home"></i>Inicio</a>
+            <a class="enlace-nav" href="torneos.html"><i class="fa-regular fa-chess-knight"></i>Torneos</a>
+            <a class="enlace-nav" href="equipos.html"><i class="fa-regular fa-handshake"></i>Equipos</a>
+            <a class="enlace-nav" href="resultados.html"><i class="fa-regular fa-chart-bar"></i>Resultados</a>
+            <a class="enlace-nav" href="calendario.html"><i class="fa-regular fa-calendar-alt"></i>Calendario</a>
+            <a class="enlace-nav" href="quienesSomos.html"><i class="fa-regular fa-lightbulb"></i>Quienes Somos</a>
+        </nav>
+        <div class="sidebar-auth-mobile">
+            <a href="login.html" class="btn-auth-mobile btn-login-mobile">
+                <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+            </a>
+            <a href="register.html" class="btn-auth-mobile btn-register-mobile">
+                <i class="fa-solid fa-user-plus"></i> Registrarse
+            </a>
+        </div>
+    </aside>
+
+    <main class="container">
+        
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Explorar Torneos</h1>
+                <p class="subtitle">Encuentra y únete a la próxima competencia activa</p>
+            </div>
+        </header>
+
+        <section class="filters-panel">
+            <form action="torneos.html" method="GET" class="filters-form">
+                
+                <div class="filter-group search-group">
+                    <label for="search"><i class="fa-solid fa-magnifying-glass"></i> Buscar por nombre</label>
+                    <input type="text" id="search" name="q" placeholder="Ej: Copa Verano 2026...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="disciplina"><i class="fa-solid fa-trophy"></i> Disciplina</label>
+                    <select id="disciplina" name="disciplina">
+                        <option value="">Todas las disciplinas</option>
+                        <option value="futbol">Fútbol</option>
+                        <option value="valorant">Valorant / eSports</option>
+                        <option value="basquet">Básquetbol</option>
+                        <option value="voley">Vóley</option>
+                        <option value="ajedrez">Ajedrez</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="estado"><i class="fa-solid fa-circle-dot"></i> Estado</label>
+                    <select id="estado" name="estado">
+                        <option value="">Todos los estados</option>
+                        <option value="inscripciones">Inscripciones Abiertas</option>
+                        <option value="en_curso">En Curso</option>
+                        <option value="finalizado">Finalizados</option>
+                    </select>
+                </div>
+
+                <div class="filter-group btn-group">
+                    <button type="submit" class="btn-filter"><i class="fa-solid fa-sliders"></i> Filtrar</button>
+                </div>
+
+            </form>
+        </section>
+
+        <div class="grid-3">
+
+            <article class="card">
+                <span class="card-badge badge-open">Inscripciones Abiertas</span>
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600&auto=format&fit=crop" alt="Fútbol" class="card-img">
+                <div class="card-body">
+                    <h3>Copa Nocturna Fútbol 7</h3>
+                    <div class="card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Inicia: 15 Ago 2026</span>
+                        <span><i class="fa-solid fa-users"></i> 12/16 Equipos</span>
+                    </div>
+                    <a href="#" class="btn-card">Ver Detalles</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <span class="card-badge badge-live">En Curso</span>
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="Valorant" class="card-img">
+                <div class="card-body">
+                    <h3>Valorant Masters Series II</h3>
+                    <div class="card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Fase: Cuartos de Final</span>
+                        <span><i class="fa-solid fa-gamepad"></i> 8 Equipos</span>
+                    </div>
+                    <a href="#" class="btn-card">Ver Tabla & Fechas</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <span class="card-badge badge-open">Inscripciones Abiertas</span>
+                <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=600&auto=format&fit=crop" alt="Básquet" class="card-img">
+                <div class="card-body">
+                    <h3>Torneo Relámpago Básquet 3x3</h3>
+                    <div class="card-meta">
+                        <span><i class="fa-regular fa-calendar"></i> Inicia: 02 Sep 2026</span>
+                        <span><i class="fa-solid fa-users"></i> 6/10 Equipos</span>
+                    </div>
+                    <a href="#" class="btn-card">Ver Detalles</a>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🏆</span>
+                    <div class="logo-text">
+                        <strong style="color: white;">TORNEOS</strong>
+                        <span>Compite. Conecta. Gana.</span>
+                    </div>
+                </div>
+                <p class="brand-description">
+                    La plataforma integral para la gestión de torneos deportivos, mentales y electrónicos. Organizá tu
+                    comunidad y competí al máximo nivel.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4>Explorar</h4>
+                    <ul>
+                        <li><a href="#">Torneos Activos</a></li>
+                        <li><a href="#">Próximos Eventos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Reglamentos Base</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Estado del Servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy;
+                    2026 RakkunStack&trade;. Torneos es un producto de RakkunStack&trade;. Todos los
+                    derechos reservados.
+                </p>
+                <div class="footer-legal-links">
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const burgerMenu = document.querySelector('.hamburger');
+        const sidebar = document.querySelector('.mobile-sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        const body = document.body;
+
+        const toggleSidebar = () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.classList.toggle('no-scroll');
+            burgerMenu.classList.toggle('is-active');
+        };
+
+        burgerMenu.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Detecta en qué página estás y añade la clase sólida al icono
+        document.querySelectorAll('.enlace-nav').forEach(enlace => {
+            // Si el enlace coincide con la URL actual de la página
+            if (enlace.href === window.location.href) {
+                const icono = enlace.querySelector('i');
+
+                // Intercambia las clases de Font Awesome
+                icono.classList.remove('fa-regular');
+                icono.classList.add('fa-solid');
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

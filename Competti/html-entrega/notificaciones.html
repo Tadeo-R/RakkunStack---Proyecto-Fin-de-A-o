@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <title>Notificaciones - COMPETTI</title>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+
+            <div class="logo">
+                <img class="logoRueda" src="img/logoRueda.svg" alt="logo">
+                <img class="logoTrebol" src="img/LogoTrebol.svg" alt="logo">
+                <div class="logo-text">
+                    <strong>COMPETTI</strong>
+                    <span>Compite. Conecta. Gana.</span>
+                </div>
+            </div>
+
+            <nav class="desktop-nav">
+                <a class="a-btn" href="index.html">Inicio</a>
+                <a class="a-btn" href="torneos.html">Torneos</a>
+                <a class="a-btn" href="equipos.html">Equipos</a>
+                <a class="a-btn" href="resultados.html">Resultados</a>
+                <a class="a-btn" href="calendario.html">Calendario</a>
+                <a class="a-btn" href="quienesSomos.html">Quienes Somos</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="search.html">
+                    <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </a>
+                <button class="icon-btn theme-trigger"><i class="fa-regular fa-moon"></i></button>
+                <a href="notificaciones.html">
+                    <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
+                </a>
+                <a href="profile.html">
+                    <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
+                </a>
+
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn-login">Iniciar Sesión</a>
+                    <a href="register.html" class="btn-register">Registrarse</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <button class="hamburger hamburger--emphatic" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <div class="sidebar-overlay"></div>
+
+    <aside class="mobile-sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🏆</span>
+                <div class="logo-text"><strong style="color: white;">TORNEOS</strong></div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="enlace-nav" href="index.html"><i class="fa-regular fa-home"></i>Inicio</a>
+            <a class="enlace-nav" href="torneos.html"><i class="fa-regular fa-chess-knight"></i>Torneos</a>
+            <a class="enlace-nav" href="equipos.html"><i class="fa-regular fa-handshake"></i>Equipos</a>
+            <a class="enlace-nav" href="resultados.html"><i class="fa-regular fa-chart-bar"></i>Resultados</a>
+            <a class="enlace-nav" href="calendario.html"><i class="fa-regular fa-calendar-alt"></i>Calendario</a>
+            <a class="enlace-nav" href="quienesSomos.html"><i class="fa-regular fa-lightbulb"></i>Quienes Somos</a>
+        </nav>
+        <div class="sidebar-auth-mobile">
+            <a href="login.html" class="btn-auth-mobile btn-login-mobile">
+                <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+            </a>
+            <a href="register.html" class="btn-auth-mobile btn-register-mobile">
+                <i class="fa-solid fa-user-plus"></i> Registrarse
+            </a>
+        </div>
+    </aside>
+
+    <main class="container">
+
+        <div class="main-panel">
+
+            <header class="panel-header">
+                <div>
+                    <h1 class="page-title"><i class="fa-solid fa-bell"></i> Centro de Notificaciones</h1>
+                    <p class="subtitle">Mantente al tanto de tus inscripciones, partidos y novedades</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-action-secondary" title="Marcar todas como leídas">
+                        <i class="fa-solid fa-check-double"></i> Marcar leídas
+                    </button>
+                    <button class="btn-action-danger" title="Eliminar leídas">
+                        <i class="fa-regular fa-trash-can"></i> Limpiar
+                    </button>
+                </div>
+            </header>
+
+            <div class="toolbar-panel">
+
+                <div class="filter-tabs">
+                    <button class="tab-btn active">Todas <span class="tab-badge">5</span></button>
+                    <button class="tab-btn">Sin Leer <span class="tab-badge highlight">3</span></button>
+                    <button class="tab-btn">Torneos</button>
+                    <button class="tab-btn">Sistema</button>
+                </div>
+
+                <div class="toolbar-search">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" placeholder="Buscar en notificaciones...">
+                </div>
+
+            </div>
+
+            <div class="notifications-list">
+
+                <div class="notification-item unread">
+                    <div class="notif-icon icon-trophy">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <h4 class="notif-title">Inscripción Aprobada</h4>
+                            <span class="notif-time"><i class="fa-regular fa-clock"></i> Hace 10 min</span>
+                        </div>
+                        <p class="notif-desc">Tu equipo <strong>"Los Galácticos"</strong> fue aceptado exitosamente en
+                            la <em>Copa Nocturna Fútbol 7</em>.</p>
+                    </div>
+                    <div class="notif-actions">
+                        <button class="btn-circle" title="Marcar como leída"><i class="fa-solid fa-check"></i></button>
+                        <button class="btn-circle danger" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div class="notification-item unread">
+                    <div class="notif-icon icon-game">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <h4 class="notif-title">Próximo Partido Programado</h4>
+                            <span class="notif-time"><i class="fa-regular fa-clock"></i> Hace 1 hora</span>
+                        </div>
+                        <p class="notif-desc">Tu enfrentamiento de <em>Valorant Masters Series</em> contra <strong>Alpha
+                                Team</strong> se jugará mañana a las 20:00 hs.</p>
+                    </div>
+                    <div class="notif-actions">
+                        <button class="btn-circle" title="Marcar como leída"><i class="fa-solid fa-check"></i></button>
+                        <button class="btn-circle danger" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div class="notification-item unread">
+                    <div class="notif-icon icon-warning">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <h4 class="notif-title">Cierre de Inscripciones</h4>
+                            <span class="notif-time"><i class="fa-regular fa-clock"></i> Hace 3 horas</span>
+                        </div>
+                        <p class="notif-desc">El torneo <em>Básquet 3x3 Relámpago</em> cierra sus inscripciones en 24
+                            horas. ¡Completa tu plantilla!</p>
+                    </div>
+                    <div class="notif-actions">
+                        <button class="btn-circle" title="Marcar como leída"><i class="fa-solid fa-check"></i></button>
+                        <button class="btn-circle danger" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notif-icon icon-system">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <h4 class="notif-title">Perfil Actualizado</h4>
+                            <span class="notif-time"><i class="fa-regular fa-clock"></i> Ayer</span>
+                        </div>
+                        <p class="notif-desc">Has cambiado tu contraseña de acceso correctamente.</p>
+                    </div>
+                    <div class="notif-actions">
+                        <button class="btn-circle danger" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notif-icon icon-trophy">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <h4 class="notif-title">Torneo Finalizado</h4>
+                            <span class="notif-time"><i class="fa-regular fa-clock"></i> Hace 3 días</span>
+                        </div>
+                        <p class="notif-desc">Se han publicado la tabla final y los resultados de la <em>Liga de Verano
+                                Vóley</em>.</p>
+                    </div>
+                    <div class="notif-actions">
+                        <button class="btn-circle danger" title="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">🏆</span>
+                    <div class="logo-text">
+                        <strong style="color: white;">TORNEOS</strong>
+                        <span>Compite. Conecta. Gana.</span>
+                    </div>
+                </div>
+                <p class="brand-description">
+                    La plataforma integral para la gestión de torneos deportivos, mentales y electrónicos. Organizá tu
+                    comunidad y competí al máximo nivel.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links-group">
+                <div class="footer-col">
+                    <h4>Explorar</h4>
+                    <ul>
+                        <li><a href="#">Torneos Activos</a></li>
+                        <li><a href="#">Próximos Eventos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Reglamentos Base</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Estado del Servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy;
+                    2026 RakkunStack&trade;. Torneos es un producto de RakkunStack&trade;. Todos los
+                    derechos reservados.
+                </p>
+                <div class="footer-legal-links">
+                    <a href="#">Términos de Servicio</a>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const burgerMenu = document.querySelector('.hamburger');
+        const sidebar = document.querySelector('.mobile-sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        const body = document.body;
+
+        const toggleSidebar = () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.classList.toggle('no-scroll');
+            burgerMenu.classList.toggle('is-active');
+        };
+
+        burgerMenu.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        // Detecta en qué página estás y añade la clase sólida al icono
+        document.querySelectorAll('.enlace-nav').forEach(enlace => {
+            // Si el enlace coincide con la URL actual de la página
+            if (enlace.href === window.location.href) {
+                const icono = enlace.querySelector('i');
+
+                // Intercambia las clases de Font Awesome
+                icono.classList.remove('fa-regular');
+                icono.classList.add('fa-solid');
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

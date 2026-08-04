@@ -1,0 +1,385 @@
+/* ==========================================================================
+   ESTILOS DE PERFIL (MOBILE-FIRST)
+   ========================================================================== */
+
+/* 1. ESTRUCTURA Y ESPACIADO GENERAL */
+.main-content.profile-layout {
+    padding: 40px 16px 40px; /* Padding superior para evitar choque con el header */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 2. TARJETA DE PERFIL (SIDEBAR EN DESKTOP) */
+.profile-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 12px;
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color, #0d6efd);
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.15);
+}
+
+.btn-change-avatar, 
+.btn-save-avatar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-change-avatar {
+    background: var(--primary-color, #0d6efd);
+    color: #ffffff;
+}
+
+.btn-save-avatar {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.btn-change-avatar:hover, 
+.btn-save-avatar:hover {
+    transform: scale(1.1);
+}
+
+.profile-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 2px;
+}
+
+.profile-username {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.profile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-badge.admin {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid #f1f5f9;
+    margin: 16px 0;
+}
+
+.profile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.profile-meta p {
+    font-size: 0.825rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.profile-meta i {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* MINIBOX DE ESTADÍSTICAS */
+.profile-stats-mini {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.stat-mini-box {
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    padding: 10px 4px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-mini-box strong {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.stat-mini-box span {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* 3. PESTAÑAS (TABS) */
+.profile-tabs-wrapper {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 12px;
+}
+
+.profile-tabs-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.profile-tabs {
+    display: flex;
+    gap: 8px;
+    min-width: max-content;
+}
+
+.tab-btn {
+    background: #f1f5f9;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #64748b;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+    background: #ffffff;
+    color: var(--primary-color, #0d6efd);
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+}
+
+/* 4. CONTENIDO DE PESTAÑAS Y LISTADO */
+.tab-content {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.section-header h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.badge-count {
+    font-size: 0.75rem;
+    background-color: #f1f5f9;
+    color: #475569;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.profile-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Tarjetas individuales de torneos */
+.profile-item-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-item-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.item-badge-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+}
+
+.item-badge-status.live {
+    background-color: #d1fae5;
+    color: #047857;
+}
+
+.item-badge-status.upcoming {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.item-badge-status.ended {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+.item-header-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-right: 60px; /* Espacio para el badge de estado */
+}
+
+.item-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.item-details h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px 0;
+}
+
+.item-subtext {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.item-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 10px;
+}
+
+.user-role-tag {
+    font-size: 0.75rem;
+    color: #475569;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-role-tag.admin-role {
+    color: #2563eb;
+}
+
+.btn-item-action {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-color, #0d6efd);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Colores de iconos por categoría */
+.text-blue { color: #2563eb; }
+.text-purple { color: #7c3aed; }
+.text-orange { color: #ea580c; }
+
+
+/* ==========================================================================
+   ADAPTACIÓN A PANTALLAS GRANDES (DESKTOP: min-width: 992px)
+   ========================================================================== */
+@media (min-width: 992px) {
+    .main-content.profile-layout {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 80px;
+        display: grid;
+        grid-template-columns: 320px 1fr; /* Columna fija para perfil, resto para contenido */
+        gap: 28px;
+        align-items: start;
+    }
+
+    .avatar-wrapper {
+        width: 110px;
+        height: 110px;
+    }
+
+    .tab-content {
+        padding: 24px;
+    }
+
+    .profile-tabs {
+        min-width: auto;
+    }
+
+    .tab-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .profile-item-card {
+        padding: 16px;
+    }
+}

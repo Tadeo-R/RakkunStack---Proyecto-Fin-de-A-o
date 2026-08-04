@@ -1,0 +1,670 @@
+/* ==========================================
+   1. ESTILOS BASE (MOBILE-FIRST: < 768px)
+   ========================================== */
+
+.navbar {
+  background-color: var(--bg-dark, #0f172a);
+  padding: 12px 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: var(--white, #ffffff);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.logo span {
+  font-size: 0.75rem;
+  display: block;
+  color: var(--text-muted, #94a3b8);
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  order: 3;
+}
+
+.nav-links a {
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary-color, #2563eb);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 1rem;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted, #64748b);
+}
+
+/* GRIDS RESPONSIVOS */
+.grid-3,
+.grid-2 {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 16px;
+}
+
+/* TARJETAS GENERALES */
+.card {
+  background: var(--white, #ffffff);
+  border-radius: var(--border-radius, 12px);
+  border: 1px solid var(--border-color, #e2e8f0);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* BADGES ESTADOS Y CATEGORÍAS */
+.card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.badge-open {
+  background-color: #16a34a;
+}
+
+.badge-live {
+  background-color: #dc2626;
+}
+
+.badge-esports {
+  background-color: #7c3aed;
+}
+
+.badge-mesa {
+  background-color: #d97706;
+}
+
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 8px;
+}
+
+.card-header-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.card-header-icon i {
+  color: var(--primary-color, #2563eb);
+  font-size: 1.1rem;
+}
+
+.card-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted, #64748b);
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.825rem;
+  color: var(--text-muted, #64748b);
+  margin-bottom: 16px;
+  margin-top: auto;
+}
+
+.btn-card {
+  display: inline-block;
+  text-align: center;
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-card:hover {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+}
+
+/* ==========================================
+   BARRA DE FILTROS RESPONSIVA
+   ========================================== */
+.filters-panel {
+  background: var(--white, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: var(--border-radius, 12px);
+  padding: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.filters-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--primary-color, #2563eb);
+  background: #ffffff;
+}
+
+.btn-filter {
+  width: 100%;
+  padding: 11px;
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s ease;
+}
+
+.btn-filter:hover {
+  background: #1d4ed8;
+}
+
+/* ==========================================
+   ESTILOS DE NOTIFICACIONES Y PANEL BASE
+   (Inspirado en tarjetas limpias y barras de control)
+   ========================================== */
+
+/* Panel contenedor blanco principal */
+.main-panel {
+  background: var(--white, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: var(--border-radius, 16px);
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.panel-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botones de acción del encabezado */
+.btn-action-secondary,
+.btn-action-danger {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-action-secondary:hover {
+  background: #f8fafc;
+  border-color: var(--primary-color, #2563eb);
+  color: var(--primary-color, #2563eb);
+}
+
+.btn-action-danger:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+/* BARRA DE HERRAMIENTAS Y FILTROS */
+.toolbar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab-btn {
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: #0f172a;
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: var(--primary-color, #2563eb);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.tab-badge {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+.tab-badge.highlight {
+  background: var(--primary-color, #2563eb);
+  color: #ffffff;
+}
+
+/* Buscador en la toolbar */
+.toolbar-search {
+  position: relative;
+  width: 100%;
+}
+
+.toolbar-search .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.toolbar-search input {
+  width: 100%;
+  padding: 8px 12px 8px 34px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  outline: none;
+  background: #ffffff;
+}
+
+.toolbar-search input:focus {
+  border-color: var(--primary-color, #2563eb);
+}
+
+/* LISTA Y TARJETAS DE NOTIFICACIÓN */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Estado sin leer (despliega un borde/fondo sutil) */
+.notification-item.unread {
+  background: #f0f7ff;
+  border-color: #bfdbfe;
+}
+
+.notification-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Icono según tipo */
+.notif-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.icon-trophy {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.icon-game {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+.icon-warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.icon-system {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Contenido */
+.notif-content {
+  flex-grow: 1;
+}
+
+.notif-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.notif-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.notif-time {
+  font-size: 0.775rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notif-desc {
+  font-size: 0.875rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Botones de acción rápidos a la derecha */
+.notif-actions {
+  display: flex;
+  gap: 6px;
+  align-self: center;
+}
+
+.btn-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.btn-circle:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.btn-circle.danger:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* Botón de campana con contador en el navbar */
+.nav-icon-btn {
+  position: relative;
+  color: #e2e8f0;
+  font-size: 1.1rem;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.nav-icon-btn.active,
+.nav-icon-btn:hover {
+  color: var(--primary-color, #2563eb);
+}
+
+.badge-count {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+/* RESPONSIVO PARA TABLET Y DESKTOP */
+@media (min-width: 768px) {
+  .main-panel {
+    padding: 28px;
+  }
+
+  .panel-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .toolbar-panel {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .toolbar-search {
+    width: 260px;
+  }
+
+.grid-2,
+.grid-3 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.filters-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: end;
+}
+
+.search-group {
+  grid-column: span 2;
+}
+
+.card-meta {
+  flex-direction: row;
+  justify-content: space-between;
+}
+}
+
+/* ==========================================
+   3. DESKTOP (min-width: 992px)
+   ========================================== */
+@media (min-width: 992px) {
+  .navbar {
+    padding: 15px 5%;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    width: auto;
+    order: 0;
+    gap: 20px;
+  }
+
+  .container {
+    padding: 0 20px;
+    margin: 30px auto;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Filtros en 1 sola fila en escritorio */
+  .filters-form {
+    grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+    gap: 16px;
+  }
+
+  .search-group {
+    grid-column: span 1;
+  }
+}

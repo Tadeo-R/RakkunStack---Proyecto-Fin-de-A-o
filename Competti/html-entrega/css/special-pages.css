@@ -1,0 +1,299 @@
+/* ============================================================
+   ESTILOS MOBILE-FIRST PARA: QUIÉNES SOMOS, RESULTADOS Y CALENDARIO
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. PÁGINA: QUIÉNES SOMOS (.about-container)
+   ------------------------------------------------------------ */
+.about-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* En móvil ocupa todo el ancho y reduce paddings */
+.about-hero {
+    text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    padding: 24px 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.about-hero h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.about-hero p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Grid Mobile-First: 1 columna por defecto */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.about-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.about-icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.icon-blue { background: #e0f2fe; color: #0284c7; }
+.icon-clock { background: #fef3c7; color: #d97706; }
+.icon-support { background: #dcfce7; color: #16a34a; }
+
+.about-card h3 {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.about-card p {
+    color: #64748b;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+
+/* ------------------------------------------------------------
+   2. PÁGINA: RESULTADOS (.results-container)
+   ------------------------------------------------------------ */
+.results-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.results-header h1 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.match-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.match-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    font-weight: 700;
+}
+
+/* En Móvil: Los equipos y el marcador se adaptan apilados si es necesario */
+.match-teams {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    width: 100%;
+    justify-content: center;
+}
+
+.match-score {
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #0f172a;
+}
+
+
+/* ------------------------------------------------------------
+   3. PÁGINA: CALENDARIO (.calendar-page)
+   ------------------------------------------------------------ */
+.calendar-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 20px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.calendar-header h1 {
+    font-size: 1.5rem;
+    color: #0f172a;
+    margin-bottom: 16px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* En Móvil: La tarjeta se organiza verticalmente */
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background: #ffffff;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 12px 12px 0;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-date {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.timeline-date .day {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+}
+
+.timeline-date .time {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.timeline-info {
+    width: 100%;
+}
+
+.timeline-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.timeline-sub {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.btn-remind {
+    width: 100%; /* Botón ancho completo en móvil para fácil toque */
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+/* ============================================================
+   MEDIA QUERIES: ADAPTACIÓN A PANTALLAS GRANDES (TABLET / PC)
+   ============================================================ */
+@media (min-width: 640px) {
+
+    .about-container,
+    .results-container,
+    .calendar-container {
+        margin: 40px auto;
+    }
+
+    .about-hero {
+        padding: 40px 20px;
+    }
+
+    .about-hero h1 {
+        font-size: 2rem;
+    }
+
+    /* En escritorio pasan a ser tarjetas en columnas */
+    .about-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* En escritorio los partidos se leen: Local - Marcador - Visitante */
+    .match-teams {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .team {
+        width: auto;
+        justify-content: flex-start;
+    }
+
+    .team.away {
+        justify-content: flex-end;
+    }
+
+    .match-score {
+        padding: 6px 16px;
+        font-size: 1.1rem;
+    }
+
+    /* En escritorio el evento en el calendario es una sola fila horizontal */
+    .timeline-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .timeline-date {
+        flex-direction: column;
+        gap: 0;
+        min-width: 110px;
+    }
+
+    .timeline-info {
+        flex-grow: 1;
+        padding: 0 15px;
+    }
+
+    .btn-remind {
+        width: auto; /* Ancho normal del botón */
+        padding: 8px 16px;
+    }
+}

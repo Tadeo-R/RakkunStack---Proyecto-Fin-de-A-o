@@ -1,13 +1,17 @@
+@import url('https://googleapis.com');
+
 :root {
-    --primary-color: #0d6efd;
-    --primary-hover: #0b5ed7;
-    --bg-dark: #070f26;
-    --bg-light: #f8f9fa;
-    --text-main: #212529;
-    --text-muted: #6c757d;
-    --white: #ffffff;
-    --border-radius: 12px;
-    --font-family: 'Lexend', sans-serif;
+    --primary-color: #0d6dfd; /* Color primario */
+    --primary-hover: #0b5ed7; /* Color primario hover */
+    --bg-dark: ; /* Fondos oscuros */
+    --bg-light: #b9efff; /* Fondos claros */
+    --text-main: #ffffff; /* Textos principales */
+    --text-muted: #6c757d; /* Texto "muteado" */
+    --button-primary: #0d6efd; /* Botón primario */
+    --button-secondary: #ffffff26; /* Botón secundario */
+    --white: #ffffff; /* Color blanco */
+    --border-radius: 12px; /* Radio de borde */
+    --border-color: #dee2e6; /* Color de borde */
 }
 
 * {
@@ -17,9 +21,8 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-light);
-    color: var(--text-main);
+    font-family: 'Lexend', sans-serif;
+    min-height: 100vh;
 }
 
 /* Agrega o corrige esto en tu archivo CSS global */
@@ -50,7 +53,7 @@ a {
     transition: 0.3s ease-in;
 }
 
-.btn-primary:hover {
+/* .btn-primary:hover {
     color: #fff;
     text-shadow:
         0 0 7px #fff,
@@ -61,16 +64,16 @@ a {
         0 0 92px rgb(0, 162, 255),
         0 0 102px rgb(0, 162, 255),
         0 0 151px rgb(0, 162, 255);
-}
+} */
 
 .btn-secondary {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: var(--button-secondary);
     color: var(--white);
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: 0.3s ease-in;
 }
 
-.btn-secondary:hover {
+/* .btn-secondary:hover {
     color: #fff;
     text-shadow:
         0 0 7px #fff,
@@ -81,7 +84,7 @@ a {
         0 0 92px rgb(0, 162, 255),
         0 0 102px rgb(0, 162, 255),
         0 0 151px rgb(0, 162, 255);
-}
+} */
 
 @media (min-width: 992px) {
     body {

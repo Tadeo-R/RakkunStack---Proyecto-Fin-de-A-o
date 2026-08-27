@@ -5,7 +5,7 @@ if [ -z "$BASH_VERSION" ]; then
     echo "Error: Este script debe ser ejecutado exclusivamente con Bash." >&2
     exit 1
 fi
-# prueba
+
 if [[ "$0" != "./"* ]]; then
     echo "Error: Este script solo se puede ejecutar usando './'" >&2
     exit 1

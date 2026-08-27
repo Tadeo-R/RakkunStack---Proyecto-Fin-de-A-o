@@ -13,19 +13,7 @@ body {
     min-height: 100vh;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: url('https://i.gifer.com/Cal.gif') center/cover no-repeat;
-    filter: invert(12%) sepia(60%) saturate(500%) hue-rotate(150deg) brightness(65%) contrast(120%);
-}
-
-.main-content {
+main {
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -34,10 +22,10 @@ body::before {
 
 /* 1. HERO SECTION */
 .hero {
-    background: linear-gradient(105deg, #070f26 30%, #1a2950 50%);
+    backdrop-filter: blur(15px);
     color: var(--white);
     padding: 35px 20px;
-    border-radius: var(--border-radius);
+    border-radius: 18px;
     text-align: center;
 }
 
@@ -76,16 +64,18 @@ body::before {
 
 .search-wrapper {
     position: relative;
-    background: var(--white);
+    backdrop-filter: blur(10px);
     border-radius: var(--border-radius);
-    padding: 14px;
     display: flex;
     align-items: center;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;      
+    padding: 12px 18px;        
+    gap: 10px;
 }
 
 .search-icon {
-    color: var(--text-muted);
+    color: var(--primary-color);
     margin-right: 12px;
 }
 
@@ -94,6 +84,11 @@ body::before {
     width: 100%;
     outline: none;
     font-size: 14px;
+    background: transparent;
+    color:var(--white);
+}
+.search-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .filter-controls {
@@ -112,6 +107,7 @@ body::before {
 .section-header h2 {
     font-size: 18px;
     font-weight: 700;
+    color: var(--white);
 }
 
 .view-all {
@@ -136,7 +132,8 @@ body::before {
 }
 
 .discipline-card {
-    background: var(--white);
+    backdrop-filter: blur(10px);
+    color: var(--white);
     padding: 15px;
     border-radius: var(--border-radius);
     min-width: 95px;
@@ -146,18 +143,13 @@ body::before {
     gap: 8px;
     font-size: 12px;
     font-weight: 500;
-    border: 1px solid #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.2s ease;
-}
-
-.discipline-card.active {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    background-color: rgba(13, 110, 253, 0.05);
 }
 
 .discipline-card i {
     font-size: 22px;
+     color: var(--primary-color);
 }
 
 /* 5. TARJETAS DE TORNEOS */
@@ -168,12 +160,22 @@ body::before {
 }
 
 .tournament-card {
-    background: var(--white);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
 }
 
+.card-body h3 {
+    color: var(--white);
+}
+
+.card-body p {
+    color: rgba(255, 255, 255, 0.7); /* en vez de var(--text-muted), que es gris oscuro */
+}
+
+.card-body p i {
+    color: var(--primary-color);
+}
 .card-img {
     height: 150px;
     background-size: cover;
@@ -226,13 +228,14 @@ body::before {
 .btn-details {
     display: block;
     text-align: center;
-    background: #f1f5f9;
+    background: rgba(13, 110, 253, 0.1);
+    border: 1px solid rgba(13, 110, 253, 0.3);
     padding: 10px;
     border-radius: 8px;
     font-weight: 600;
     font-size: 13px;
     margin-top: 12px;
-    color: var(--text-main);
+    color: var(--primary-color);
 }
 
 .stats-section,
@@ -454,20 +457,13 @@ body::before {
 }
 
 /* ==========================================================================
-   VISTA ESCRITORIO (Media query adaptable para pantallas grandes)
+   VISTA TABLET (Media query adaptable para pantallas chicas-medianas)
    ========================================================================== */
 
-@media (min-width: 992px) {
-    .main-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 15px;
-        gap: 35px;
-    }
-
+@media (min-width: 768px) {
     .hero {
         display: grid;
-        grid-template-columns: 1fr 1.1fr;
+        grid-template-columns: 3fr 3fr;
         text-align: left;
         align-items: center;
         padding: 0 0 0 50px;
@@ -485,8 +481,16 @@ body::before {
         max-width: 400px;
     }
 
+    .hero-info {
+        max-width: 250px;
+        width: 100%;
+    }
+
     .hero-buttons {
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 400px;
     }
 
     .hero-gallery {
@@ -498,6 +502,7 @@ body::before {
         gap: 4px;
         transform: skewX(-12deg) scale(1.1);
         transform-origin: top right;
+        z-index: -1;
     }
 
     .gallery-item {
@@ -524,21 +529,56 @@ body::before {
     .gallery-item:hover {
         filter: brightness(1.1);
     }
+}
+
+/* ==========================================================================
+   VISTA SARGAS (Media query adaptable para pantallas medianas)
+   ========================================================================== */
+
+@media (min-width: 992px) {
+    .hero-info {
+        max-width: 350px;
+    }
+}
+
+/* ==========================================================================
+   VISTA ESCRITORIO (Media query adaptable para pantallas grandes)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 15px;
+        gap: 35px;
+    }
+
+    .hero-info {
+        max-width: 500px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        max-width: auto;
+    }
 
     /* Buscador unificado con filtros laterales inline */
     .search-filter-section {
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 15px;
-        background: var(--white);
+        backdrop-filter: blur(10px);
         padding: 15px;
         border-radius: var(--border-radius);
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        
     }
 
     .search-wrapper {
         border: none;
-        background: #f1f5f9;
+        background: transparent;
         padding: 12px 18px;
     }
 
@@ -550,8 +590,9 @@ body::before {
     .filter-controls select {
         padding: 0 20px;
         border-radius: var(--border-radius);
-        border: 1px solid #f0e2e2;
-        background: var(--white);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--white);
         font-weight: 500;
         min-width: 140px;
         cursor: pointer;
@@ -574,6 +615,9 @@ body::before {
     }
 
     .discipline-card:hover {
+        border-color: var(--white);
+        color: var(--white);
+        background-color: rgba(13, 110, 253, 0.12);
         transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }

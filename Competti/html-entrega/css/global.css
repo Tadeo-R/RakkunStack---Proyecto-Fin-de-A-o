@@ -3,7 +3,7 @@
 :root {
     --primary-color: #0d6dfd; /* Color primario */
     --primary-hover: #0b5ed7; /* Color primario hover */
-    --bg-dark: ; /* Fondos oscuros */
+    --bg-dark: #0f172a; /* Fondos oscuros */
     --bg-light: #b9efff; /* Fondos claros */
     --text-main: #ffffff; /* Textos principales */
     --text-muted: #6c757d; /* Texto "muteado" */
@@ -38,7 +38,6 @@ body::before {
     filter: invert(12%) sepia(60%) saturate(500%) hue-rotate(170deg) brightness(65%) contrast(120%);
 }
 
-/* Agrega o corrige esto en tu archivo CSS global */
 body.no-scroll {
     overflow: hidden;
     height: 100vh;

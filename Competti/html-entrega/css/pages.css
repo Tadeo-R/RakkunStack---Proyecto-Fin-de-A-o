@@ -74,13 +74,13 @@
 .page-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text-main, #0f172a);
+  color: var(--white, #ffffff); /* GLASS: antes era texto oscuro, pasa a blanco para verse sobre el fondo oscuro */
   margin-bottom: 4px;
 }
 
 .subtitle {
   font-size: 0.9rem;
-  color: var(--text-muted, #64748b);
+  color: rgba(255, 255, 255, 0.65); /* GLASS: antes gris oscuro, ahora gris claro semitransparente */
 }
 
 /* GRIDS RESPONSIVOS */
@@ -93,12 +93,15 @@
 
 /* TARJETAS GENERALES */
 .card {
-  background: var(--white, #ffffff);
+  /* GLASS: antes fondo blanco opaco, ahora vidrio transparente con blur (mismo criterio que .tournament-card en home.css) */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: var(--border-radius, 12px);
-  border: 1px solid var(--border-color, #e2e8f0);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes var(--border-color, #e2e8f0) */
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* GLASS: sombra más marcada para que se note sobre fondo oscuro */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   position: relative;
   width: 100%;
   display: flex;
@@ -107,7 +110,8 @@
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: rgba(255, 255, 255, 0.3); /* GLASS: nuevo, resalta el borde en hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 .card-img {
@@ -157,7 +161,7 @@
 .card-body h3 {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--text-main, #0f172a);
+  color: var(--white, #ffffff); /* GLASS: antes texto oscuro */
   margin-bottom: 8px;
 }
 
@@ -175,7 +179,7 @@
 
 .card-desc {
   font-size: 0.85rem;
-  color: var(--text-muted, #64748b);
+  color: rgba(255, 255, 255, 0.65); /* GLASS: antes gris oscuro */
   line-height: 1.4;
   margin-bottom: 12px;
 }
@@ -185,7 +189,7 @@
   flex-direction: column;
   gap: 6px;
   font-size: 0.825rem;
-  color: var(--text-muted, #64748b);
+  color: rgba(255, 255, 255, 0.55); /* GLASS: antes gris oscuro */
   margin-bottom: 16px;
   margin-top: auto;
 }
@@ -193,8 +197,10 @@
 .btn-card {
   display: inline-block;
   text-align: center;
-  background: #f1f5f9;
-  color: #0f172a;
+  /* GLASS: antes gris claro con texto oscuro, ahora mismo look que .btn-details de home.css */
+  background: rgba(13, 110, 253, 0.12);
+  border: 1px solid rgba(13, 110, 253, 0.3);
+  color: var(--primary-color, #0d6efd);
   padding: 10px;
   border-radius: 8px;
   font-size: 0.875rem;
@@ -212,12 +218,15 @@
    BARRA DE FILTROS RESPONSIVA
    ========================================== */
 .filters-panel {
-  background: var(--white, #ffffff);
-  border: 1px solid var(--border-color, #e2e8f0);
+  /* GLASS: antes fondo blanco opaco, ahora vidrio transparente igual que .search-filter-section de home.css */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes var(--border-color, #e2e8f0) */
   border-radius: var(--border-radius, 12px);
   padding: 16px;
   margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .filters-form {
@@ -235,7 +244,7 @@
 .filter-group label {
   font-size: 0.825rem;
   font-weight: 600;
-  color: #334155;
+  color: rgba(255, 255, 255, 0.8); /* GLASS: antes #334155 (oscuro) */
   display: flex;
   align-items: center;
   gap: 6px;
@@ -245,19 +254,27 @@
 .filter-group select {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* GLASS: antes #cbd5e1 */
   border-radius: 8px;
   outline: none;
   font-family: inherit;
   font-size: 0.875rem;
-  background: #f8fafc;
-  color: #0f172a;
+  background: rgba(255, 255, 255, 0.06); /* GLASS: antes #f8fafc */
+  color: var(--white, #ffffff); /* GLASS: antes #0f172a */
+}
+
+.filter-group input::placeholder {
+  color: rgba(255, 255, 255, 0.45); /* GLASS: nuevo, placeholder visible sobre fondo oscuro */
 }
 
 .filter-group input:focus,
 .filter-group select:focus {
   border-color: var(--primary-color, #2563eb);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.1); /* GLASS: antes #ffffff */
+}
+
+.filter-group select option {
+  color: #0f172a; /* GLASS: nuevo, el dropdown nativo del navegador se ve blanco siempre, hay que forzar texto oscuro adentro */
 }
 
 .btn-filter {
@@ -286,13 +303,16 @@
    (Inspirado en tarjetas limpias y barras de control)
    ========================================== */
 
-/* Panel contenedor blanco principal */
+/* Panel contenedor principal */
 .main-panel {
-  background: var(--white, #ffffff);
-  border: 1px solid var(--border-color, #e2e8f0);
+  /* GLASS: antes fondo blanco opaco */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes var(--border-color, #e2e8f0) */
   border-radius: var(--border-radius, 16px);
   padding: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .panel-header {
@@ -301,7 +321,7 @@
   gap: 12px;
   margin-bottom: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* GLASS: antes #f1f5f9 */
 }
 
 .header-actions {
@@ -317,9 +337,9 @@
   border-radius: 8px;
   font-size: 0.825rem;
   font-weight: 600;
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #334155;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* GLASS: antes #cbd5e1 */
+  background: rgba(255, 255, 255, 0.06); /* GLASS: antes #ffffff */
+  color: rgba(255, 255, 255, 0.75); /* GLASS: antes #334155 */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -328,7 +348,7 @@
 }
 
 .btn-action-secondary:hover {
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.12); /* GLASS: antes #f8fafc */
   border-color: var(--primary-color, #2563eb);
   color: var(--primary-color, #2563eb);
 }
@@ -345,10 +365,10 @@
   flex-direction: column;
   gap: 14px;
   margin-bottom: 20px;
-  background: #f8fafc;
+  background: rgba(255, 255, 255, 0.04); /* GLASS: antes #f8fafc */
   padding: 12px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12); /* GLASS: antes #e2e8f0 */
 }
 
 .filter-tabs {
@@ -360,8 +380,8 @@
 .tab-btn {
   padding: 8px 14px;
   border: none;
-  background: transparent;
-  color: #64748b;
+  background: rgba(255, 255, 255, 0.05); /* GLASS: antes transparent (se veía sin fondo, ahora un vidrio sutil) */
+  color: rgba(255, 255, 255, 0.6); /* GLASS: antes #64748b */
   font-weight: 600;
   font-size: 0.85rem;
   border-radius: 8px;
@@ -373,19 +393,19 @@
 }
 
 .tab-btn:hover {
-  background: rgba(255, 255, 255, 0.8);
-  color: #0f172a;
+  background: rgba(255, 255, 255, 0.12); /* GLASS: antes blanco 0.8 */
+  color: var(--white, #ffffff); /* GLASS: antes #0f172a */
 }
 
 .tab-btn.active {
-  background: #ffffff;
-  color: var(--primary-color, #2563eb);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.15); /* GLASS: antes #ffffff */
+  color: var(--white, #ffffff); /* GLASS: antes primary sobre blanco, ahora blanco sobre vidrio activo */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .tab-badge {
-  background: #e2e8f0;
-  color: #475569;
+  background: rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
+  color: var(--white, #ffffff); /* GLASS: antes #475569 */
   font-size: 0.75rem;
   padding: 2px 7px;
   border-radius: 10px;
@@ -407,18 +427,23 @@
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.5); /* GLASS: antes #94a3b8 */
   font-size: 0.85rem;
 }
 
 .toolbar-search input {
   width: 100%;
   padding: 8px 12px 8px 34px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* GLASS: antes #cbd5e1 */
   border-radius: 8px;
   font-size: 0.875rem;
   outline: none;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.06); /* GLASS: antes #ffffff */
+  color: var(--white, #ffffff); /* GLASS: nuevo, para que se lea lo tipeado */
+}
+
+.toolbar-search input::placeholder {
+  color: rgba(255, 255, 255, 0.45); /* GLASS: nuevo */
 }
 
 .toolbar-search input:focus {
@@ -437,22 +462,22 @@
   align-items: flex-start;
   gap: 14px;
   padding: 16px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
   border-radius: 12px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.05); /* GLASS: antes #ffffff */
   transition: all 0.2s ease;
   position: relative;
 }
 
 /* Estado sin leer (despliega un borde/fondo sutil) */
 .notification-item.unread {
-  background: #f0f7ff;
-  border-color: #bfdbfe;
+  background: rgba(13, 110, 253, 0.1); /* GLASS: antes #f0f7ff, ahora tinte azul translúcido igual al primary-color */
+  border-color: rgba(13, 110, 253, 0.35); /* GLASS: antes #bfdbfe */
 }
 
 .notification-item:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border-color: rgba(255, 255, 255, 0.3); /* GLASS: antes #cbd5e1 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Icono según tipo */
@@ -504,13 +529,13 @@
 .notif-title {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--white, #ffffff); /* GLASS: antes #0f172a */
   margin: 0;
 }
 
 .notif-time {
   font-size: 0.775rem;
-  color: #94a3b8;
+  color: rgba(255, 255, 255, 0.5); /* GLASS: antes #94a3b8 */
   display: flex;
   align-items: center;
   gap: 4px;
@@ -518,7 +543,7 @@
 
 .notif-desc {
   font-size: 0.875rem;
-  color: #475569;
+  color: rgba(255, 255, 255, 0.65); /* GLASS: antes #475569 */
   margin: 0;
   line-height: 1.4;
 }
@@ -534,9 +559,9 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
-  color: #64748b;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* GLASS: antes #e2e8f0 */
+  background: rgba(255, 255, 255, 0.06); /* GLASS: antes #ffffff */
+  color: rgba(255, 255, 255, 0.75); /* GLASS: antes #64748b */
   cursor: pointer;
   display: flex;
   align-items: center;

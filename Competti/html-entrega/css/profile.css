@@ -12,12 +12,15 @@
 
 /* 2. TARJETA DE PERFIL (SIDEBAR EN DESKTOP) */
 .profile-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    /* GLASS: antes fondo blanco opaco */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
     border-radius: 16px;
     padding: 24px 20px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-wrapper {
@@ -72,13 +75,13 @@
 .profile-name {
     font-size: 1.25rem;
     font-weight: 800;
-    color: #1e293b;
+    color: var(--white, #ffffff); /* GLASS: antes #1e293b */
     margin-bottom: 2px;
 }
 
 .profile-username {
     font-size: 0.85rem;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.6); /* GLASS: antes #64748b */
     margin-bottom: 10px;
 }
 
@@ -102,7 +105,7 @@
 
 .divider {
     border: 0;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid rgba(255, 255, 255, 0.12); /* GLASS: antes #f1f5f9 */
     margin: 16px 0;
 }
 
@@ -115,7 +118,7 @@
 
 .profile-meta p {
     font-size: 0.825rem;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.6); /* GLASS: antes #64748b */
     display: flex;
     align-items: center;
     gap: 8px;
@@ -123,7 +126,7 @@
 }
 
 .profile-meta i {
-    color: #94a3b8;
+    color: rgba(255, 255, 255, 0.5); /* GLASS: antes #94a3b8 */
     font-size: 0.9rem;
 }
 
@@ -135,8 +138,8 @@
 }
 
 .stat-mini-box {
-    background: #f8fafc;
-    border: 1px solid #f1f5f9;
+    background: rgba(255, 255, 255, 0.05); /* GLASS: antes #f8fafc */
+    border: 1px solid rgba(255, 255, 255, 0.12); /* GLASS: antes #f1f5f9 */
     padding: 10px 4px;
     border-radius: 10px;
     display: flex;
@@ -147,12 +150,12 @@
 .stat-mini-box strong {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #0f172a;
+    color: var(--white, #ffffff); /* GLASS: antes #0f172a */
 }
 
 .stat-mini-box span {
     font-size: 0.7rem;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.55); /* GLASS: antes #64748b */
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -176,12 +179,12 @@
 }
 
 .tab-btn {
-    background: #f1f5f9;
+    background: rgba(255, 255, 255, 0.05); /* GLASS: antes #f1f5f9 */
     border: 1px solid transparent;
     padding: 8px 16px;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.6); /* GLASS: antes #64748b */
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -191,19 +194,22 @@
 }
 
 .tab-btn.active {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.15); /* GLASS: antes #ffffff */
     color: var(--primary-color, #0d6efd);
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+    border-color: rgba(255, 255, 255, 0.25); /* GLASS: antes #cbd5e1 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
 /* 4. CONTENIDO DE PESTAÑAS Y LISTADO */
 .tab-content {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    /* GLASS: antes fondo blanco opaco */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
     border-radius: 16px;
     padding: 20px 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .section-header {
@@ -216,14 +222,14 @@
 .section-header h3 {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #1e293b;
+    color: var(--white, #ffffff); /* GLASS: antes #1e293b */
     margin: 0;
 }
 
 .badge-count {
     font-size: 0.75rem;
-    background-color: #f1f5f9;
-    color: #475569;
+    background-color: rgba(255, 255, 255, 0.12); /* GLASS: antes #f1f5f9 */
+    color: var(--white, #ffffff); /* GLASS: antes #475569 */
     padding: 3px 8px;
     border-radius: 6px;
     font-weight: 600;
@@ -237,8 +243,8 @@
 
 /* Tarjetas individuales de torneos */
 .profile-item-card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.05); /* GLASS: antes #f8fafc */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
     border-radius: 12px;
     padding: 14px;
     position: relative;
@@ -246,8 +252,8 @@
 }
 
 .profile-item-card:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+    border-color: rgba(255, 255, 255, 0.3); /* GLASS: antes #cbd5e1 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .item-badge-status {
@@ -288,8 +294,8 @@
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.08); /* GLASS: antes #ffffff */
+    border: 1px solid rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -300,13 +306,13 @@
 .item-details h4 {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #0f172a;
+    color: var(--white, #ffffff); /* GLASS: antes #0f172a */
     margin: 0 0 2px 0;
 }
 
 .item-subtext {
     font-size: 0.75rem;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.55); /* GLASS: antes #64748b */
     margin: 0;
 }
 
@@ -314,13 +320,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px dashed #e2e8f0;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15); /* GLASS: antes #e2e8f0 */
     padding-top: 10px;
 }
 
 .user-role-tag {
     font-size: 0.75rem;
-    color: #475569;
+    color: rgba(255, 255, 255, 0.7); /* GLASS: antes #475569 */
     font-weight: 600;
     display: flex;
     align-items: center;

@@ -1,24 +1,122 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competti - Organiza, Compite, Gana</title>
-    <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
-    <link rel="stylesheet" href="css/navigation.css">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/footer.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Competti - Pensalos, Crealos, Disfrutalos</title>
+	<script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+	<link rel="stylesheet" href="css/navigation.css">
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/footer.css">
 </head>
-
 <body>
+	<header class="main-header">
+		<div class="header-container">
+			<div class="logo">
+				<img class="logoRueda" src="img/logoRueda.svg" alt="logo">
+				<img class="logoTrebol" src="img/LogoTrebol.svg" alt="logo">
+				<div class="logo-text">
+					<strong>COMPETTI</strong>
+					<span>Pensalos Crealos Disfrutalos</span>
+				</div>
+			</div>
+			<nav class="desktop-nav">
+				<a class="a-btn" href="index.html">Inicio</a>
+				<a class="a-btn" href="torneos.html">Torneos</a>
+				<a class="a-btn" href="equipos.html">Equipos</a>
+				<a class="a-btn" href="resultados.html">Resultados</a>
+				<a class="a-btn" href="calendario.html">Calendario</a>
+				<a class="a-btn" href="quienesSomos.html">Quienes Somos</a>
+			</nav>
+			<div class="header-actions">
+				<a href="search.html">
+					<button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
+				</a>
+				<button class="icon-btn theme-trigger"><i class="fa-regular fa-moon"></i></button>
+				<a href="notificaciones.html">
+					<button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
+				</a>
+				<a href="profile.html">
+					<button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
+				</a>
+				<div class="auth-buttons">
+					<a href="login.html" class="btn-secondary">Iniciar Sesi&oacute;n</a>
+					<a href="register.html" class="btn-primary">Registrarse</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<button class="hamburger hamburger--emphatic" type="button">
+		<span class="hamburger-box">
+			<span class="hamburger-inner"></span>
+		</span>
+	</button>
+	<div class="sidebar-overlay"></div>
+	<aside class="mobile-sidebar">
+		<div class="sidebar-header">
+			<div class="logo">
+				<span class="logo-icon">&#127942;</span>
+				<div class="logo-text"><strong style="color: white;">TORNEOS</strong></div>
+			</div>
+		</div>
+		<nav class="sidebar-nav">
+			<a class="enlace-nav" href="index.html"><i class="fa-regular fa-home"></i>Inicio</a>
+			<a class="enlace-nav" href="torneos.html"><i class="fa-regular fa-chess-knight"></i>Torneos</a>
+			<a class="enlace-nav" href="equipos.html"><i class="fa-regular fa-handshake"></i>Equipos</a>
+			<a class="enlace-nav" href="resultados.html"><i class="fa-regular fa-chart-bar"></i>Resultados</a>
+			<a class="enlace-nav" href="calendario.html"><i class="fa-regular fa-calendar-alt"></i>Calendario</a>
+			<a class="enlace-nav" href="quienesSomos.html"><i class="fa-regular fa-lightbulb"></i>Quienes Somos</a>
+		</nav>
+		<div class="sidebar-auth-mobile">
+			<a href="login.html" class="btn-auth-mobile btn-login-mobile">
+				<i class="fa-solid fa-right-to-bracket"></i> Iniciar sesi&oacute;n
+			</a>
+			<a href="register.html" class="btn-auth-mobile btn-register-mobile">
+				<i class="fa-solid fa-user-plus"></i> Registrarse
+			</a>
+		</div>
+	</aside>
+	<main>
+		
+		<section class="hero">
+			<div class="hero-info">
+				<h1 class="animate__animated animate__fadeInDown">Pensalos<br>Crealos<br><span class="highlight">Disfrutalos</span></h1>
+				<p>La plataforma integral para la gesti&oacute;n de torneos deportivos, mentales y electr&oacute;nicos.</p>
+				<div class="hero-buttons">
+					<a href="torneos.html" class="btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
+					<a href="crearTorneo.html" class="btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
+				</div>
+			</div>
+			<div class="hero-gallery">
+				<div class="gallery-item" style="background-image: url('img/futbol.png');"></div>
+				<div class="gallery-item" style="background-image: url('img/joystickPS5.png');"></div>
+				<div class="gallery-item" style="background-image: url('img/ajedrez.png');"></div>
+				<div class="gallery-item" style="background-image: url('img/pingpong.png');"></div>
+				<div class="gallery-item" style="background-image: url('img/valorant.png');"></div>
+			</div>
+		</section>
 
-    <header class="main-header">
-        <div class="header-container">
+		<section class="disciplines-section">
+			<div class="section-header">
+				<h2>Disciplinas</h2>
+				<a href="disciplinas.html" class="view-all">Ver todas las disciplinas &rarr;</a>
+			</div>
+			<div class="disciplines-grid">
+				<div class="discipline-card"><i class="fa-solid fa-soccer-ball"></i><span>F&uacute;tbol</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-basketball"></i><span>B&aacute;squetbol</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-volleyball"></i><span>V&oacute;ley</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-table-tennis-paddle-ball"></i><span>Tenis de mesa</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-chess-knight"></i><span>Ajedrez</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-gamepad"></i><span>E-Sports</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-person-running"></i><span>Atletismo</span></div>
+				<div class="discipline-card"><i class="fa-solid fa-ellipsis"></i><span>Otros</span></div>
+			</div>
+		</section>
 
+<<<<<<< HEAD
             <div class="logo">
                 <img class="logoRueda" src="img/LogoRueda.svg" alt="logo">
                 <img class="logoTrebol" src="img/LogoTrebol.svg" alt="logo">
@@ -27,349 +125,228 @@
                     <span>Gana y competti.</span>
                 </div>
             </div>
+=======
+	
+		<section class="search-filter-section">
+			<div class="search-wrapper">
+				<a href="search.html">
+					<i class="fa-solid fa-magnifying-glass search-icon"></i>
+				</a>
+				<input type="search" placeholder="Buscar torneos, equipos o deportes...">
+			</div>
+			<div class="filter-controls">
+				<select>
+					<option>Deporte</option>
+				</select>
+				<select>
+					<option>Estado</option>
+				</select>
+				<button class="btn btn-primary">Buscar</button>
+			</div>
+		</section>
+>>>>>>> 6d472afa45cda779b5bb699486906fb4c50c03a9
 
-            <nav class="desktop-nav">
-                <a class="a-btn" href="index.html">Inicio</a>
-                <a class="a-btn" href="torneos.html">Torneos</a>
-                <a class="a-btn" href="equipos.html">Equipos</a>
-                <a class="a-btn" href="resultados.html">Resultados</a>
-                <a class="a-btn" href="calendario.html">Calendario</a>
-                <a class="a-btn" href="quienesSomos.html">Quienes Somos</a>
-            </nav>
+		<div class="content-layout">
+			<div class="primary-column">
+				<section class="matches-section">
+					<div class="section-header">
+						<h2>Pr&oacute;ximos partidos</h2>
+						<a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
+					</div>
+					<div class="matches-list">
+						<div class="match-row">
+							<div class="time-block"><span>Hoy</span><strong>18:00</strong></div>
+							<div class="teams-block">
+								<div class="team"><span class="team-name">Los Leones</span></div>
+								<span class="vs">vs</span>
+								<div class="team"><span class="team-name">Team Alpha</span></div>
+							</div>
+						</div>
+						<div class="match-row">
+							<div class="time-block"><span>Ma&ntilde;ana</span><strong>16:30</strong></div>
+							<div class="teams-block">
+								<div class="team"><span class="team-name">Titanes FC</span></div>
+								<span class="vs">vs</span>
+								<div class="team"><span class="team-name">Blue Lions</span></div>
+							</div>
+						</div>
+						<div class="match-row">
+							<div class="time-block"><span>Ma&ntilde;ana</span><strong>20:00</strong></div>
+							<div class="teams-block">
+								<div class="team"><span class="team-name">Sauce&ntilde;os</span></div>
+								<span class="vs">vs</span>
+								<div class="team"><span class="team-name">Montevideanos</span></div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="featured-tournaments">
+					<div class="section-header">
+						<h2>Torneos destacados</h2>
+						<a href="torneos.html" class="view-all">Ver todos los torneos &rarr;</a>
+					</div>
+					<div class="tournaments-grid">
+						<div class="tournament-card">
+							<div class="card-img" style="background-image: url('img/pibble.jpg');">
+								<span class="badge badge-live">En curso</span>
+							</div>
+							<div class="card-body">
+								<h3>Liga Apertura 2024</h3>
+								<p><i class="fa-solid fa-soccer-ball"></i> F&uacute;tbol | <i class="fa-solid fa-users"></i> 16 Equipos</p>
+								<p><i class="fa-solid fa-calendar"></i> Inicio: 12/05/2024</p>
+								<a href="#" class="btn-details">Ver detalles</a>
+							</div>
+						</div>
+						<div class="tournament-card">
+							<div class="card-img" style="background-image: url('img/joystickPS5.png');">
+								<span class="badge badge-upcoming">Pr&oacute;ximo</span>
+							</div>
+							<div class="card-body">
+								<h3>Torneo Gamer X</h3>
+								<p><i class="fa-solid fa-gamepad"></i> E-Sports | <i class="fa-solid fa-user"></i> 32 Jugadores</p>
+								<p><i class="fa-solid fa-calendar"></i> Inicio: 01/06/2024</p>
+								<a href="#" class="btn-details">Ver detalles</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<aside class="secondary-column">
+				<section class="matches-section">
+					<div class="section-header">
+						<h2>Pr&oacute;ximos partidos</h2>
+						<a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
+					</div>
+					<div class="matches-list">
+						<div class="match-row">
+							<div class="time-block"><span>Hoy</span><strong>18:00</strong></div>
+							<div class="teams-block"><div class="team"><span class="team-name">Los Leones</span></div><span class="vs">vs</span><div class="team"><span class="team-name">Team Alpha</span></div></div>
+						</div>
+						<div class="match-row">
+							<div class="time-block"><span>Ma&ntilde;ana</span><strong>16:30</strong></div>
+							<div class="teams-block"><div class="team"><span class="team-name">Titanes FC</span></div><span class="vs">vs</span><div class="team"><span class="team-name">Blue Lions</span></div></div>
+						</div>
+						<div class="match-row">
+							<div class="time-block"><span>Ma&ntilde;ana</span><strong>20:00</strong></div>
+							<div class="teams-block"><div class="team"><span class="team-name">Sauce&ntilde;os</span></div><span class="vs">vs</span><div class="team"><span class="team-name">Montevideanos</span></div></div>
+						</div>
+					</div>
+				</section>
+			</aside>
+		</div>
 
-            <div class="header-actions">
-                <a href="search.html">
-                    <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </a>
-                <button class="icon-btn theme-trigger"><i class="fa-regular fa-moon"></i></button>
-                <a href="notificaciones.html">
-                    <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
-                </a>
-                <a href="profile.html">
-                    <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
-                </a>
-
-                <div class="auth-buttons">
-                    <a href="login.html" class="btn-login">Iniciar Sesión</a>
-                    <a href="register.html" class="btn-register">Registrarse</a>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
-    <button class="hamburger hamburger--emphatic" type="button">
-        <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-        </span>
-    </button>
-
-    <div class="sidebar-overlay"></div>
-
-    <aside class="mobile-sidebar">
-        <div class="sidebar-header">
-            <div class="logo">
-                <span class="logo-icon">🏆</span>
-                <div class="logo-text"><strong style="color: white;">TORNEOS</strong></div>
-            </div>
-        </div>
-        <nav class="sidebar-nav">
-            <a class="enlace-nav" href="index.html"><i class="fa-regular fa-home"></i>Inicio</a>
-            <a class="enlace-nav" href="torneos.html"><i class="fa-regular fa-chess-knight"></i>Torneos</a>
-            <a class="enlace-nav" href="equipos.html"><i class="fa-regular fa-handshake"></i>Equipos</a>
-            <a class="enlace-nav" href="resultados.html"><i class="fa-regular fa-chart-bar"></i>Resultados</a>
-            <a class="enlace-nav" href="calendario.html"><i class="fa-regular fa-calendar-alt"></i>Calendario</a>
-            <a class="enlace-nav" href="quienesSomos.html"><i class="fa-regular fa-lightbulb"></i>Quienes Somos</a>
-        </nav>
-        <div class="sidebar-auth-mobile">
-            <a href="login.html" class="btn-auth-mobile btn-login-mobile">
-                <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
-            </a>
-            <a href="register.html" class="btn-auth-mobile btn-register-mobile">
-                <i class="fa-solid fa-user-plus"></i> Registrarse
-            </a>
-        </div>
-    </aside>
-
-    <main class="main-content">
-        <section class="hero">
-            <div class="hero-info">
-                <h1 class="animate__animated animate__fadeInDown">Organizá.<br>Compettí.<br><span class="highlight">Ganá.</span></h1>
-                <p>La plataforma integral para la gestión de torneos deportivos, mentales y electrónicos.</p>
-                <div class="hero-buttons">
-                    <a href="torneos.html" class="btn btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
-                    <a href="crearTorneo.html" class="btn btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
-                </div>
-            </div>
-            <div class="hero-gallery">
-                <div class="gallery-item" style="background-image: url('img/fubol.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('img/ps5.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('img/ajedre.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('img/valo.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('img/pinpon.jpg');"></div>
-            </div>
-        </section>
-
-        <section class="search-filter-section">
-            <div class="search-wrapper">
-                <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                </a>
-                <input type="search" placeholder="Buscar torneos, equipos o deportes...">
-            </div>
-            <div class="filter-controls">
-                <select>
-                    <option>Deporte</option>
-                </select>
-                <select>
-                    <option>Estado</option>
-                </select>
-                <button class="btn btn-primary">Buscar</button>
-            </div>
-        </section>
-
-        <section class="disciplines-section">
-            <div class="section-header">
-                <h2>Disciplinas</h2>
-                <a href="disciplinas.html" class="view-all">Ver todas las disciplinas &rarr;</a>
-            </div>
-            <div class="disciplines-grid">
-                <div class="discipline-card active"><i class="fa-solid fa-soccer-ball"></i><span>Fútbol</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-basketball"></i><span>Básquetbol</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-volleyball"></i><span>Vóley</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-table-tennis-paddle-ball"></i><span>Tenis de
-                        mesa</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-chess-knight"></i><span>Ajedrez</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-gamepad"></i><span>E-Sports</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-person-running"></i><span>Atletismo</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-ellipsis"></i><span>Otros</span></div>
-            </div>
-        </section>
-
-        <div class="content-layout">
-            <div class="primary-column">
-                <section class="matches-section">
-                    <div class="section-header">
-                        <h2>Próximos partidos</h2>
-                        <a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
-                    </div>
-                    <div class="matches-list">
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Hoy</span>
-                                <strong>18:00</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Los Leones</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Team Alpha</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Mañana</span>
-                                <strong>16:30</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Titanes FC</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Blue Lions</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="featured-tournaments">
-                    <div class="section-header">
-                        <h2>Torneos destacados</h2>
-                        <a href="torneos.html" class="view-all">Ver todos los torneos &rarr;</a>
-                    </div>
-                    <div class="tournaments-grid">
-                        <div class="tournament-card">
-                            <div class="card-img" style="background-image: url('img/pibble.jpg');">
-                                <span class="badge badge-live">En curso</span>
-                            </div>
-                            <div class="card-body">
-                                <h3>Liga Apertura 2024</h3>
-                                <p><i class="fa-solid fa-soccer-ball"></i> Fútbol | <i class="fa-solid fa-users"></i> 16
-                                    Equipos</p>
-                                <p><i class="fa-solid fa-calendar"></i> Inicio: 12/05/2024</p>
-                                <a href="#" class="btn-details">Ver detalles</a>
-                            </div>
-                        </div>
-                        <div class="tournament-card">
-                            <div class="card-img" style="background-image: url('img/ps5.jpg');">
-                                <span class="badge badge-upcoming">Próximo</span>
-                            </div>
-                            <div class="card-body">
-                                <h3>Torneo Gamer X</h3>
-                                <p><i class="fa-solid fa-gamepad"></i> E-Sports | <i class="fa-solid fa-user"></i> 32
-                                    Jugadores</p>
-                                <p><i class="fa-solid fa-calendar"></i> Inicio: 01/06/2024</p>
-                                <a href="#" class="btn-details">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-            </div>
-
-            <aside class="secondary-column">
-                <section class="matches-section">
-                    <div class="section-header">
-                        <h2>Próximos partidos</h2>
-                        <a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
-                    </div>
-                    <div class="matches-list">
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Hoy</span>
-                                <strong>18:00</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Los Leones</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Team Alpha</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Mañana</span>
-                                <strong>16:30</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Titanes FC</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Blue Lions</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="quick-actions-section">
-                    <h3>Acceso rápido</h3>
-                    <div class="action-list">
-                        <a href="crearTorneo.html" class="action-item"><span><i class="fa-solid fa-plus-circle"></i> Crear
-                                torneo</span> <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="profile.html" class="action-item"><span><i class="fa-solid fa-trophy"></i> Mis
-                                torneos</span> <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="profile.html" class="action-item"><span><i class="fa-solid fa-users"></i> Mis
-                                equipos</span> <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="resultados.html" class="action-item"><span><i class="fa-solid fa-square-poll-vertical"></i>
-                                Resultados</span> <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                </section>
-
-            </aside>
-
-        </div>
-    </main>
-    
-    <footer class="main-footer">
-        <div class="footer-container">
-
-            <div class="footer-brand">
-                <div class="logo">
-                    <span class="logo-icon">🏆</span>
-                    <div class="logo-text">
-                        <strong style="color: white;">TORNEOS</strong>
-                        <span>Compite. Conecta. Gana.</span>
-                    </div>
-                </div>
-                <p class="brand-description">
-                    La plataforma integral para la gestión de torneos deportivos, mentales y electrónicos. Organizá tu
-                    comunidad y competí al máximo nivel.
-                </p>
-                <div class="footer-socials">
-                    <a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-links-group">
-                <div class="footer-col">
-                    <h4>Explorar</h4>
-                    <ul>
-                        <li><a href="#">Torneos Activos</a></li>
-                        <li><a href="#">Próximos Eventos</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Soporte</h4>
-                    <ul>
-                        <li><a href="#">Centro de Ayuda</a></li>
-                        <li><a href="#">Reglamentos Base</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Estado del Servicio</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-container">
-                <p>&copy;
-                    2026 RakkunStack&trade;. Torneos es un producto de RakkunStack&trade;. Todos los
-                    derechos reservados.
-                </p>
-                <div class="footer-legal-links">
-                    <a href="#">Términos de Servicio</a>
-                    <a href="#">Política de Privacidad</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const burgerMenu = document.querySelector('.hamburger');
-        const sidebar = document.querySelector('.mobile-sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
-        const body = document.body;
-
-        const toggleSidebar = () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            body.classList.toggle('no-scroll');
-            burgerMenu.classList.toggle('is-active');
-        };
-
-        burgerMenu.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-
-        // Detecta en qué página estás y añade la clase sólida al icono
-        document.querySelectorAll('.enlace-nav').forEach(enlace => {
-            // Si el enlace coincide con la URL actual de la página
-            if (enlace.href === window.location.href) {
-                const icono = enlace.querySelector('i');
-
-                // Intercambia las clases de Font Awesome
-                icono.classList.remove('fa-regular');
-                icono.classList.add('fa-solid');
-            }
-        });
-
-    </script>
-
+		<section class="testimonials-section">
+			<div class="section-header">
+				<h2>Lo que dice la comunidad</h2>
+			</div>
+			<div class="testimonials-grid">
+				<div class="testimonial-card">
+					<i class="fa-solid fa-quote-left"></i>
+					<p class="testimonial-text">Organizamos la liga del barrio y en nada ya estaba creado. El calendario automatico nos ahorro mucho quilombo.</p>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">TR</div>
+						<div>
+							<p class="testimonial-name">Tadeo Rodriguez</p>
+							<p class="testimonial-role">Capitan, Los Leones</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-card">
+					<i class="fa-solid fa-quote-left"></i>
+					<p class="testimonial-text">Como Arbitro, cargar resultados y ver las estadisticas enseguida nos ahorro mucho trabajo.</p>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">BC</div>
+						<div>
+							<p class="testimonial-name">Benja copetti</p>
+							<p class="testimonial-role">Arbitro, Liga Apertura</p>
+						</div>
+					</div>
+				</div>
+				<div class="testimonial-card">
+					<i class="fa-solid fa-quote-left"></i>
+					<p class="testimonial-text">Armamos un torneo de e-sports con inscripciones abiertas y ahora tenemos a 32 jugadores en la semana.</p>
+					<div class="testimonial-author">
+						<div class="testimonial-avatar">GB</div>
+						<div>
+							<p class="testimonial-name">Gahel Bordon</p>
+							<p class="testimonial-role">Organizador, Torneo Gamer X</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer class="main-footer">
+		<div class="footer-container">
+			<div class="footer-brand">
+				<div class="logo">
+					<span class="logo-icon">&#127942;</span>
+					<div class="logo-text">
+						<strong style="color: white;">TORNEOS</strong>
+						<span>Pensalos Crealos Disfrutalos</span>
+					</div>
+				</div>
+				<p class="brand-description">
+					La plataforma integral para la gesti&oacute;n de torneos deportivos, mentales y electr&oacute;nicos. Organiz&aacute; tu comunidad y compet&iacute; al m&aacute;ximo nivel.
+				</p>
+				<div class="footer-socials">
+					<a href="#" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+					<a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+					<a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+				</div>
+			</div>
+			<div class="footer-links-group">
+				<div class="footer-col">
+					<h4>Explorar</h4>
+					<ul>
+						<li><a href="#">Torneos Activos</a></li>
+						<li><a href="#">Pr&oacute;ximos Eventos</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>Soporte</h4>
+					<ul>
+						<li><a href="#">Centro de Ayuda</a></li>
+						<li><a href="#">Reglamentos Base</a></li>
+						<li><a href="#">Contacto</a></li>
+						<li><a href="#">Estado del Servicio</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-bottom-container">
+				<p>&copy; 2026 RakkunStack&trade;. Torneos es un producto de RakkunStack&trade;. Todos los derechos reservados.</p>
+				<div class="footer-legal-links">
+					<a href="#">T&eacute;rminos de Servicio</a>
+					<a href="#">Pol&iacute;tica de Privacidad</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script>
+		const burgerMenu = document.querySelector('.hamburger');
+		const sidebar = document.querySelector('.mobile-sidebar');
+		const overlay = document.querySelector('.sidebar-overlay');
+		const body = document.body;
+		const toggleSidebar = () => {
+			sidebar.classList.toggle('active');
+			overlay.classList.toggle('active');
+			body.classList.toggle('no-scroll');
+			burgerMenu.classList.toggle('is-active');
+		};
+		burgerMenu.addEventListener('click', toggleSidebar);
+		overlay.addEventListener('click', toggleSidebar);
+		// Detecta en qu&eacute; p&aacute;gina est&aacute;s y a&ntilde;ade la clase s&oacute;lida al icono
+		document.querySelectorAll('.enlace-nav').forEach(enlace => {
+			// Si el enlace coincide con la URL actual de la p&aacute;gina
+			if (enlace.href === window.location.href) {
+				const icono = enlace.querySelector('i');
+				// Intercambia las clases de Font Awesome
+				icono.classList.remove('fa-regular');
+				icono.classList.add('fa-solid');
+			}
+		});
+	</script>
 </body>
-
 </html>

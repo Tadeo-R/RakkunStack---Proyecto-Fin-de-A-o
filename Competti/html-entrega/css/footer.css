@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .main-footer {
-    background-color: #070f26; /* Mismo azul oscuro del Hero/Header */
+    backdrop-filter: blur(10px);
     color: #b0b7c7;
     padding: 40px 20px 80px 20px; /* Padding extra abajo para que la bottom-nav no tape el texto en móvil */
     border-top: 1px solid rgba(255, 255, 255, 0.05);

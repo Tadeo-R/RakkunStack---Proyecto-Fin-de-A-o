@@ -23,7 +23,7 @@ FECHA=$(date +"%Y-%m-%d_%H-%M-%S")
 # ====================================================
 
 # Respaldar datos de MariaDB
-mysqldump -u uits -pUsuarioITS --single-transaction --quick --all-databases > /var/backup/external_backup/MariaDB/comppettiBD.sql
+mysqldump -u uits -pUsuarioITS --single-transaction --quick -d --all-databases > /var/backup/external_backup/MariaDB/comppettiBD.sql
 
 # Empaquetar respaldo de la BD
 tar -czf /var/backup/external_backup/MariaDB/comppettiBD_${FECHA}.tar.gz -C /var/backup/external_backup/MariaDB comppettiBD.sql

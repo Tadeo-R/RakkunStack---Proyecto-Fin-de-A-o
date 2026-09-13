@@ -8,46 +8,64 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Fuente Formal y Moderna (Inter) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/html/css/auth.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/html/css/global.css">
-    <title>Iniciar Sesión - Torneos</title>
+    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/auth.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
+    <title>Iniciar Sesión - COMPETTI</title>
 </head>
 
-<body>
+<body class="auth-page">
+
+    <div class="auth-bg-overlay" id="dynamicBg"></div>
+
+    <a href="index.html" class="back-home-btn" title="Volver al inicio">
+        <i class="fa-solid fa-arrow-left"></i> <span>Volver</span>
+    </a>
 
     <main class="auth-container">
+        
+        <div class="auth-brand">
+            <h1 class="brand-name">COMPETTI</h1>
+        </div>
+
         <section class="reg-card">
-            <form action="<?= BASE_URL ?>/app/controller/loginController.php" method="POST">
-                <h2>Iniciar sesión</h2>
-                <p class="subtitle">Accede a tu cuenta para gestionar tus torneos</p>
+            <form action="<?= BASE_URL ?>app/index.php?action=login" method="POST">
+                <h2>Iniciar Sesión</h2>
+                <p class="subtitle">Ingresa tus datos para gestionar tus torneos</p>
 
                 <div class="input-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                    <label for="email">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                    </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <div class="label-row">
+                        <label for="password">Contraseña</label>
+                        <a href="<?= BASE_URL ?>view/auth/forgetPassw.php" class="forgot-link">¿La olvidaste?</a>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
                 </div>
 
-                <button type="submit">Iniciar Sesión</button>
-
-                <a class="account" href="<?= BASE_URL ?>/app/view/auth/register.php">
-                    ¿Ya tienes una cuenta? <span>Regístrate</span>
-                </a>
+                <button type="submit" class="btn-auth-submit">
+                    <span>Entrar a mi cuenta</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </form>
 
+            <div class="card-footer">
+                <p class="account">¿Aún no tienes cuenta? <a href="<?= BASE_URL ?>view/auth/register.html">Regístrate gratis</a></p>
+            </div>
         </section>
-        <a class="account" href="<?= BASE_URL ?>/app/view/auth/forgetPassw.php">
-            <span>¿Olvidaste tu contraseña?</span>
-        </a>
+
     </main>
 
+    <script src="<?= BASE_URL ?>html/js/auth-bg.js"></script>
 </body>
 
 </html>

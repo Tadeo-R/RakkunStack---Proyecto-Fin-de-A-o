@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/config.php'; 
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -35,11 +36,11 @@ require_once __DIR__ . '/../config/config.php';
                 </div>
             </div>
             <div class="hero-gallery">
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/futbol.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/joystickPS5.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/ajedrez.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/pingpong.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/valorant.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/futbol.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/joystickPS5.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/ajedrez.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/pingpong.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/valorant.png');"></div>
             </div>
         </section>
 

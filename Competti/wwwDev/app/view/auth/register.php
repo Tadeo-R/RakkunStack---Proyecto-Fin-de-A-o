@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/../../../config/config.php';
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -8,50 +7,85 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/html/css/auth.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/html/css/global.css">
-    <title>Registrarse - Torneos</title>
+    <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/auth.css">
+    <title>Registrarse - COMPETTI</title>
 </head>
 
-<body>
+<body class="auth-page">
+
+    <div class="auth-bg-overlay" id="dynamicBg"></div>
+
+    <a href="<?= BASE_URL ?>app/index.php" class="back-home-btn" title="Volver al inicio">
+        <i class="fa-solid fa-arrow-left"></i> <span>Volver</span>
+    </a>
+
     <main class="auth-container">
+
+        <div class="auth-brand">
+            <div class="brand-logo">🏆</div>
+            <h1 class="brand-name">COMPETTI</h1>
+        </div>
+
         <section class="reg-card">
-            <form action="<?= BASE_URL ?>/app/controller/registerController.php" method="POST">
+            <form action="<?= BASE_URL ?>app/index.php?action=register" method="POST">
                 <h2>Crear una cuenta</h2>
                 <p class="subtitle">Gestiona tus torneos deportivos y competitivos</p>
 
                 <div class="input-group">
-                    <label for="user">Usuario</label>
-                    <input type="text" id="user" name="user" placeholder="Ej. JoaquinPérez" required>
+                    <label for="user">Nombre de Usuario</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user input-icon"></i>
+                        <!-- name="user" coincide con tu formulario -->
+                        <input type="text" id="user" name="user" placeholder="Ej. JoaquinPerez" required>
+                    </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                    <label for="email">Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required>
+                    </div>
                 </div>
 
                 <div class="input-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="confirm_password">Confirmar contraseña</label>
-                    <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••"
-                        required>
+                    <label for="confirm_password">Confirmar Contraseña</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-shield-halved input-icon"></i>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••"
+                            required>
+                    </div>
                 </div>
 
-                <button type="submit">Registrarse</button>
+                <!-- Mostrar errores si existen -->
+                <?php if (isset($error)): ?>
+                    <p style="color: red;"><?php echo $error; ?></p>
+                <?php endif; ?>
 
-                <a class="account" href="<?= BASE_URL ?>/app/view/auth/login.php">
-                    ¿Ya tienes una cuenta? <span>Inicia Sesión</span>
-                </a>
+                <button type="submit" class="btn-auth-submit">
+                    <span>Registrarse</span>
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
             </form>
+
+            <div class="card-footer">
+                <p class="account">¿Ya tienes una cuenta? <a href="login.html">Inicia Sesión</a></p>
+            </div>
         </section>
+
     </main>
+
+    <script src="js/auth-bg.js"></script>
 </body>
 
 </html>

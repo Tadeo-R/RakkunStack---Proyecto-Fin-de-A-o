@@ -21,7 +21,10 @@ fi
 echo "Creando directorios de respaldo..."
 
 # Crear subdirectorios de cada módulo para backup diario (Módulos 1 a 4)
-mkdir -p /var/backup/daily_backup/{MariaDB,Infraestructura,www,Scripts}
+mkdir -p /var/backup/daily_backup/www
+mkdir -p /var/backup/daily_backup/MariaDB
+mkdir -p /var/backup/daily_backup/Infraestructura
+mkdir -p /var/backup/daily_backup/Scripts
 
 # Crear subdirectorios de cada módulo para backup externo (Módulos 1 a 5)
 mkdir -p /var/backup/external_backup/{MariaDB,Infraestructura,www,Scripts,Otros}
@@ -31,9 +34,7 @@ mkdir -p /var/backup/cloud_backup/{MariaDB,Infraestructura,www,Scripts}
 
 
 # Establecer permisos de lectura, escritura y ejecución para grupo backup en la carpeta de backups
-chown -R root:backup /var/backup/
-chmod -R 770 /var/backup
-
+chmod -R o+rx /var/backup/
 
 # ================= Crear respaldo completo para todos los backups ==================
 
@@ -56,9 +57,6 @@ rm /var/backup/daily_backup/MariaDB/comppettiBD.sql
 # Módulo 2: Infraestructura y Configuraciones del Sistema
 echo "[2/4] Realizando respaldo de archivos de configuración"
 
-# Copia la carpeta etc a la carpeta de backup diario
-cp -r /etc /var/backup/daily_backup/Infraestructura
-
 # Empaquetar respaldo de la infraestructura indicando con -c que se posicione en la carpeta especifica antes de ejecutar la acción
 tar -czf /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz -C /var/backup/daily_backup/Infraestructura etc
 
@@ -73,9 +71,6 @@ cp /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz /var/backup/c
 
 # Módulo 3: Archivos de la aplicación
 echo "[3/4] Realizando respaldo de archivos de la aplicación"
-
-# Copia el sistema de archivos de la aplicación web a la carpeta de backup diario
-cp -r /var/www/ /var/backup/daily_backup/www/
 
 # Empaquetar respaldo de la aplicación web
 tar -czf /var/backup/daily_backup/www/www.tar.gz -C /var/backup/daily_backup/www www
@@ -129,11 +124,8 @@ rm -r /var/backup/external_backup/Otros/opt
 
 # ==============
 
-# Asignar propiedad a root y grupo backup
-chown -R root:backup /var/backup/
-
-# Asignar permisos 770 para carpetas (permitiendo entrar y navegar)
-chmod -R 770 /var/backup/
+# Asignar permisos otros
+chmod -R o+rx /var/backup/
 
 # Asignar permisos 660 a los archivos .tar.gz generados
 chmod 660 /var/backup/daily_backup/*/*.tar.gz
@@ -147,9 +139,9 @@ echo "Configurando reglas Sudoers para el grupo 'backup'..."
 # Crear archivo de regla sudoers específico para el grupo backup
 # Permite ejecutar los scripts de respaldo (diario, externo y nube) sin solicitar contraseña
 cat << 'EOF' > /etc/sudoers.d/backup
-%backup ALL=(ALL) NOPASSWD: /var/scripts/daily_backup.sh
-%backup ALL=(ALL) NOPASSWD: /var/scripts/external_backup.sh
-%backup ALL=(ALL) NOPASSWD: /var/scripts/cloud_backup.sh
+%backup ALL=(ALL) NOPASSWD: /var/backup/daily_backup.sh
+%backup ALL=(ALL) NOPASSWD: /var/backup/external_backup.sh
+%backup ALL=(ALL) NOPASSWD: /var/backup/cloud_backup.sh
 EOF
 
 # Aplicar permisos estrictos de lectura (requeridos por sudoers: root r-- r-- ---)

@@ -1,6 +1,6 @@
 <?php
 
-require_once "../config/config.php";
+require_once __DIR__ . '/../../../config/config.php';
 
 // Enlaces compartidos para mantener consistencia entre mobile y desktop
 $nav_links = [

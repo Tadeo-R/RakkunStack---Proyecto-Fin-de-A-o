@@ -35,6 +35,12 @@ switch ($action) {
         }
         break;
 
+    case 'upload_avatar':
+        // Como index.php ya cargó 'config/connection.php' e inicializó $pdo,
+        // podemos incluir el archivo directamente y tendrá acceso total a la BD
+        include 'controller/UpdateProfilePic.php';
+        break;
+
     case 'registro_vista':
     default:
         include 'view/auth/register.php';

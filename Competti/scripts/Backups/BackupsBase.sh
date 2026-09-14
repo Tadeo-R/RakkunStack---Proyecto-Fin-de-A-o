@@ -75,17 +75,17 @@ cp /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz /var/backup/c
 echo "[3/4] Realizando respaldo de archivos de la aplicación"
 
 # Copia el sistema de archivos de la aplicación web a la carpeta de backup diario
-cp -r /var/www/html/competti /var/backup/daily_backup/www/
+cp -r /var/www/ /var/backup/daily_backup/www/
 
 # Empaquetar respaldo de la aplicación web
-tar -czf /var/backup/daily_backup/www/competti.tar.gz -C /var/backup/daily_backup/www competti
+tar -czf /var/backup/daily_backup/www/www.tar.gz -C /var/backup/daily_backup/www www
 
 # Borrar carpeta sin descomprimir después de empaquetar
-rm -r /var/backup/daily_backup/www/competti
+rm -r /var/backup/daily_backup/www/
 
 # Copiar el empaquetado en las carpetas de backup externo y de la nube
-cp /var/backup/daily_backup/www/competti.tar.gz /var/backup/external_backup/www/competti.tar.gz
-cp /var/backup/daily_backup/www/competti.tar.gz /var/backup/cloud_backup/www/competti.tar.gz
+cp /var/backup/daily_backup/www/www.tar.gz /var/backup/external_backup/www/www.tar.gz
+cp /var/backup/daily_backup/www/www.tar.gz /var/backup/cloud_backup/www/www.tar.gz
 
 # ==============
 

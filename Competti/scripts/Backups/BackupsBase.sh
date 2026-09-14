@@ -87,9 +87,6 @@ crontab -l > /var/backup/daily_backup/Scripts/crontab_backup
 # Empaquetar respaldo de los scripts de respaldo y cron table
 tar -czf /var/backup/daily_backup/Scripts/scripts.tar.gz -C /var/backup/daily_backup/Scripts crontab_backup -C /var/ scripts
 
-
-rm /var/backup/daily_backup/Scripts/crontab_backup
-
 # Copiar el empaquetado en las carpetas de backup externo y de la nube
 cp /var/backup/daily_backup/Scripts/scripts.tar.gz /var/backup/external_backup/Scripts/scripts.tar.gz
 cp /var/backup/daily_backup/Scripts/scripts.tar.gz /var/backup/cloud_backup/Scripts/scripts.tar.gz

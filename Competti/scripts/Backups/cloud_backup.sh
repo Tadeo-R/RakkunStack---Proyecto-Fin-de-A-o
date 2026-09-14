@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Validar ejecución del script con Bash y usando './'
-if [ -z "$BASH_VERSION" ]; then
-    echo "Error: Este script debe ser ejecutado exclusivamente con Bash." >&2
-    exit 1
-fi
-
-if [[ "$0" != "./"* ]]; then
-    echo "Error: Este script solo se puede ejecutar usando './'" >&2
-    exit 1
-fi
-
 # Validar existencia de carpeta de backup externo
 if [ ! -d "/var/backup/cloud_backup" ]; then
     echo "Error: La carpeta /var/backup/cloud_backup no existe. Por favor, revise sus backups antes de ejecutar el script." >&2
@@ -24,7 +13,6 @@ FECHA=$(date +"%Y-%m-%d_%H-%M-%S")
 
 # Respaldar datos de MariaDB
 mysqldump -u uits -pUsuarioITS --single-transaction --quick --all-databases > /var/backup/cloud_backup/MariaDB/comppettiBD.sql
-
 # Empaquetar respaldo de la BD
 tar -czf /var/backup/cloud_backup/MariaDB/comppettiBD_${FECHA}.tar.gz -C /var/backup/cloud_backup/MariaDB comppettiBD.sql
 
@@ -34,10 +22,10 @@ rm /var/backup/cloud_backup/MariaDB/comppettiBD.sql
 # ====================================================
 
 # Módulo 2: Infraestructura
-tar -czf /var/backup/cloud_backup/Infraestructura/infraestructura_${FECHA}.tar.gz -C / etc 
+tar -czf /var/backup/cloud_backup/Infraestructura/infraestructura_${FECHA}.tar.gz -C / etc
 
 # Módulo 3: aplicación Web
-tar -czf /var/backup/cloud_backup/web/competti_${FECHA}.tar.gz -C /var/www/html competti 
+tar -czf /var/backup/cloud_backup/web/competti_${FECHA}.tar.gz -C /var/ www
 
 # Módulo 4: Scripts y Cron table
 

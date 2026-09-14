@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Validar ejecución del script con Bash y usando './'
-if [ -z "$BASH_VERSION" ]; then
-    echo "Error: Este script debe ser ejecutado exclusivamente con Bash." >&2
-    exit 1
-fi
-
-if [[ "$0" != "./"* ]]; then
-    echo "Error: Este script solo se puede ejecutar usando './'" >&2
-    exit 1
-fi
-
 # Validar existencia de carpeta de backup diario
 if [ ! -d "/var/backup/daily_backup" ]; then
     echo "Error: La carpeta /var/backup/daily_backup no existe. Por favor, revise sus backups antes de ejecutar el script."
@@ -34,7 +23,7 @@ rm /var/backup/daily_backup/MariaDB/comppettiBD.sql
 # ====================================================
 
 # Respaldar archivos de configuración del sistema
-rsync -a -h -X -A --delete-after --max-delete=10 -q /etc/ /var/backup/daily_backup/Infraestructura/etc/
+rsync -a -h -X -A --delete-after --max-delete=10 -q /etc/ /var/backup/daily_backup/Infraestructura/
 
 # Respaldar archivos del servicio Web
 rsync -a -h -X -A --delete-after --max-delete=10 -q /var/www/ /var/backup/daily_backup/web/

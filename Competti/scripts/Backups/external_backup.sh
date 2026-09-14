@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Validar ejecución del script con Bash y usando './'
-if [ -z "$BASH_VERSION" ]; then
-    echo "Error: Este script debe ser ejecutado exclusivamente con Bash." >&2
-    exit 1
-fi
-
-if [[ "$0" != "./"* ]]; then
-    echo "Error: Este script solo se puede ejecutar usando './'" >&2
-    exit 1
-fi
-
 # Validar existencia de carpeta de backup externo
 if [ ! -d "/var/backup/external_backup" ]; then
     echo "Error: La carpeta /var/backup/external_backup no existe. Por favor, revise sus backups antes de ejecutar el script." >&2
@@ -34,10 +23,10 @@ rm /var/backup/external_backup/MariaDB/comppettiBD.sql
 # ====================================================
 
 # Módulo 2: Infraestructura
-tar -czf /var/backup/external_backup/Infraestructura/infraestructura_${FECHA}.tar.gz -C / etc 
+tar -czf /var/backup/external_backup/Infraestructura/infraestructura_${FECHA}.tar.gz -C / etc
 
 # Módulo 3: aplicación Web
-tar -czf /var/backup/external_backup/www/www_${FECHA}.tar.gz -C /var/www/ www 
+tar -czf /var/backup/external_backup/web/competti_${FECHA}.tar.gz -C /var/ www
 
 # Módulo 4: Scripts y Cron table
 
@@ -51,6 +40,8 @@ rm -f /tmp/crontab_backup
 
 # Módulo 5: Otros
 tar -czf /var/backup/external_backup/Otros/otros_${FECHA}.tar.gz -C / home opt
+
+
 
 # Asignar propiedad a root:backup y permisos de grupo
 chown -R root:backup /var/backup/external_backup/

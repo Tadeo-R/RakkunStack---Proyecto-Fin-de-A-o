@@ -8,7 +8,6 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL ?>html/css/auth.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
     <title>Iniciar Sesión - COMPETTI</title>
@@ -18,13 +17,15 @@ session_start();
 
     <div class="auth-bg-overlay" id="dynamicBg"></div>
 
-    <a href="index.html" class="back-home-btn" title="Volver al inicio">
+    <a href="<?= BASE_URL ?>html/index.php" class="back-home-btn" title="Volver al inicio">
         <i class="fa-solid fa-arrow-left"></i> <span>Volver</span>
     </a>
 
     <main class="auth-container">
         
         <div class="auth-brand">
+            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
             <h1 class="brand-name">COMPETTI</h1>
         </div>
 
@@ -59,7 +60,7 @@ session_start();
             </form>
 
             <div class="card-footer">
-                <p class="account">¿Aún no tienes cuenta? <a href="<?= BASE_URL ?>view/auth/register.html">Regístrate gratis</a></p>
+                <p class="account">¿Aún no tienes cuenta? <a href="<?= BASE_URL ?>view/auth/register.php">Regístrate gratis</a></p>
             </div>
         </section>
 

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../config/config.php';
+    require_once __DIR__ . '/../../../config/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,14 +17,15 @@ require_once __DIR__ . '/../../../config/config.php';
 
     <div class="auth-bg-overlay" id="dynamicBg"></div>
 
-    <a href="<?= BASE_URL ?>app/index.php" class="back-home-btn" title="Volver al inicio">
+    <a href="<?= BASE_URL ?>html/index.php" class="back-home-btn" title="Volver al inicio">
         <i class="fa-solid fa-arrow-left"></i> <span>Volver</span>
     </a>
 
     <main class="auth-container">
 
         <div class="auth-brand">
-            <div class="brand-logo">🏆</div>
+            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
             <h1 class="brand-name">COMPETTI</h1>
         </div>
 
@@ -79,13 +80,13 @@ require_once __DIR__ . '/../../../config/config.php';
             </form>
 
             <div class="card-footer">
-                <p class="account">¿Ya tienes una cuenta? <a href="login.html">Inicia Sesión</a></p>
+                <p class="account">¿Ya tienes una cuenta? <a href="<?= BASE_URL ?>view/auth/login.php">Inicia Sesión</a></p>
             </div>
         </section>
 
     </main>
 
-    <script src="js/auth-bg.js"></script>
+    <script src="<?= BASE_URL ?>html/js/auth-bg.js"></script>
 </body>
 
 </html>

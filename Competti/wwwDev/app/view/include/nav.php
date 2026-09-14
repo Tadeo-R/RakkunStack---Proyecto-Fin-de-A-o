@@ -39,7 +39,8 @@ $nav_links = [
             <a href="<?= BASE_URL ?>search.php">
                 <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
             </a>
-            <button class="icon-btn theme-trigger" id="theme-toggle"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+            <button class="icon-btn theme-trigger" id="theme-toggle"><i class="fa-solid fa-moon"
+                    id="theme-icon"></i></button>
             <!-- CONDICIONAL DE AUTENTICACIÓN DESKTOP -->
             <?php if (isset($_SESSION['usuario_id'])): ?>
                 <a href="<?= BASE_URL ?>notificaciones.php">
@@ -49,7 +50,7 @@ $nav_links = [
                     <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
                 </a>
                 <!-- Si está logueado: Mostramos su nombre y un botón para salir -->
-                <div class="user-logged-info" style="display: flex; align-items: center; gap: 10px;">
+                <div class="user-logged-info">
                     <span style="color: white; font-weight: bold;">Hola,
                         <?= htmlspecialchars($_SESSION['usuario_nombre']) ?>!</span>
                     <a href="<?= BASE_URL ?>app/view/auth/logout.php" class="btn-secondary"

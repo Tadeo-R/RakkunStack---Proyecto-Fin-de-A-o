@@ -1,4 +1,14 @@
 /* MOBILE-FIRST NAVIGATION */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding-top: 65px;
+}
+
 .main-header {
     backdrop-filter: blur(10px);
     color: var(--white);
@@ -9,8 +19,10 @@
     z-index: 500;
 }
 
-body {
-    padding-top: 65px;
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 /* CONFIGURACIÓN MÓVIL DEL BOTÓN HAMBURGUESA */
@@ -83,8 +95,6 @@ body {
 
 .desktop-nav,
 .auth-buttons,
-.search-trigger,
-.theme-trigger,
 .desktop-only {
     display: none;
 }
@@ -144,7 +154,7 @@ body {
     position: fixed;
     top: 0;
     left: -240px;
-    width: 220px;
+    width: 1fr 3fr;
     height: 100vh;
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -240,6 +250,10 @@ body {
     transform: rotate(360deg);
 }
 
+.user-logged-info {
+    display: none;
+}
+
 @media (min-width: 992px) {
     .main-header {
         position: fixed;
@@ -283,12 +297,6 @@ body {
         color: var(--white);
     }
 
-    .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
     .auth-buttons {
         gap: 10px;
         margin-left: 10px;
@@ -308,6 +316,12 @@ body {
         padding: 8px 15px;
         border-radius: 6px;
         transition: 0.3s ease-in;
+    }
+
+    .user-logged-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
 }

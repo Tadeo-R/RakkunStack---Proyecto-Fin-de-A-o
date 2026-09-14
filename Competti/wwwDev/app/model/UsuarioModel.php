@@ -6,9 +6,7 @@ class UsuarioModel {
         $this->db = $conexionPDO;
     }
 
-    /**
-     * Registra un nuevo usuario en la base de datos
-     */
+    /** Registra un nuevo usuario en la base de datos */
     public function registrar($nombre, $email, $password) {
         // 1. Encriptar la contraseña de forma segura
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
@@ -25,9 +23,7 @@ class UsuarioModel {
         ]);
     }
 
-    /**
-     * Verifica las credenciales para iniciar sesión
-     */
+    /** Verifica las credenciales para iniciar sesión */
     public function login($email, $password) {
         // 1. Buscar al usuario por su email
         $sql = "SELECT * FROM usuarios WHERE email = :email LIMIT 1";
@@ -47,9 +43,7 @@ class UsuarioModel {
         return false;
     }
 
-    /**
-     * Verifica si un email ya está registrado
-     */
+    /** Verifica si un email ya está registrado */
     public function existeEmail($email) {
         $sql = "SELECT id FROM usuarios WHERE email = :email LIMIT 1";
         $stmt = $this->db->prepare($sql);

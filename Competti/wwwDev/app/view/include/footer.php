@@ -4,10 +4,11 @@
 		<div class="footer-container">
 			<div class="footer-brand">
 				<div class="logo">
-					<span class="logo-icon">&#127942;</span>
+					<img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            		<img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
 					<div class="logo-text">
-						<strong style="color: white;">TORNEOS</strong>
-						<span>Pensalos Crealos Disfrutalos</span>
+						<strong style="color: white;">COMPETTI</strong>
+						<span>Pensalos. Crealos. Disfrutalos.</span>
 					</div>
 				</div>
 				<p class="brand-description">
@@ -40,7 +41,7 @@
 		</div>
 		<div class="footer-bottom">
 			<div class="footer-bottom-container">
-				<p>&copy; <? date("Y") ?> RakkunStack&trade;. Torneos es un producto de RakkunStack&trade;. Todos los derechos reservados.</p>
+				<p>&copy; <? date("Y") ?> RakkunStack&trade;. COMPETTI es un producto de RakkunStack&trade;. Todos los derechos reservados.</p>
 				<div class="footer-legal-links">
 					<a href="#">T&eacute;rminos de Servicio</a>
 					<a href="#">Pol&iacute;tica de Privacidad</a>

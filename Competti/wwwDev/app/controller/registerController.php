@@ -9,11 +9,6 @@ class RegisterController
         $this->modelo = $modeloUsuario;
     }
 
-    public function procesarLogin()
-    {
-        // ... (Tu código de login actual se mantiene igual)
-    }
-
     public function procesarRegistro()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

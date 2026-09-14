@@ -1,6 +1,6 @@
 <?php
 
-require_once "../config/config.php"; 
+require_once "../config/config.php";
 
 // Enlaces compartidos para mantener consistencia entre mobile y desktop
 $nav_links = [
@@ -13,8 +13,9 @@ $nav_links = [
 ];
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/navigation.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>css/global.css">
+<script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="<?= BASE_URL ?>html/css/navigation.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
 
 <header class="main-header">
     <div class="header-container">
@@ -38,15 +39,15 @@ $nav_links = [
             <a href="<?= BASE_URL ?>search.php">
                 <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
             </a>
-            <button class="icon-btn theme-trigger"><i class="fa-regular fa-moon"></i></button>
-            <a href="<?= BASE_URL ?>notificaciones.php">
-                <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
-            </a>
-            <a href="<?= BASE_URL ?>profile.php">
-                <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
-            </a>
+            <button class="icon-btn theme-trigger" id="theme-toggle"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
             <!-- CONDICIONAL DE AUTENTICACIÓN DESKTOP -->
             <?php if (isset($_SESSION['usuario_id'])): ?>
+                <a href="<?= BASE_URL ?>notificaciones.php">
+                    <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
+                </a>
+                <a href="<?= BASE_URL ?>app/view/users/profile.php">
+                    <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
+                </a>
                 <!-- Si está logueado: Mostramos su nombre y un botón para salir -->
                 <div class="user-logged-info" style="display: flex; align-items: center; gap: 10px;">
                     <span style="color: white; font-weight: bold;">Hola,
@@ -64,17 +65,21 @@ $nav_links = [
         </div>
     </div>
 </header>
+
 <button class="hamburger hamburger--emphatic" type="button">
     <span class="hamburger-box">
         <span class="hamburger-inner"></span>
     </span>
 </button>
+
 <div class="sidebar-overlay"></div>
+
 <aside class="mobile-sidebar">
     <div class="sidebar-header">
         <div class="logo">
-            <span class="logo-icon">&#127942;</span>
-            <div class="logo-text"><strong style="color: white;">TORNEOS</strong></div>
+            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
+            <div class="logo-text"><strong style="color: white;">COMPETTI</strong></div>
         </div>
     </div>
     <nav class="sidebar-nav">
@@ -90,7 +95,8 @@ $nav_links = [
         <?php if (isset($_SESSION['usuario_id'])): ?>
             <!-- Si está logueado -->
             <p style="color: white; text-align: center; margin-bottom: 10px;">Sesión activa:
-                <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+                <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong>
+            </p>
             <a href="<?= BASE_URL ?>app/view/auth/logout.php" class="btn-auth-mobile btn-login-mobile"
                 style="background-color: #dc3545;">
                 <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
@@ -129,4 +135,6 @@ $nav_links = [
             icono.classList.add('fa-solid');
         }
     });
+
 </script>
+<script src="<?php echo BASE_URL; ?>html/js/theme-toggle.js"></script>

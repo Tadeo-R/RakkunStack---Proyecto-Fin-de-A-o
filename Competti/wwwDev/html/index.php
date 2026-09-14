@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/config.php'; 
+require_once __DIR__ . '/../config/config.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competti - Pensalos, Crealos, Disfrutalos</title>
+    <title>Competti - Pensalos. Crealos. Disfrutalos.</title>
     <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
@@ -36,11 +36,15 @@ session_start();
                 </div>
             </div>
             <div class="hero-gallery">
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/futbol.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/joystickPS5.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/ajedrez.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/pingpong.png');"></div>
-                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>img/valorant.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/futbol.png');"></div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/joystickPS5.png');">
+                </div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/ajedrez.png');">
+                </div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/pingpong.png');">
+                </div>
+                <div class="gallery-item" style="background-image: url('<?php echo BASE_URL; ?>html/img/valorant.png');">
+                </div>
             </div>
         </section>
 
@@ -53,7 +57,8 @@ session_start();
                 <div class="discipline-card"><i class="fa-solid fa-soccer-ball"></i><span>F&uacute;tbol</span></div>
                 <div class="discipline-card"><i class="fa-solid fa-basketball"></i><span>B&aacute;squetbol</span></div>
                 <div class="discipline-card"><i class="fa-solid fa-volleyball"></i><span>V&oacute;ley</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-table-tennis-paddle-ball"></i><span>Tenis de mesa</span></div>
+                <div class="discipline-card"><i class="fa-solid fa-table-tennis-paddle-ball"></i><span>Tenis de
+                        mesa</span></div>
                 <div class="discipline-card"><i class="fa-solid fa-chess-knight"></i><span>Ajedrez</span></div>
                 <div class="discipline-card"><i class="fa-solid fa-gamepad"></i><span>E-Sports</span></div>
                 <div class="discipline-card"><i class="fa-solid fa-person-running"></i><span>Atletismo</span></div>
@@ -186,50 +191,117 @@ session_start();
             <div class="section-header">
                 <h2>Lo que dice la comunidad</h2>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p class="testimonial-text">Organizamos la liga del barrio y en nada ya estaba creado. El calendario
-                        automatico nos ahorro mucho quilombo.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">TR</div>
-                        <div>
-                            <p class="testimonial-name">Tadeo Rodriguez</p>
-                            <p class="testimonial-role">Capitan, Los Leones</p>
+            <!-- 1. Este es el contenedor principal que oculta el desborde -->
+            <div class="testimonials-window">
+                <!-- 2. Este es el "riel" que moverá las tarjetas -->
+                <div class="testimonials-grid" id="testimonials-track">
+
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p class="testimonial-text">Organizamos la liga del barrio y en nada ya estaba creado. El
+                            calendario automatico nos ahorro mucho quilombo.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">TR</div>
+                            <div>
+                                <p class="testimonial-name">Tadeo Rodriguez</p>
+                                <p class="testimonial-role">Capitan, Los Leones</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p class="testimonial-text">Como Arbitro, cargar resultados y ver las estadisticas enseguida nos
-                        ahorro mucho trabajo.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">BC</div>
-                        <div>
-                            <p class="testimonial-name">Benja copetti</p>
-                            <p class="testimonial-role">Arbitro, Liga Apertura</p>
+
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p class="testimonial-text">Como Arbitro, cargar resultados y ver las estadisticas enseguida nos
+                            ahorro mucho trabajo.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">BC</div>
+                            <div>
+                                <p class="testimonial-name">Benja copetti</p>
+                                <p class="testimonial-role">Arbitro, Liga Apertura</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <i class="fa-solid fa-quote-left"></i>
-                    <p class="testimonial-text">Armamos un torneo de e-sports con inscripciones abiertas y ahora tenemos
-                        a 32 jugadores en la semana.</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">GB</div>
-                        <div>
-                            <p class="testimonial-name">Gahel Bordon</p>
-                            <p class="testimonial-role">Organizador, Torneo Gamer X</p>
+
+                    <div class="testimonial-card">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p class="testimonial-text">Armamos un torneo de e-sports con inscripciones abiertas y ahora
+                            tenemos a 32 jugadores en la semana.</p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">GB</div>
+                            <div>
+                                <p class="testimonial-name">Gahel Bordon</p>
+                                <p class="testimonial-role">Organizador, Torneo Gamer X</p>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
+
     </main>
 
     <?php require_once ROOT_PATH . '/app/view/include/footer.php'; ?>
-    
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const track = document.getElementById("testimonials-track");
+            const windowContainer = document.querySelector(".testimonials-window");
+
+            if (!track || !windowContainer) return;
+
+            // 1. Clonamos suficientes tarjetas al inicio para llenar la pantalla y evitar huecos vacíos
+            const originalCards = Array.from(track.children);
+
+            // Clonamos el set de tarjetas 2 veces para asegurar cobertura en pantallas ultra anchas
+            for (let i = 0; i < 2; i++) {
+                originalCards.forEach(card => {
+                    const clone = card.cloneNode(true);
+                    track.appendChild(clone);
+                });
+            }
+
+            // 2. Variables de control de la animación
+            let speed = 1.5; // Velocidad del scroll (1 píxel por fotograma). Sube a 1.5 o 2 si quieres que vaya más rápido.
+            let scrollPosition = 0;
+            let isPaused = false;
+
+            // 3. Pausar al poner el mouse encima
+            windowContainer.addEventListener("mouseenter", () => isPaused = true);
+            windowContainer.addEventListener("mouseleave", () => isPaused = false);
+
+            // Pausar también en dispositivos táctiles si mantienen presionado
+            windowContainer.addEventListener("touchstart", () => isPaused = true);
+            windowContainer.addEventListener("touchend", () => isPaused = false);
+
+            // 4. Función del bucle de animación de alto rendimiento
+            function animate() {
+                if (!isPaused) {
+                    scrollPosition += speed;
+
+                    // Calculamos cuánto mide el bloque de las tarjetas originales (incluyendo el gap de 20px)
+                    // Tomamos la primera tarjeta original para medir su tamaño exacto actual
+                    const firstCardWidth = originalCards[0].getBoundingClientRect().width + 20;
+                    const totalOriginalWidth = firstCardWidth * originalCards.length;
+
+                    // Si nos hemos desplazado el equivalente a todo el set original, volvemos a cero de forma imperceptible
+                    if (scrollPosition >= totalOriginalWidth) {
+                        scrollPosition = 0;
+                    }
+
+                    // Aplicamos el movimiento por hardware con translate3d
+                    track.style.transform = `translate3d(-${scrollPosition}px, 0, 0)`;
+                }
+
+                // Ejecuta la animación en sincronía con los hercios (Hz) de la pantalla
+                requestAnimationFrame(animate);
+            }
+
+            // Iniciar el carrusel
+            animate();
+        });
+
+    </script>
 </body>
 
 </html>

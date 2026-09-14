@@ -273,8 +273,15 @@ main {
 }
 
 @keyframes pulse-live {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
 }
 
 .badge-upcoming {
@@ -434,14 +441,30 @@ main {
 /* 8. TESTIMONIOS / COMUNIDAD */
 .testimonials-section {
     margin-top: 10px;
+    width: 100%;
 }
 
+/* Ventana contenedora: oculta todo lo que sale de los bordes */
+.testimonials-window {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* El riel que contiene las tarjetas */
 .testimonials-grid {
-    display: grid;
-    gap: 15px;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 20px;
+    width: max-content; /* Obliga a mantenerlas en una sola línea */
+    will-change: transform; /* Optimiza el rendimiento de la tarjeta gráfica */
 }
 
 .testimonial-card {
+    /* En celular ocupa un tamaño fijo cómodo */
+    flex: 0 0 290px !important; 
+    box-sizing: border-box;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(20px);
@@ -450,13 +473,12 @@ main {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
 .testimonial-card:hover {
     transform: translateY(-4px);
     border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial-card i.fa-quote-left {
@@ -504,6 +526,16 @@ main {
     color: rgba(255, 255, 255, 0.6);
 }
 
+/* LA ANIMACIÓN: Mueve el contenedor exactamente la mitad de su tamaño total recalculado */
+@keyframes carruselInfinito {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
 /* Ocultamos los partidos de la columna secundaria en celulares */
 .secondary-column .matches-section {
     display: none;
@@ -519,9 +551,7 @@ main {
 .match-row {
     display: flex;
     align-items: center;
-    backdrop-filter: blur(40px);
-    border: 1px solid #e2e8f0;
-    border-radius: var(--border-radius, 12px);
+    background: rgba(255, 255, 255, 0.07);
     padding: 12px;
     gap: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
@@ -667,6 +697,11 @@ main {
     .hero-info {
         max-width: 350px;
     }
+
+    .testimonial-card {
+        /* En pantallas grandes las hacemos un poco más anchas para que cubran el diseño */
+        flex: 0 0 360px !important; 
+    }
 }
 
 /* ==========================================================================
@@ -750,7 +785,7 @@ main {
     .discipline-card:hover {
         border-color: var(--white);
         color: var(--white);
-        background-color: rgba(13, 110, 253, 0.12);
+        background-color: #4d1d9574;
         transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
@@ -796,9 +831,9 @@ main {
     .match-row {
         display: flex;
         align-items: center;
-        backdrop-filter: blur(40px);
-        border: 1px solid #e2e8f0;
-        border-radius: var(--border-radius);
+        background: rgba(255, 255, 255, 0.07);
+        border: inset 1px rgba(255, 255, 255, 0.2);
+        border-radius: var(--border-radius, 12px);
         padding: 12px;
         gap: 12px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);

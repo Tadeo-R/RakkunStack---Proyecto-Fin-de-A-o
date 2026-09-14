@@ -240,15 +240,13 @@ body {
     transform: rotate(360deg);
 }
 
-/* VISTA ESCRITORIO (RESPONSIVE) */
 @media (min-width: 992px) {
     .main-header {
         position: fixed;
-        
-        
     }
 
-    .logoTrebol, .logoRueda {
+    .logoTrebol,
+    .logoRueda {
         width: 50px;
     }
 
@@ -258,10 +256,6 @@ body {
 
     .header-container {
         padding-left: 0;
-    }
-
-    .desktop-nav {
-        backdrop-filter: blur(50px) grayscale(180%);
     }
 
     .desktop-nav,

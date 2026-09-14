@@ -1,16 +1,19 @@
 <?php
 
-class LoginController {
+class LoginController
+{
     private $modelo;
 
-    public function __construct($modeloUsuario) {
-        $this->modelo = $modeloUsuario; 
+    public function __construct($modeloUsuario)
+    {
+        $this->modelo = $modeloUsuario;
     }
 
-    public function procesarLogin() {
+    public function procesarLogin()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // 1. Recoger y limpiar entradas
-            $email    = trim($_POST['email'] ?? '');
+            $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
 
             // 2. Validación básica
@@ -25,9 +28,9 @@ class LoginController {
 
             if ($usuario) {
                 // 4. Si las credenciales son correctas, guardamos en la sesión
-                $_SESSION['usuario_id']     = $usuario['id'];
+                $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['usuario_nombre'] = $usuario['nombre'];
-                $_SESSION['usuario_email']  = $usuario['email'];
+                $_SESSION['usuario_email'] = $usuario['email'];
 
                 // 5. Redireccionar directamente a la página de inicio
                 header('Location: ' . BASE_URL . 'html/index.php');

@@ -37,7 +37,7 @@ rm /var/backup/external_backup/MariaDB/comppettiBD.sql
 tar -czf /var/backup/external_backup/Infraestructura/infraestructura_${FECHA}.tar.gz -C / etc 
 
 # Módulo 3: aplicación Web
-tar -czf /var/backup/external_backup/www/competti_${FECHA}.tar.gz -C /var/www/html competti 
+tar -czf /var/backup/external_backup/www/www_${FECHA}.tar.gz -C /var/www/ www 
 
 # Módulo 4: Scripts y Cron table
 

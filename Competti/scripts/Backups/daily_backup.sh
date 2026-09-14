@@ -37,7 +37,7 @@ rm /var/backup/daily_backup/MariaDB/comppettiBD.sql
 rsync -a -h -X -A --delete-after --max-delete=10 -q /etc/ /var/backup/daily_backup/Infraestructura/etc/
 
 # Respaldar archivos del servicio Web
-rsync -a -h -X -A --delete-after --max-delete=10 -q /var/www/html/competti/ /var/backup/daily_backup/www/competti/
+rsync -a -h -X -A --delete-after --max-delete=10 -q /var/www/ /var/backup/daily_backup/www/
 
 # Respaldar scripts y crontab
 rsync -a -h -X -A --delete-after -q /var/scripts/ /var/backup/daily_backup/Scripts/scripts/
@@ -52,3 +52,5 @@ crontab -l > /var/backup/daily_backup/Scripts/crontab_backup 2>/dev/null
 # -A               Preserva las Listas de Control de Acceso (ACLs) POSIX definidas en los archivos y carpetas origen.
 # -q               Modo silencioso
 # --delete-after   Elimina los archivos en el destino que ya no existan en el origen, pero lo hace después de completar toda la transferencia de los archivos nuevos o modificados.
+
+exit 0

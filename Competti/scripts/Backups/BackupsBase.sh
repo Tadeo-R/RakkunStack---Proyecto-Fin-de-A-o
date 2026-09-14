@@ -21,16 +21,16 @@ fi
 echo "Creando directorios de respaldo..."
 
 # Crear subdirectorios de cada módulo para backup diario (Módulos 1 a 4)
-mkdir -p /var/backup/daily_backup/www
+mkdir -p /var/backup/daily_backup/web
 mkdir -p /var/backup/daily_backup/MariaDB
 mkdir -p /var/backup/daily_backup/Infraestructura
 mkdir -p /var/backup/daily_backup/Scripts
 
 # Crear subdirectorios de cada módulo para backup externo (Módulos 1 a 5)
-mkdir -p /var/backup/external_backup/{MariaDB,Infraestructura,www,Scripts,Otros}
+mkdir -p /var/backup/external_backup/{MariaDB,Infraestructura,web,Scripts,Otros}
 
 # Crear subdirectorioS  de cada módulo para backup de la nube (Módulos 1 a 4)
-mkdir -p /var/backup/cloud_backup/{MariaDB,Infraestructura,www,Scripts}
+mkdir -p /var/backup/cloud_backup/{MariaDB,Infraestructura,web,Scripts}
 
 
 # Establecer permisos de lectura, escritura y ejecución para grupo backup en la carpeta de backups
@@ -58,10 +58,7 @@ rm /var/backup/daily_backup/MariaDB/comppettiBD.sql
 echo "[2/4] Realizando respaldo de archivos de configuración"
 
 # Empaquetar respaldo de la infraestructura indicando con -c que se posicione en la carpeta especifica antes de ejecutar la acción
-tar -czf /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz -C /var/backup/daily_backup/Infraestructura etc
-
-# Borrar archivo sin descomprimir después de empaquetar
-rm -r /var/backup/daily_backup/Infraestructura/etc
+tar -czf /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz -C / etc
 
 # Copiar el empaquetado en las carpetas de backup externo y de la nube
 cp /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz /var/backup/external_backup/Infraestructura/infraestructura.tar.gz
@@ -73,31 +70,24 @@ cp /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz /var/backup/c
 echo "[3/4] Realizando respaldo de archivos de la aplicación"
 
 # Empaquetar respaldo de la aplicación web
-tar -czf /var/backup/daily_backup/www/www.tar.gz -C /var/backup/daily_backup/www www
-
-# Borrar carpeta sin descomprimir después de empaquetar
-rm -r /var/backup/daily_backup/www/
+tar -czf /var/backup/daily_backup/web/www.tar.gz -C /var/ www
 
 # Copiar el empaquetado en las carpetas de backup externo y de la nube
-cp /var/backup/daily_backup/www/www.tar.gz /var/backup/external_backup/www/www.tar.gz
-cp /var/backup/daily_backup/www/www.tar.gz /var/backup/cloud_backup/www/www.tar.gz
+cp /var/backup/daily_backup/web/www.tar.gz /var/backup/external_backup/web/www.tar.gz
+cp /var/backup/daily_backup/web/www.tar.gz /var/backup/cloud_backup/web/www.tar.gz
 
 # ==============
 
 # Módulo 4: Scripts de respaldo y Cron table
 echo "[4/4] Realizando respaldo de scripts de respaldo y Cron table"
 
-# Copia los scripts de respaldo a la carpeta de backup diario
-cp -r /var/scripts /var/backup/daily_backup/Scripts
-
 # Copia la tabla de cron a la carpeta de backup diario
 crontab -l > /var/backup/daily_backup/Scripts/crontab_backup
 
-# Empaquetar respaldo de los scripts de respaldo y cron table 
-tar -czf /var/backup/daily_backup/Scripts/scripts.tar.gz -C /var/backup/daily_backup/Scripts scripts crontab_backup
+# Empaquetar respaldo de los scripts de respaldo y cron table
+tar -czf /var/backup/daily_backup/Scripts/scripts.tar.gz -C /var/backup/daily_backup/Scripts crontab_backup -C /var/ scripts
 
-# Borrar carpeta y archivo crontab sin descomprimir después de empaquetar
-rm -r /var/backup/daily_backup/Scripts/scripts
+
 rm /var/backup/daily_backup/Scripts/crontab_backup
 
 # Copiar el empaquetado en las carpetas de backup externo y de la nube

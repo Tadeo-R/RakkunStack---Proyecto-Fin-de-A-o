@@ -37,7 +37,7 @@ rm /var/backup/daily_backup/MariaDB/comppettiBD.sql
 rsync -a -h -X -A --delete-after --max-delete=10 -q /etc/ /var/backup/daily_backup/Infraestructura/etc/
 
 # Respaldar archivos del servicio Web
-rsync -a -h -X -A --delete-after --max-delete=10 -q /var/www/ /var/backup/daily_backup/www/
+rsync -a -h -X -A --delete-after --max-delete=10 -q /var/www/ /var/backup/daily_backup/web/
 
 # Respaldar scripts y crontab
 rsync -a -h -X -A --delete-after -q /var/scripts/ /var/backup/daily_backup/Scripts/scripts/

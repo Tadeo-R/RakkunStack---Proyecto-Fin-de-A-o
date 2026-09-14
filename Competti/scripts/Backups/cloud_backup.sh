@@ -37,7 +37,7 @@ rm /var/backup/cloud_backup/MariaDB/comppettiBD.sql
 tar -czf /var/backup/cloud_backup/Infraestructura/infraestructura_${FECHA}.tar.gz -C / etc 
 
 # Módulo 3: aplicación Web
-tar -czf /var/backup/cloud_backup/www/competti_${FECHA}.tar.gz -C /var/www/html competti 
+tar -czf /var/backup/cloud_backup/web/competti_${FECHA}.tar.gz -C /var/www/html competti 
 
 # Módulo 4: Scripts y Cron table
 
@@ -55,3 +55,4 @@ chmod -R 770 /var/backup/cloud_backup/
 chmod 660 /var/backup/cloud_backup/*/*.tar.gz 2>/dev/null
 
 exit 0
+

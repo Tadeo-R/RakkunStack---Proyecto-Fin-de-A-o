@@ -403,7 +403,7 @@ case $option in
     4)
         # Volver al menú principal
         echo "Volviendo al menú principal..."
-        ./Gestor.sh
+        ./gestorGeneral.sh
         exit 0
         
     ;;

@@ -83,3 +83,5 @@ firewall-cmd --reload
 echo "=== Proceso finalizado con éxito ==="
 echo "Estado actual del servicio Apache:"
 systemctl status httpd --no-pager
+
+# Configuración de permisos de grupos

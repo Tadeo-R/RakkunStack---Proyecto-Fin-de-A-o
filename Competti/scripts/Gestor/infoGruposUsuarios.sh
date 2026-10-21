@@ -139,7 +139,7 @@ case $option in
         # Volver al menú principal
         clear
         echo "Volviendo al menú principal..."
-        ./Gestor.sh
+        ./gestorGeneral.sh
         exit 0
         
     ;;

@@ -249,7 +249,7 @@ case $opcion in
     5)
         # Volver al menú principal
         echo "Volviendo al menú principal..."
-        ./Gestor.sh
+        ./gestorGeneral.sh
         exit 0
     ;;
     6)

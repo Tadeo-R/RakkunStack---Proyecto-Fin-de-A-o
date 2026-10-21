@@ -39,7 +39,7 @@ chmod -R o+rx /var/backup/
 # ================= Crear respaldo completo para todos los backups ==================
 
 # Módulo 1: Base de Datos MariaDB
-echo "[1/4] Realizando respaldo de MariaDB"
+echo "[1/5] Realizando respaldo de MariaDB"
 mysqldump -u uits -pUsuarioITS --single-transaction --quick --all-databases > /var/backup/daily_backup/MariaDB/comppettiBD.sql
 
 # Empaquetar respaldo de la BD indicando con -c que se posicione en la carpeta especifica antes de ejecutar la acción
@@ -55,7 +55,7 @@ rm /var/backup/daily_backup/MariaDB/comppettiBD.sql
 # ==============
 
 # Módulo 2: Infraestructura y Configuraciones del Sistema
-echo "[2/4] Realizando respaldo de archivos de configuración"
+echo "[2/5] Realizando respaldo de archivos de configuración"
 
 # Empaquetar respaldo de la infraestructura indicando con -c que se posicione en la carpeta especifica antes de ejecutar la acción
 tar -czf /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz -C / etc
@@ -67,7 +67,7 @@ cp /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz /var/backup/c
 # ==============
 
 # Módulo 3: Archivos de la aplicación
-echo "[3/4] Realizando respaldo de archivos de la aplicación"
+echo "[3/5] Realizando respaldo de archivos de la aplicación"
 
 # Empaquetar respaldo de la aplicación web
 tar -czf /var/backup/daily_backup/web/www.tar.gz -C /var/ www
@@ -79,7 +79,7 @@ cp /var/backup/daily_backup/web/www.tar.gz /var/backup/cloud_backup/web/www.tar.
 # ==============
 
 # Módulo 4: Scripts de respaldo y Cron table
-echo "[4/4] Realizando respaldo de scripts de respaldo y Cron table"
+echo "[4/5] Realizando respaldo de scripts de respaldo y Cron table"
 
 # Copia la tabla de cron a la carpeta de backup diario
 crontab -l > /var/backup/daily_backup/Scripts/crontab_backup

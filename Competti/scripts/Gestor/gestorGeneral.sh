@@ -80,12 +80,13 @@ case $option in
     ;;
 
     7)
+        # Salir del panel de control
         clear
         echo "Saliendo del panel de control."
         exit 0
     ;;
     *)
+        # Opción inválida
         echo "Opción inválida. Por favor, seleccione una opción válida."
     ;;
 esac
-

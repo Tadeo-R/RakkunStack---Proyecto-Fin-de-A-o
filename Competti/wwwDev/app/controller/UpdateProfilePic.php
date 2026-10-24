@@ -1,68 +1,51 @@
 <?php
-require_once __DIR__ . '/../../config/config.php';
-
-// Validar que la petición venga por POST y que exista el archivo
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profile_picture'])) {
-    $file = $_FILES['profile_picture'];
-
-    // Validar errores de subida
-    if ($file['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $file['tmp_name'];
-        $fileName = $file['name'];
-        $fileSize = $file['size'];
-        $fileType = $file['type'];
-
-        // Validar extensiones permitidas
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
-        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-
-        if (in_array($fileExtension, $allowedExtensions)) {
-            // Limitar tamaño (Ej: Máximo 2MB)
-            if ($fileSize <= 2 * 1024 * 1024) {
-
-                // Generar un nombre único para evitar duplicados
-                // Idealmente aquí usarías el ID del usuario de la sesión: "user_" . $_SESSION['user_id']
-                $newFileName = 'avatar_' . uniqid() . '.' . $fileExtension;
-
-                // Ruta física del servidor donde se guardará
-                $uploadDir = __DIR__ . '/../../html/img/avatars/';
-
-                // Crear el directorio si no existe
-                if (!is_dir($uploadDir)) {
-                    mkdir($uploadDir, 0755, true);
-                }
-
-                $destPath = $uploadDir . $newFileName;
-
-                if (move_uploaded_file($fileTmpPath, $destPath)) {
-
-                    // 1. AQUÍ HACES TU QUERY SQL (Ejemplo):
-                    // $db->query("UPDATE usuarios SET avatar = '$newFileName' WHERE id = " . $_SESSION['usuario']['id']);
-
-                    // 2. ACTUALIZA LA SESIÓN INMEDIATAMENTE:
-                    // Si usas sesiones para los datos del usuario, actualiza el valor de la foto:
-                    if (session_status() === PHP_SESSION_NONE) {
-                        session_start();
-                    }
-                    $_SESSION['usuario']['avatar'] = $newFileName;
-
-                    // 3. Redireccionar de vuelta
-                    header('Location: ' . BASE_URL . '/app/view/users/profile.php?status=success');
-                    exit;
-
-                } else {
-                    echo "Error al mover el archivo al directorio de destino.";
-                }
-            } else {
-                echo "El archivo es demasiado grande. Máximo 2MB.";
-            }
-        } else {
-            echo "Formato no permitido. Usa JPG, JPEG, PNG o WEBP.";
-        }
-    } else {
-        echo "Error en la subida del archivo.";
-    }
-} else {
-    header('Location: ' . BASE_URL);
-    exit;
+// Si no está logueado o no se envió un archivo válido, rebotarlo a la vista de perfil
+if (!isset($_SESSION['usuario_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_FILES['profile_picture'])) {
+    header("Location: view/users/profile.php"); // Medido desde 'app/'
+    exit();
 }
+
+$file = $_FILES['profile_picture'];
+$userId = $_SESSION['usuario_id'];
+
+if ($file['error'] === UPLOAD_ERR_OK) {
+    $fileType = $file['type'];
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
+
+    if (in_array($fileType, $allowedTypes)) {
+        // Buscamos la carpeta subiendo un nivel para salir de 'app/' e ir a la raíz donde está 'html/'
+        $uploadDir = dirname(__DIR__, 2) . '/html/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $newFileName = 'avatar_' . $userId . '_' . time() . '.' . $extension;
+        $destination = $uploadDir . $newFileName;
+
+        if (move_uploaded_file($file['tmp_name'], $destination)) {
+            
+            // Ruta de acceso web que consumirá la etiqueta <img>
+            $relativePath = 'html/uploads/' . $newFileName;
+
+            try {
+                // $pdo funciona heredado desde index.php
+                $stmt = $pdo->prepare("UPDATE usuarios SET avatar = :avatar WHERE id = :id");
+                $stmt->execute([
+                    ':avatar' => $relativePath,
+                    ':id' => $userId
+                ]);
+
+                // Sincronizamos de inmediato el avatar de la sesión activa
+                $_SESSION['usuario_avatar'] = $relativePath;
+
+            } catch (Exception $e) {
+                // Manejo de errores
+            }
+        }
+    }
+}
+
+// Redirección final segura medida desde el contexto de 'app/'
+header("Location: view/users/profile.php");
+exit();

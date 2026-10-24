@@ -1,242 +1,204 @@
 <?php
-require_once __DIR__ . '/../../../config/config.php';
+
+// Fuerza la muestra de errores en el navegador aunque falle el arranque
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+
+// Definimos la ruta base hacia las vistas en la carpeta protegida
+define('VIEW_PATH', dirname(__DIR__) . '/app/view');
+
+// 1. CORRECCIÓN DE RUTAS INICIALES (Subiendo un nivel desde html/ para entrar a app/)
+require_once __DIR__ . "/../config/config.php"; 
+require_once __DIR__ . "/../config/connection.php"; 
+require_once __DIR__ . "/../app/helpers/helpers.php";
+
+// Modelos
+require_once __DIR__ . "/../app/model/UsuarioModel.php"; 
+require_once __DIR__ . "/../app/model/TorneoModel.php";
+require_once __DIR__ . "/../app/model/EquipoModel.php";
+require_once __DIR__ . "/../app/model/PartidoModel.php";
+require_once __DIR__ . "/../app/model/NotificacionModel.php";
+
+// Controladores
+require_once __DIR__ . "/../app/controller/registerController.php"; 
+require_once __DIR__ . "/../app/controller/loginController.php";
+require_once __DIR__ . "/../app/controller/forgotPasswController.php";
+require_once __DIR__ . "/../app/controller/resetPasswController.php";
+require_once __DIR__ . "/../app/controller/torneoController.php";
+require_once __DIR__ . "/../app/controller/partidoController.php";
+require_once __DIR__ . "/../app/controller/notificacionController.php";
+
+// Inicializar Dependencias
+$pdo = Conexion::conectar();
+$modeloUsuario      = new UsuarioModel($pdo);
+$modeloTorneo       = new TorneoModel($pdo);
+$modeloEquipo       = new EquipoModel($pdo);
+$modeloPartido      = new PartidoModel($pdo);
+$modeloNotificacion = new NotificacionModel($pdo);
+
+// Instanciar ambos controladores pasándoles el mismo modelo
+$registerController = new RegisterController($modeloUsuario); 
+$loginController    = new LoginController($modeloUsuario);
+$forgotPasswController = new ForgotPasswController($pdo, $modeloUsuario);
+$resetPasswController = new ResetPasswController($pdo);
+$torneoController       = new TorneoController($modeloTorneo, $modeloNotificacion);
+$partidoController      = new PartidoController($modeloPartido, $modeloNotificacion);
+$notificacionController = new NotificacionController($modeloNotificacion);
+
+$action = $_GET['action'] ?? null;
+
+if ($action !== null) {
+    switch ($action) {
+        case 'register':
+            $registerController->procesarRegistro(); 
+            break;
+
+        case 'login':
+            $loginController->procesarLogin();
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                include VIEW_PATH . '/auth/login.php';
+            }
+            break;
+
+        case 'forgot_password':
+            $forgotPasswController->procesarRecuperacion();
+            break;
+
+        case 'update_password':
+            $resetPasswController->actualizarPassword();
+            break;
+        
+        case 'upload_avatar':
+            include __DIR__ . '/../app/controller/UpdateProfilePic.php';
+            break;
+
+        // --- Torneos ---
+        case 'create_tournament':
+            $torneoController->crear();
+            break;
+
+        // --- Calendario ---
+        case 'toggle_reminder':
+            $partidoController->alternarRecordatorio();
+            break;
+
+        // --- Notificaciones ---
+        case 'notif_leer':
+            $notificacionController->marcarLeida();
+            break;
+
+        case 'notif_leer_todas':
+            $notificacionController->marcarTodasLeidas();
+            break;
+
+        case 'notif_eliminar':
+            $notificacionController->eliminar();
+            break;
+
+        case 'notif_limpiar':
+            $notificacionController->limpiarLeidas();
+            break;
+
+        default:
+            break;
+    }
+}
+
+$view = isset($_GET['view']) ? $_GET['view'] : 'home';
+
+// Solo se aceptan nombres como "torneos" o "auth/login" (sin ".." ni caracteres raros),
+// y nunca los fragmentos internos de la carpeta include/.
+if (!preg_match('#^[A-Za-z0-9_-]+(/[A-Za-z0-9_-]+)*$#', $view) || strpos($view, 'include/') === 0) {
+    http_response_code(404);
+    echo "<h1>404 Page Not Found</h1>";
+    exit;
+}
+
+// Cerrar sesión necesita enviar cabeceras HTTP, así que se resuelve antes de imprimir HTML
+if ($view === 'auth/logout') {
+    require VIEW_PATH . '/auth/logout.php';
+    exit;
+}
+
+// --- ENRUTADOR DE VISTAS (RENDERIZADO) ---
+// Rutas amigables: ?view=torneos  ->  app/view/torneos/torneos.php
+// Cualquier otra vista se busca como app/view/<view>.php (auth/login, users/profile, ...)
+$rutas = [
+    'home'           => 'home/home.php',
+    'torneos'        => 'torneos/torneos.php',
+    'crear-torneo'   => 'torneos/crear.php',
+    'search'         => 'torneos/search.php',
+    'disciplinas'    => 'torneos/disciplinas.php',
+    'equipos'        => 'equipos/equipos.php',
+    'resultados'     => 'partidos/resultados.php',
+    'calendario'     => 'partidos/calendario.php',
+    'notificaciones' => 'users/notificaciones.php',
+    'quienesSomos'   => 'pages/quienesSomos.php',
+];
+
+$vistaRelativa = isset($rutas[$view]) ? $rutas[$view] : $view . '.php';
+$viewFile = VIEW_PATH . '/' . $vistaRelativa;
+
+if ($view === 'auth/forgotPassw') {
+    $viewFile = VIEW_PATH . '/auth/forgotPassw.php';
+}
+
+if ($view === 'auth/resetPassw') {
+    // Si el token no viene en la URL, bloqueamos el acceso directo
+    if (!isset($_GET['token']) || empty($_GET['token'])) {
+        header('Location: /index.php?view=auth/login');
+        exit;
+    }
+    $viewFile = VIEW_PATH . '/auth/resetPassw.php';
+}
+
+// Vistas que solo puede ver un usuario con sesión iniciada (se decide antes de imprimir HTML)
+$vistasProtegidas = ['torneos/crear.php', 'users/notificaciones.php', 'users/profile.php'];
+if (in_array($vistaRelativa, $vistasProtegidas, true) && !usuario_logueado()) {
+    header('Location: /index.php?view=auth/login');
+    exit;
+}
+
+// Verificar si el archivo existe antes de incluirlo de forma segura
+if (!file_exists($viewFile)) {
+    http_response_code(404);
+    echo "<h1>404 Page Not Found</h1>";
+    echo "<p>La ruta no existe: " . htmlspecialchars($view) . "</p>";
+    exit;
+}
+
+// La vista se ejecuta primero (en un búfer) para que pueda definir $pageTitle
+// y hacer redirecciones antes de que salga el HTML de la plantilla.
+ob_start();
+require $viewFile;
+$contenidoVista = ob_get_clean();
+
+$tituloPagina = isset($pageTitle)
+    ? $pageTitle . ' - COMPETTI'
+    : 'Competti - Pensalos. Crealos. Disfrutalos.';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torneos - Organiza, Compite, Gana</title>
+    <title><?= htmlspecialchars($tituloPagina) ?></title>
     <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/html/css/global.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/html/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
+    
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/navigation.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    
 </head>
-
 <body>
 
-    <?php require_once __DIR__ . '/../include/nav.php'; ?>
-
-    <main class="main-content">
-        <section class="hero">
-            <div class="hero-info">
-                <h1 class="animate__animated animate__fadeInDown">Organizá.<br>Competí.<br><span class="highlight">Ganá.</span></h1>
-                <p>La plataforma integral para la gestión de torneos deportivos, mentales y electrónicos.</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
-                    <a href="#" class="btn btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
-                </div>
-            </div>
-            <div class="hero-gallery">
-                <div class="gallery-item" style="background-image: url('<?= BASE_URL ?>/html/img/fubol.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('<?= BASE_URL ?>/html/img/ps5.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('<?= BASE_URL ?>/html/img/ajedre.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('<?= BASE_URL ?>/html/img/valo.jpg');"></div>
-                <div class="gallery-item" style="background-image: url('<?= BASE_URL ?>/html/img/pinpon.jpg');"></div>
-            </div>
-        </section>
-
-        <section class="search-filter-section">
-            <div class="search-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="search" placeholder="Buscar torneos, equipos o deportes...">
-            </div>
-            <div class="filter-controls">
-                <select>
-                    <option>Deporte</option>
-                </select>
-                <select>
-                    <option>Estado</option>
-                </select>
-                <button class="btn btn-primary">Buscar</button>
-            </div>
-        </section>
-
-        <section class="disciplines-section">
-            <div class="section-header">
-                <h2>Disciplinas</h2>
-                <a href="#" class="view-all">Ver todas las disciplinas &rarr;</a>
-            </div>
-            <div class="disciplines-grid">
-                <div class="discipline-card active"><i class="fa-solid fa-soccer-ball"></i><span>Fútbol</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-basketball"></i><span>Básquetbol</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-volleyball"></i><span>Vóley</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-table-tennis-paddle-ball"></i><span>Tenis de
-                        mesa</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-chess-knight"></i><span>Ajedrez</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-gamepad"></i><span>E-Sports</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-person-running"></i><span>Atletismo</span></div>
-                <div class="discipline-card"><i class="fa-solid fa-ellipsis"></i><span>Otros</span></div>
-            </div>
-        </section>
-
-        <div class="content-layout">
-            <div class="primary-column">
-                <section class="matches-section">
-                    <div class="section-header">
-                        <h2>Próximos partidos</h2>
-                        <a href="#" class="view-all">Ver calendario</a>
-                    </div>
-                    <div class="matches-list">
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Hoy</span>
-                                <strong>18:00</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Los Leones</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Team Alpha</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Mañana</span>
-                                <strong>16:30</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Titanes FC</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Blue Lions</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="featured-tournaments">
-                    <div class="section-header">
-                        <h2>Torneos destacados</h2>
-                        <a href="#" class="view-all">Ver todos los torneos &rarr;</a>
-                    </div>
-                    <div class="tournaments-grid">
-                        <div class="tournament-card">
-                            <div class="card-img"
-                                style="background-image: url('<?= BASE_URL ?>/html/img/pibble.jpg');">
-                                <span class="badge badge-live">En curso</span>
-                            </div>
-                            <div class="card-body">
-                                <h3>Liga Apertura 2024</h3>
-                                <p><i class="fa-solid fa-soccer-ball"></i> Fútbol | <i class="fa-solid fa-users"></i> 16
-                                    Equipos</p>
-                                <p><i class="fa-solid fa-calendar"></i> Inicio: 12/05/2024</p>
-                                <a href="#" class="btn-details">Ver detalles</a>
-                            </div>
-                        </div>
-                        <div class="tournament-card">
-                            <div class="card-img" style="background-image: url('<?= BASE_URL ?>/html/img/ps5.jpg');">
-                                <span class="badge badge-upcoming">Próximo</span>
-                            </div>
-                            <div class="card-body">
-                                <h3>Torneo Gamer X</h3>
-                                <p><i class="fa-solid fa-gamepad"></i> E-Sports | <i class="fa-solid fa-user"></i> 32
-                                    Jugadores</p>
-                                <p><i class="fa-solid fa-calendar"></i> Inicio: 01/06/2024</p>
-                                <a href="#" class="btn-details">Ver detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="benefits-section">
-                    <div class="benefits-grid">
-                        <div class="benefit-item"><i class="fa-solid fa-shield-halved"></i>
-                            <h4>Seguro</h4>
-                            <p>Protegemos tus datos y tu información.</p>
-                        </div>
-                        <div class="benefit-item"><i class="fa-solid fa-clock"></i>
-                            <h4>Simple</h4>
-                            <p>Administrá torneos de forma fácil y rápida.</p>
-                        </div>
-                        <div class="benefit-item"><i class="fa-solid fa-mobile-screen"></i>
-                            <h4>En cualquier lugar</h4>
-                            <p>Accedé desde cualquier dispositivo.</p>
-                        </div>
-                        <div class="benefit-item"><i class="fa-solid fa-headset"></i>
-                            <h4>Soporte</h4>
-                            <p>Estamos para ayudarte siempre.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <aside class="secondary-column">
-                <section class="matches-section">
-                    <div class="section-header">
-                        <h2>Próximos partidos</h2>
-                        <a href="#" class="view-all">Ver calendario</a>
-                    </div>
-                    <div class="matches-list">
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Hoy</span>
-                                <strong>18:00</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Los Leones</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Team Alpha</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="match-row">
-                            <div class="time-block">
-                                <span>Mañana</span>
-                                <strong>16:30</strong>
-                            </div>
-                            <div class="teams-block">
-                                <div class="team">
-                                    <span class="team-name">Titanes FC</span>
-                                </div>
-                                <span class="vs">vs</span>
-                                <div class="team">
-                                    <span class="team-name">Blue Lions</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="quick-actions-section">
-                    <h3>Acceso rápido</h3>
-                    <div class="action-list">
-                        <a href="#" class="action-item"><span><i class="fa-solid fa-plus-circle"></i> Crear
-                                torneo</span> <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="#" class="action-item"><span><i class="fa-solid fa-trophy"></i> Mis
-                                torneos</span> <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="#" class="action-item"><span><i class="fa-solid fa-users"></i> Mis
-                                equipos</span> <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="#" class="action-item"><span><i class="fa-solid fa-square-poll-vertical"></i>
-                                Resultados</span> <i class="fa-solid fa-chevron-right"></i></a>
-                    </div>
-                </section>
-
-                <section class="promo-banner">
-                    <div class="promo-content">
-                        <h4>Llevá tu torneo al siguiente nivel</h4>
-                        <p>Herramientas profesionales para organizadores exigentes.</p>
-                        <a href="#" class="btn btn-primary">Saber más</a>
-                    </div>
-                </section>
-            </aside>
-
-        </div>
-    </main>
-
-    <?php require_once __DIR__ . '/../include/footer.php'; ?>
+    <?= $contenidoVista ?>
 
 </body>
-
 </html>

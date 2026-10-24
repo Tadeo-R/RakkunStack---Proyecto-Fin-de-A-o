@@ -1,26 +1,39 @@
 /* MOBILE-FIRST NAVIGATION */
-.main-header {
-    background-color: var(--bg-dark);
-    backdrop-filter: blur(10px);
-    color: var(--white);
-    padding: 15px;
-    position: fixed;
-    width: 100vw;
-    top: 0;
-    z-index: 999;
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
     padding-top: 65px;
 }
 
+.main-header {
+    position: fixed;
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    border-bottom: 1px inset #cccccc1f;
+    padding: 15px;
+    width: 100%;
+    height: 60px;
+    top: 0;
+    z-index: 500;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 /* CONFIGURACIÓN MÓVIL DEL BOTÓN HAMBURGUESA */
 .hamburger {
-    position: fixed !important;
+    position: fixed;
     top: 8px;
-    left: 10px;
-    z-index: 10001 !important; /* Por encima de los 1000 del sidebar */
-    padding: 10px !important;
+    left: 0px;
+    z-index: 10001;
+    padding: 10px;
     display: inline-block;
     cursor: pointer;
     transition-property: opacity, filter;
@@ -29,31 +42,30 @@ body {
     font: inherit;
     color: inherit;
     text-transform: none;
-    background-color: transparent !important;
+    background-color: transparent;
     border: 0;
     margin: 0;
-    transform: scale(0.65);
+    transform: scale(0.75);
     overflow: visible;
-    transition: left 0.3s ease, transform 0.15s linear !important;
+    transition: left 0.3s ease, transform 0.15s linear;
 }
 
 /* Forzar que las barras de la hamburguesa y sus estados activos sean blancos */
-.hamburger-inner, 
-.hamburger-inner::before, 
+.hamburger-inner,
+.hamburger-inner::before,
 .hamburger-inner::after {
     background-color: #ffffff !important;
 }
 
 .hamburger.is-active {
-    /* 220px (Ancho de tu sidebar) + 10px de margen = 230px */
-    left: 150px !important; 
+    left: calc(min(85vw) - 50px);
 }
 
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 50px; /* Espacio para que el logo móvil no tape al botón fixed */
+    padding-left: 50px;
 }
 
 .sidebar-toggle {
@@ -65,11 +77,25 @@ body {
     align-items: center;
     gap: 10px;
 }
-.logo-icon { font-size: 24px; }
-.logo-text strong { display: block; font-size: 16px; }
-.logo-text span { font-size: 10px; color: var(--text-muted); display: none; }
 
-.desktop-nav, .auth-buttons, .search-trigger, .theme-trigger, .desktop-only {
+.logo-icon {
+    font-size: 24px;
+}
+
+.logo-text strong {
+    display: block;
+    font-size: 16px;
+}
+
+.logo-text span {
+    font-size: 10px;
+    color: var(--text-muted);
+    display: none;
+}
+
+.desktop-nav,
+.auth-buttons,
+.desktop-only {
     display: none;
 }
 
@@ -80,48 +106,89 @@ body {
     font-size: 20px;
 }
 
+.a-btn {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+    transition: transform .3s;
+}
+
+.a-btn::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.a-btn:hover {
+    transform: translateY(-3px);
+}
+
+.a-btn:hover::after {
+    opacity: 1;
+}
+
 /* SIDEBAR MÓVIL */
 .sidebar-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
     z-index: 998;
-    opacity: 0; pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
     transition: opacity 0.3s;
 }
-.sidebar-overlay.active { opacity: 1; pointer-events: auto; }
+
+.sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 .mobile-sidebar {
     position: fixed;
-    top: 0; left: -240px; width: 220px; height: 100vh;
-    background: var(--bg-dark);
+    top: 0;
+    left: -100vw;
+    width: 65vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 20px;
-    padding-top: 15px; /* Añadido espacio superior para que el contenido no quede detrás del botón fixed */
+    padding-top: 15px;
     transition: left 0.3s ease;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; 
+    overflow-y: auto;
     overscroll-behavior: contain;
 }
-.mobile-sidebar.active { left: 0; }
+
+.mobile-sidebar.active {
+    left: 0;
+}
 
 .sidebar-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
 }
+
 .sidebar-nav {
     flex-grow: 1;
     margin-bottom: 20px;
 }
+
 .sidebar-nav a {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* BOTONES DE AUTENTICACIÓN EN SIDEBAR (MOBILE) */
@@ -151,52 +218,118 @@ body {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
+
 .btn-login-mobile:active {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn-register-mobile {
     color: #ffffff;
-    background-color: var(--primary-color, #0d6efd);
+    background-color: var(--primary-color);
 }
+
 .btn-register-mobile:active {
-    background-color: var(--primary-hover, #0b5ed7);
+    background-color: var(--primary-hover);
 }
 
-/* VISTA ESCRITORIO (RESPONSIVE) */
+.logoTrebol {
+    width: 35px;
+    filter: brightness(0) invert(1);
+    z-index: 5;
+}
+
+.logoRueda {
+    position: absolute;
+    width: 35px;
+    filter: brightness(0) invert(1);
+    transition: transform 2s ease;
+    z-index: 6;
+}
+
+.logoRueda:hover {
+    transform: rotate(360deg);
+}
+
+.user-logged-info {
+    display: none;
+}
+
 @media (min-width: 992px) {
-    .hamburger { 
-        display: none !important; 
-    }
-    
-    .header-container {
-        padding-left: 0; /* Quitamos el espacio de resguardo del botón móvil */
+
+    .mobile-sidebar,
+    .sidebar-overlay,
+    .hamburger {
+        display: none !important;
     }
 
-    .desktop-nav, .auth-buttons, .search-trigger, .theme-trigger, .desktop-only { 
-        display: flex; 
+    .main-header {
+        position: fixed;
+        height: 75px;
     }
-    
-    .logo-text span { display: block; }
-    
+
+    .logoTrebol,
+    .logoRueda {
+        width: 50px;
+    }
+
+    .hamburger {
+        display: none !important;
+    }
+
+    .header-container {
+        padding-left: 0;
+    }
+
+    .desktop-nav,
+    .auth-buttons,
+    .search-trigger,
+    .theme-trigger,
+    .desktop-only {
+        display: flex;
+    }
+
+    .logo-text span {
+        display: block;
+    }
+
     .desktop-nav {
         gap: 20px;
     }
-    .desktop-nav a {
-        color: rgba(255,255,255,0.7);
-        font-weight: 500;
-    }
-    .desktop-nav a:hover { color: var(--white); }
 
-    .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 15px;
+    .desktop-nav a {
+        color: var(--text-main);
+        font-weight: 600;
     }
+
+    .desktop-nav a:hover {
+        color: var(--white);
+    }
+
     .auth-buttons {
         gap: 10px;
         margin-left: 10px;
     }
-    .btn-login { color: var(--white); padding: 8px 15px; }
-    .btn-register { background-color: var(--primary-color); color: var(--white); padding: 8px 15px; border-radius: 6px; }
+
+    .btn-login {
+        background-color: var(--button-secondary);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: var(--white);
+        padding: 8px 15px;
+        transition: 0.3s ease-in;
+    }
+
+    .btn-register {
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 8px 15px;
+        border-radius: 6px;
+        transition: 0.3s ease-in;
+    }
+
+    .user-logged-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
 }

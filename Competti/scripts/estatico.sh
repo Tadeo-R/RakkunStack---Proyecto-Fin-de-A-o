@@ -32,7 +32,7 @@ echo "Creando usuarios con contraseñas personalizadas..."
 lista_usuarios=(
     "tadeo:T4d3o#2026"
     "benja:B3nj4!987"
-    "thiago:Th14g0_bck"
+    "mati:itzmati#9342"
     "alan:Al4n¿DbAdm"
 )
 
@@ -60,8 +60,8 @@ echo "Asignando roles y grupos secundarios..."
 usermod -aG sysadmin,backupadmin,securityadmin,wheel tadeo
 # Benjamin: sysadmin, webadmin y wheel (sudo)
 usermod -aG sysadmin,webadmin,wheel benja
-# Thiago: backupadmin, webadmin
-usermod -aG backupadmin,webadmin thiago
+# Matías: backupadmin, webadmin
+usermod -aG backupadmin,webadmin mati
 # Alan: dbadmin, securityadmin, webadmin
 usermod -aG dbadmin,securityadmin,webadmin alan
 
@@ -83,3 +83,5 @@ firewall-cmd --reload
 echo "=== Proceso finalizado con éxito ==="
 echo "Estado actual del servicio Apache:"
 systemctl status httpd --no-pager
+
+# Configuración de permisos de grupos

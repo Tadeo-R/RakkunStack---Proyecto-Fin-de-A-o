@@ -1,0 +1,268 @@
+/* ==========================================================================
+   ESTILOS DE CREACIÓN DE TORNEO (MOBILE-FIRST) - SGDM
+   ========================================================================== */
+
+/* 1. ESPACIADO Y ESTRUCTURA BASE */
+
+.create-tournament-page {
+    padding-top: 40px; /* Corrige solapamiento del navbar fijo */
+    padding-bottom: 40px;
+}
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white, #ffffff); /* GLASS: antes var(--text-main) que no estaba definida en este archivo */
+    margin-bottom: 6px;
+}
+
+.page-subtitle {
+    color: rgba(255, 255, 255, 0.65); /* GLASS: antes var(--text-muted) */
+    font-size: 0.9rem;
+}
+
+/* 2. MÓDULOS / TARJETAS */
+.form-module {
+    margin-bottom: 20px;
+    /* GLASS: esta página no cargaba pages.css, así que la clase .card no tenía ningún estilo visual.
+       Se agrega acá el mismo look de vidrio que el resto del sitio para que los módulos se vean como tarjetas. */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius, 12px);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12); /* GLASS: antes #e2e8f0 */
+    background-color: transparent; /* GLASS: antes var(--white), ahora hereda el vidrio del .form-module */
+}
+
+.module-header h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white, #ffffff); /* GLASS: antes var(--text-main) sin definir en este archivo */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.module-header h2 i {
+    color: var(--primary-color);
+}
+
+/* GLASS: nuevo — el HTML usa "badge/badge-live/badge-ended" para marcar Obligatorio/Opcional,
+   pero esas clases viven en home.css/pages.css, que esta página no carga. Se agregan acá. */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #ffffff;
+}
+
+.badge-live {
+    background-color: #198754;
+}
+
+.badge-ended {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* GLASS: nuevo — el HTML usa "card-body" para envolver cada formulario, pero esta página
+   no carga pages.css (que es donde vive esa clase), así que no tenía padding ni estructura. */
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 3. INPUTS Y FORMULARIOS */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.8); /* GLASS: antes var(--text-main) sin definir en este archivo */
+}
+
+.form-control {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* GLASS: antes #e2e8f0 */
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.06); /* GLASS: antes #f8f9fa */
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--white, #ffffff); /* GLASS: antes var(--text-main) sin definir en este archivo */
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4); /* GLASS: nuevo, placeholder visible sobre fondo oscuro */
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.1); /* GLASS: antes var(--white) */
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.form-grid-2, 
+.form-grid-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Caja de configuración especial del formato */
+.format-settings-box {
+    background-color: rgba(255, 255, 255, 0.05); /* GLASS: antes #f8fafc */
+    border: 1px solid rgba(255, 255, 255, 0.12); /* GLASS: antes #e2e8f0 */
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.settings-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6); /* GLASS: antes var(--text-muted) */
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8); /* GLASS: nuevo, antes heredaba el negro por defecto */
+    cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--primary-color);
+}
+
+/* 4. MODULARES ACTIVABLES (TOGGLES) */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.module-toggle {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.collapsible {
+    display: none;
+}
+
+.modular-section:has(.module-toggle:checked) .collapsible {
+    display: block;
+}
+
+/* 5. BOTONES DE ACCIÓN */
+.form-actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.form-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+}
+
+/* ==========================================================================
+   VISTA ESCRITORIO (DESKTOP: min-width: 992px)
+   ========================================================================== */
+@media (min-width: 992px) {
+    .create-tournament-page {
+        padding-top: 40px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        margin-left: 190px;
+    }
+    
+    .page-subtitle {
+        margin-left: 190px;
+    }
+
+    /* Centra y evita que se extienda demasiado horizontalmente */
+    .tournament-form {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Distribución en grilla para pantallas grandes */
+    .form-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 16px;
+    }
+
+    .form-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .form-grid-2 .form-group,
+    .form-grid-3 .form-group {
+        margin-bottom: 0;
+    }
+
+    .form-actions {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .form-actions .btn {
+        width: auto;
+    }
+}

@@ -4,7 +4,11 @@
 
 .main-footer {
     backdrop-filter: blur(10px);
+<<<<<<< HEAD
     color: var(--text-main, #ffffff);
+=======
+    color: #b0b7c7;
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     padding: 40px 20px 80px 20px; /* Padding extra abajo para que la bottom-nav no tape el texto en móvil */
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 14px;

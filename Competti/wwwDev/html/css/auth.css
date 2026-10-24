@@ -226,6 +226,7 @@ input:focus {
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* ==========================================================================
    MEDIDOR DE FORTALEZA DE CONTRASEÑA
    ========================================================================== */
@@ -292,6 +293,8 @@ input:focus {
     margin-top: 4px;
 }
 
+=======
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 @media (min-width: 480px) {
     .reg-card {
         padding: 40px 32px;

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<?php
+    require_once __DIR__ . '/../../../config/config.php';
+?>
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,8 +11,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/auth.css">
+=======
+    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/auth.css">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     <title>Registrarse - COMPETTI</title>
 </head>
 
@@ -21,13 +32,22 @@
     <main class="auth-container">
 
         <div class="auth-brand">
+<<<<<<< HEAD
             <img class="logoRueda" src="/img/LogoRueda.svg" alt="logo">
             <img class="logoTrebol" src="/img/LogoTrebol.svg" alt="logo">
+=======
+            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
             <h1 class="brand-name">COMPETTI</h1>
         </div>
 
         <section class="reg-card">
+<<<<<<< HEAD
             <form action="index.php?action=register" method="POST">
+=======
+            <form action="<?= BASE_URL ?>app/index.php?action=register" method="POST">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                 <h2>Crear una cuenta</h2>
                 <p class="subtitle">Gestiona tus torneos deportivos y competitivos</p>
 
@@ -54,6 +74,7 @@
                         <i class="fa-solid fa-lock input-icon"></i>
                         <input type="password" id="password" name="password" placeholder="••••••••" required>
                     </div>
+<<<<<<< HEAD
                     
                     <!-- Barra visual de fuerza -->
                     <div class="strength-meter-container">
@@ -68,6 +89,8 @@
                         <li id="req-number"><i class="fa-solid fa-circle-dot"></i> Un número</li>
                         <li id="req-special"><i class="fa-solid fa-circle-dot"></i> Un caracter especial (@,$,!,%,*,#,?,&)</li>
                     </ul>
+=======
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                 </div>
 
                 <div class="input-group">
@@ -91,14 +114,22 @@
             </form>
 
             <div class="card-footer">
+<<<<<<< HEAD
                 <p class="account">¿Ya tienes una cuenta? <a href="index.php?view=auth/login">Inicia Sesión</a></p>
+=======
+                <p class="account">¿Ya tienes una cuenta? <a href="<?= BASE_URL ?>view/auth/login.php">Inicia Sesión</a></p>
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
             </div>
         </section>
 
     </main>
 
+<<<<<<< HEAD
     <script src="/js/auth-bg.js"></script>
     <script src="/js/password-strength.js"></script>
+=======
+    <script src="<?= BASE_URL ?>html/js/auth-bg.js"></script>
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 </body>
 
 </html>

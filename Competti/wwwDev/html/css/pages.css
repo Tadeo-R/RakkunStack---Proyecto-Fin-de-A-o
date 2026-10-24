@@ -692,6 +692,7 @@
   .search-group {
     grid-column: span 1;
   }
+<<<<<<< HEAD
 }
 
 /* ============================================================
@@ -787,3 +788,6 @@ form.inline-form {
   white-space: nowrap;
   border: 0;
 }
+=======
+}
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569

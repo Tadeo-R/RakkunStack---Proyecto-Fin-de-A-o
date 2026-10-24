@@ -457,15 +457,24 @@ main {
     display: flex !important;
     flex-wrap: nowrap !important;
     gap: 20px;
+<<<<<<< HEAD
     width: max-content;
     /* Obliga a mantenerlas en una sola línea */
     will-change: transform;
     /* Optimiza el rendimiento de la tarjeta gráfica */
+=======
+    width: max-content; /* Obliga a mantenerlas en una sola línea */
+    will-change: transform; /* Optimiza el rendimiento de la tarjeta gráfica */
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 }
 
 .testimonial-card {
     /* En celular ocupa un tamaño fijo cómodo */
+<<<<<<< HEAD
     flex: 0 0 290px !important;
+=======
+    flex: 0 0 290px !important; 
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     box-sizing: border-box;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -533,7 +542,10 @@ main {
     0% {
         transform: translateX(0);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     100% {
         transform: translateX(-50%);
     }
@@ -556,11 +568,20 @@ main {
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.07);
+<<<<<<< HEAD
     border: inset 1px rgba(255, 255, 255, 0.2);
     border-radius: var(--border-radius, 12px);
+=======
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     padding: 12px;
     gap: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.match-row:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .match-row:hover {
@@ -709,6 +730,45 @@ main {
     .testimonial-card {
         /* En pantallas grandes las hacemos un poco más anchas para que cubran el diseño */
         flex: 0 0 360px !important;
+    }
+}
+
+/* ==========================================================================
+   VISTA ESCRITORIO (Media query adaptable para pantallas grandes)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 15px;
+        gap: 35px;
+    }
+
+    .hero-info {
+        max-width: 500px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        max-width: auto;
+    }
+}
+
+/* ==========================================================================
+   VISTA SARGAS (Media query adaptable para pantallas medianas)
+   ========================================================================== */
+
+@media (min-width: 992px) {
+    .hero-info {
+        max-width: 350px;
+    }
+
+    .testimonial-card {
+        /* En pantallas grandes las hacemos un poco más anchas para que cubran el diseño */
+        flex: 0 0 360px !important; 
     }
 }
 

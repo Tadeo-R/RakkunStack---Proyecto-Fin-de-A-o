@@ -2,7 +2,11 @@
 
 require_once __DIR__ . '/../../../config/config.php';
 
+<<<<<<< HEAD
 
+=======
+// Enlaces compartidos para mantener consistencia entre mobile y desktop
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 $nav_links = [
     ['href' => BASE_URL . 'html/index.php', 'text' => 'Inicio', 'icon' => 'fa-home'],
     ['href' => BASE_URL . '/torneos.php', 'text' => 'Torneos', 'icon' => 'fa-trophy'],
@@ -14,20 +18,31 @@ $nav_links = [
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
 <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 <link rel="stylesheet" href="/css/navigation.css">
 <link rel="stylesheet" href="/css/global.css">
+=======
+<link rel="stylesheet" href="<?= BASE_URL ?>html/css/navigation.css">
+<link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 
 <header class="main-header">
     <div class="header-container">
         <div class="logo">
+<<<<<<< HEAD
             <img class="logoRueda" src="/img/LogoRueda.svg" alt="logo">
             <img class="logoTrebol" src="/img/LogoTrebol.svg" alt="logo">
+=======
+            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
             <div class="logo-text">
                 <strong>COMPETTI</strong>
                 <span>Pensalos. Crealos. Disfrutalos.</span>
             </div>
         </div>
         <nav class="desktop-nav">
+<<<<<<< HEAD
             <a class="a-btn" href="/">Inicio</a>
             <a class="a-btn" href="/index.php?view=torneos">Torneos</a>
             <a class="a-btn" href="/index.php?view=equipos">Equipos</a>
@@ -37,10 +52,22 @@ $nav_links = [
         </nav>
         <div class="header-actions">
             <a href="/index.php?view=search">
+=======
+            <a class="a-btn" href="<?= BASE_URL ?>html/index.php">Inicio</a>
+            <a class="a-btn" href="<?= BASE_URL ?>torneos.php">Torneos</a>
+            <a class="a-btn" href="<?= BASE_URL ?>equipos.php">Equipos</a>
+            <a class="a-btn" href="<?= BASE_URL ?>resultados.php">Resultados</a>
+            <a class="a-btn" href="<?= BASE_URL ?>calendario.php">Calendario</a>
+            <a class="a-btn" href="<?= BASE_URL ?>quienesSomos.php">Quienes Somos</a>
+        </nav>
+        <div class="header-actions">
+            <a href="<?= BASE_URL ?>search.php">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                 <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
             </a>
             <button class="icon-btn theme-trigger" id="theme-toggle"><i class="fa-solid fa-moon"
                     id="theme-icon"></i></button>
+<<<<<<< HEAD
             <!-- CONDICIONAL DE AUTENTICACIÓN DE LA COMPU -->
             <?php if (isset($_SESSION['usuario_id'])): ?>
                 <a href="/index.php?view=notificaciones">
@@ -61,6 +88,28 @@ $nav_links = [
                 <div class="auth-buttons">
                     <a href="/index.php?view=auth/login" class="btn-secondary">Iniciar Sesi&oacute;n</a>
                     <a href="/index.php?view=auth/register" class="btn-primary">Registrarse</a>
+=======
+            <!-- CONDICIONAL DE AUTENTICACIÓN DESKTOP -->
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <a href="<?= BASE_URL ?>notificaciones.php">
+                    <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
+                </a>
+                <a href="<?= BASE_URL ?>app/view/users/profile.php">
+                    <button class="icon-btn user-btn"><i class="fa-regular fa-user"></i></button>
+                </a>
+                <!-- Si está logueado: Mostramos su nombre y un botón para salir -->
+                <div class="user-logged-info">
+                    <span style="color: white; font-weight: bold;">Hola,
+                        <?= htmlspecialchars($_SESSION['usuario_nombre']) ?>!</span>
+                    <a href="<?= BASE_URL ?>app/view/auth/logout.php" class="btn-secondary"
+                        style="background-color: rgba(220, 53, 69, 0.5); color: white;">Salir</a>
+                </div>
+            <?php else: ?>
+                <!-- Si NO está logueado: Mostramos tus botones originales -->
+                <div class="auth-buttons">
+                    <a href="<?= BASE_URL ?>app/view/auth/login.php" class="btn-secondary">Iniciar Sesi&oacute;n</a>
+                    <a href="<?= BASE_URL ?>app/view/auth/register.php" class="btn-primary">Registrarse</a>
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                 </div>
             <?php endif; ?>
         </div>
@@ -78,12 +127,18 @@ $nav_links = [
 <aside class="mobile-sidebar">
     <div class="sidebar-header">
         <div class="logo">
+<<<<<<< HEAD
             <img class="logoRueda" src="/img/LogoRueda.svg" alt="logo">
             <img class="logoTrebol" src="/img/LogoTrebol.svg" alt="logo">
+=======
+            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
+            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
             <div class="logo-text"><strong style="color: white;">COMPETTI</strong></div>
         </div>
     </div>
     <nav class="sidebar-nav">
+<<<<<<< HEAD
         <a class="enlace-nav" href="/"><i class="fa-regular fa-home"></i>Inicio</a>
         <a class="enlace-nav" href="/index.php?view=torneos"><i class="fa-regular fa-chess-knight"></i>Torneos</a>
         <a class="enlace-nav" href="/index.php?view=equipos"><i class="fa-regular fa-handshake"></i>Equipos</a>
@@ -92,17 +147,32 @@ $nav_links = [
         <a class="enlace-nav" href="/index.php?view=quienesSomos"><i class="fa-regular fa-lightbulb"></i>Quienes Somos</a>
     </nav>
     <!-- CONDICIONAL DE AUTENTICACIÓN del cel-->
+=======
+        <a class="enlace-nav" href="index.html"><i class="fa-regular fa-home"></i>Inicio</a>
+        <a class="enlace-nav" href="torneos.html"><i class="fa-regular fa-chess-knight"></i>Torneos</a>
+        <a class="enlace-nav" href="equipos.html"><i class="fa-regular fa-handshake"></i>Equipos</a>
+        <a class="enlace-nav" href="resultados.html"><i class="fa-regular fa-chart-bar"></i>Resultados</a>
+        <a class="enlace-nav" href="calendario.html"><i class="fa-regular fa-calendar-alt"></i>Calendario</a>
+        <a class="enlace-nav" href="quienesSomos.html"><i class="fa-regular fa-lightbulb"></i>Quienes Somos</a>
+    </nav>
+    <!-- CONDICIONAL DE AUTENTICACIÓN MOBILE -->
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     <div class="sidebar-auth-mobile">
         <?php if (isset($_SESSION['usuario_id'])): ?>
             <!-- Si está logueado -->
             <p style="color: white; text-align: center; margin-bottom: 10px;">Sesión activa:
                 <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong>
             </p>
+<<<<<<< HEAD
             <a href="/index.php?view=auth/logout" class="btn-auth-mobile btn-login-mobile"
+=======
+            <a href="<?= BASE_URL ?>app/view/auth/logout.php" class="btn-auth-mobile btn-login-mobile"
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                 style="background-color: #dc3545;">
                 <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
             </a>
         <?php else: ?>
+<<<<<<< HEAD
             <a href="/index.php?view=auth/login" class="btn-auth-mobile btn-login-mobile">
                 <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesi&oacute;n
             </a>
@@ -111,6 +181,16 @@ $nav_links = [
             </a>
         <?php endif; ?>
     </div>
+=======
+            <!-- Si NO está logueado (Tus botones originales) -->
+            <a href="login.html" class="btn-auth-mobile btn-login-mobile">
+                <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesi&oacute;n
+            </a>
+            <a href="register.html" class="btn-auth-mobile btn-register-mobile">
+                <i class="fa-solid fa-user-plus"></i> Registrarse
+            </a>
+        <?php endif; ?>
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 </aside>
 
 <script>
@@ -138,4 +218,8 @@ $nav_links = [
     });
 
 </script>
+<<<<<<< HEAD
 <script src="/js/theme-toggle.js"></script>
+=======
+<script src="<?php echo BASE_URL; ?>html/js/theme-toggle.js"></script>
+>>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569

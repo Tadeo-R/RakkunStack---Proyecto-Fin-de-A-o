@@ -20,13 +20,13 @@ if (!isset($_SESSION['usuario_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - Torneos</title>
     <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/profile.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/profile.css">
 </head>
 
 <body>
 
-    <?php require_once ROOT_PATH . '/app/view/include/nav.php'; ?>
+    <?php require_once VIEW_PATH . '/include/nav.php'; ?>
 
     <main class="main-content profile-layout">
 
@@ -35,14 +35,14 @@ if (!isset($_SESSION['usuario_id'])) {
 
                 <!-- MODIFICADO: Agregamos un formulario real para enviar la imagen al servidor -->
                 <!-- REEMPLAZA TU ETIQUETA FORM ACTUAL POR ESTA: -->
-                <form action="<?= BASE_URL ?>app/index.php?action=upload_avatar" method="POST" enctype="multipart/form-data">
+                <form action="index.php?action=upload_avatar" method="POST" enctype="multipart/form-data">
 
                     <div class="avatar-wrapper">
                         <!-- Mostramos la imagen de la sesión si existe, de lo contrario la default -->
                         <?php
-                        $avatar_actual = (!empty($_SESSION['usuario_avatar'])) ? $_SESSION['usuario_avatar'] : 'html/img/default-avatar.jpg';
+                        $avatar_actual = (!empty($_SESSION['usuario_avatar'])) ? $_SESSION['usuario_avatar'] : '/img/default-avatar.jpg';
                         ?>
-                        <img src="<?= BASE_URL . $avatar_actual ?>" alt="Avatar" class="profile-avatar"
+                        <img src="<?= $avatar_actual ?>" alt="Avatar" class="profile-avatar"
                             id="avatarPreview">
 
                         <!-- El atributo "name" es clave para que PHP detecte el archivo -->

@@ -27,8 +27,8 @@
                 <p>La plataforma integral para la gesti&oacute;n de torneos deportivos, mentales y electr&oacute;nicos.
                 </p>
                 <div class="hero-buttons">
-                    <a href="/index.php?view=torneos" class="btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
-                    <a href="/index.php?view=crear-torneo" class="btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
+                    <a href="torneos.html" class="btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
+                    <a href="crearTorneo.html" class="btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
                 </div>
             </div>
             <div class="hero-gallery">
@@ -47,7 +47,7 @@
         <section class="disciplines-section">
             <div class="section-header">
                 <h2>Disciplinas</h2>
-                <a href="/index.php?view=disciplinas" class="view-all">Ver todas las disciplinas &rarr;</a>
+                <a href="disciplinas.html" class="view-all">Ver todas las disciplinas &rarr;</a>
             </div>
             <div class="disciplines-grid">
                 <div class="discipline-card"><i class="fa-solid fa-soccer-ball"></i><span>F&uacute;tbol</span></div>
@@ -64,7 +64,7 @@
 
         <section class="search-filter-section">
             <div class="search-wrapper">
-                <a href="/index.php?view=search">
+                <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </a>
                 <input type="search" placeholder="Buscar torneos, equipos o deportes...">
@@ -85,7 +85,7 @@
                 <section class="matches-section">
                     <div class="section-header">
                         <h2>Pr&oacute;ximos partidos</h2>
-                        <a href="/index.php?view=calendario" class="view-all">Ver calendario &rarr;</a>
+                        <a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
                     </div>
                     <div class="matches-list">
                         <div class="match-row">
@@ -117,7 +117,7 @@
                 <section class="featured-tournaments">
                     <div class="section-header">
                         <h2>Torneos destacados</h2>
-                        <a href="/index.php?view=torneos" class="view-all">Ver todos los torneos &rarr;</a>
+                        <a href="torneos.html" class="view-all">Ver todos los torneos &rarr;</a>
                     </div>
                     <div class="tournaments-grid">
                         <div class="tournament-card">
@@ -151,7 +151,7 @@
                 <section class="matches-section">
                     <div class="section-header">
                         <h2>Pr&oacute;ximos partidos</h2>
-                        <a href="/index.php?view=calendario" class="view-all">Ver calendario &rarr;</a>
+                        <a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
                     </div>
                     <div class="matches-list">
                         <div class="match-row">
@@ -187,7 +187,9 @@
             <div class="section-header">
                 <h2>Lo que dice la comunidad</h2>
             </div>
+            <!-- 1. Este es el contenedor principal que oculta el desborde -->
             <div class="testimonials-window">
+                <!-- 2. Este es el "riel" que moverá las tarjetas -->
                 <div class="testimonials-grid" id="testimonials-track">
 
                     <div class="testimonial-card">
@@ -244,9 +246,10 @@
 
             if (!track || !windowContainer) return;
 
+            // 1. Clonamos suficientes tarjetas al inicio para llenar la pantalla y evitar huecos vacíos
             const originalCards = Array.from(track.children);
 
-
+            // Clonamos el set de tarjetas 2 veces para asegurar cobertura en pantallas ultra anchas
             for (let i = 0; i < 2; i++) {
                 originalCards.forEach(card => {
                     const clone = card.cloneNode(true);
@@ -254,8 +257,8 @@
                 });
             }
 
-      
-            let speed = 1.5; 
+            // 2. Variables de control de la animación
+            let speed = 1.5; // Velocidad del scroll (1 píxel por fotograma). Sube a 1.5 o 2 si quieres que vaya más rápido.
             let scrollPosition = 0;
             let isPaused = false;
 
@@ -272,7 +275,7 @@
                 if (!isPaused) {
                     scrollPosition += speed;
 
-                    // Calculamos cuánto mide el bloque de las tarjetas originales
+                    // Calculamos cuánto mide el bloque de las tarjetas originales (incluyendo el gap de 20px)
                     // Tomamos la primera tarjeta original para medir su tamaño exacto actual
                     const firstCardWidth = originalCards[0].getBoundingClientRect().width + 20;
                     const totalOriginalWidth = firstCardWidth * originalCards.length;
@@ -286,11 +289,11 @@
                     track.style.transform = `translate3d(-${scrollPosition}px, 0, 0)`;
                 }
 
-                
+                // Ejecuta la animación en sincronía con los hercios (Hz) de la pantalla
                 requestAnimationFrame(animate);
             }
 
-            
+            // Iniciar el carrusel
             animate();
         });
 

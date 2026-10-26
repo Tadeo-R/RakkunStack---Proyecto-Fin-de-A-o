@@ -1,5 +1,15 @@
 <?php
 
+// 1. INCLUIR LOS ARCHIVOS DE PHPMAILER MANUALMENTE
+// Ajusta la ruta ('libs/phpmailer/...') según dónde hayas guardado la carpeta src
+require '../libs/phpMailer/Exception.php';
+require '../libs/phpMailer/PHPMailer.php';
+require '../libs/phpMailer/SMTP.php';
+
+// 2. IMPORTAR LOS ESPACIOS DE NOMBRES
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class ForgotPasswController {
     private $db;
     private $usuarioModel;
@@ -9,7 +19,7 @@ class ForgotPasswController {
         $this->usuarioModel = $usuarioModel;
     }
 
-    /** Procesa la solicitud de recuperación enviando un correo con un token */
+    /** Procesa la solicitud de recuperación enviando un correo real */
     public function procesarRecuperacion() {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /index.php?view=auth/forgotPassw');
@@ -23,26 +33,18 @@ class ForgotPasswController {
             return;
         }
 
-        // 1. Verificar si el email existe usando tu UsuarioModel actual
         if (!$this->usuarioModel->existeEmail($email)) {
-            // Por seguridad, es mejor decir que el correo fue enviado aunque no exista,
-            // evitando que atacantes descubran qué correos están registrados.
             $this->cargarVistaConExito();
             return;
         }
 
-        // 2. Generar un Token seguro y único de 32 bytes en formato hexadecimal (64 caracteres)
         $token = bin2hex(random_bytes(32));
-        
-        // El token expirará en 2 horas
         $expira = date('Y-m-d H:i:s', strtotime('+2 hours'));
 
         try {
-            // Eliminar solicitudes de recuperación viejas de este mismo correo para no saturar la BD
             $stmtDel = $this->db->prepare("DELETE FROM recuperacion_passwords WHERE email = :email");
             $stmtDel->execute([':email' => $email]);
 
-            // Guardar el nuevo token en la base de datos
             $sql = "INSERT INTO recuperacion_passwords (email, token, expira) VALUES (:email, :token, :expira)";
             $stmtIns = $this->db->prepare($sql);
             $stmtIns->execute([
@@ -51,39 +53,81 @@ class ForgotPasswController {
                 ':expira' => $expira
             ]);
 
-            // 3. Crear el enlace de restablecimiento apuntando a tu enrutador
             $enlaceRestablecer = "http://" . $_SERVER['HTTP_HOST'] . "/index.php?view=auth/resetPassw&token=" . $token;
 
-            // 4. Preparar el cuerpo del correo
-            $asunto = "Restablecer Contraseña - COMPETTI";
-            $mensaje = "Hola,\n\nHas solicitado restablecer tu contraseña en COMPETTI.\n";
-            $mensaje .= "Haz clic en el siguiente enlace para cambiar tu contraseña (este enlace expira en 2 horas):\n\n";
-            $mensaje .= $enlaceRestablecer . "\n\n";
-            $mensaje .= "Si no solicitaste este cambio, puedes ignorar este correo con seguridad.\n";
-            
-            $cabeceras = "From: no-reply@competti.local\r\n" .
-                         "Reply-To: no-reply@competti.local\r\n" .
-                         "X-Mailer: PHP/" . phpversion();
+            // ==========================================
+            // CONFIGURACIÓN Y ENVÍO REAL CON PHPMAILER
+            // ==========================================
+            $mail = new PHPMailer(true);
 
-            // Enviar el correo (XAMPP necesitará configurar sendmail para que salga a internet,
-            // pero la función registrará la ejecución correctamente en tu entorno local)
-            @mail($email, $asunto, $mensaje, $cabeceras);
+            // Servidor SMTP de Gmail
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';                    
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'benjamingabrielzyk@gmail.com';       // <-- Reemplaza con tu correo emisor
+            $mail->Password   = 'tbakgqdlycryxcnr';                // <-- Pega aquí tu contraseña de 16 caracteres de Google
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;       
+            $mail->Port       = 587;                                  
+            $mail->CharSet    = 'UTF-8';                              
+
+            // Remitente y Destinatario
+            $mail->setFrom('benjamingabrielzyk@gmail.com', 'COMPETTI');
+            $mail->addAddress($email);                                
+
+            // Contenido en Formato HTML limpio
+            $mail->isHTML(true);
+            $mail->Subject = 'Restablecer Contraseña - COMPETTI';
+            $mail->Body    = "
+                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;'>
+                    <h2 style='color: #333;'>Hola,</h2>
+                    <p>Has solicitado restablecer tu contraseña en COMPETTI.</p>
+                    <p>Haz clic en el siguiente botón para cambiar tu contraseña (este enlace expira en 2 horas):</p>
+                    <p style='text-align: center; margin: 30px 0;'>
+                        <a href='{$enlaceRestablecer}' style='padding: 12px 25px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Restablecer Contraseña</a>
+                    </p>
+                    <p style='color: #666; font-size: 12px;'>Si el botón no funciona, copia y pega este enlace en tu navegador:<br>{$enlaceRestablecer}</p>
+                    <hr style='border: 0; border-top: 1px solid #eee; margin: 20px 0;'>
+                    <p style='color: #999; font-size: 12px;'>Si no solicitaste este cambio, puedes ignorar este correo con seguridad.</p>
+                </div>
+            ";
+            $mail->AltBody = "Hola,\n\nHas solicitado restablecer tu contraseña en COMPETTI.\nHaz clic en el siguiente enlace:\n" . $enlaceRestablecer;
+
+            // Resolver problemas de certificados SSL/TLS inválidos en entornos locales
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+
+            $mail->send();
+
 
             $this->cargarVistaConExito();
 
+        } catch (Exception $e) {
+            // Si el envío falla, puedes ver el motivo exacto usando: $mail->ErrorInfo;
+            $this->cargarVistaConError("Hubo un problema al enviar el correo de recuperación.");
         } catch (PDOException $e) {
             $this->cargarVistaConError("Hubo un problema en el servidor. Inténtalo más tarde.");
         }
     }
 
-    private function cargarVistaConError($mensajeError) {
-        $error = $mensajeError;
-        include VIEW_PATH . '/auth/forgotPassw.php';
+   private function cargarVistaConError($mensajeError) {
+        // Almacenamos el error en la sesión para que sobreviva a la recarga
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['error_recuperacion'] = $mensajeError;
+    
+        // Redirigimos limpiamente de vuelta a la vista del formulario
+        header('Location: /index.php?view=auth/forgotPassw');
         exit;
     }
 
+
     private function cargarVistaConExito() {
-        // Redirige o muestra un mensaje informando que se envió el enlace de forma segura
         echo "<script>
             alert('Si el correo se encuentra registrado, recibirás un enlace de recuperación en los próximos minutos.');
             window.location.href = '/index.php?view=auth/login';

@@ -1,5 +1,4 @@
 <?php
-// app/controller/ResetPasswController.php
 
 class ResetPasswController {
     private $db;
@@ -52,12 +51,13 @@ class ResetPasswController {
             $stmtDelete = $this->db->prepare("DELETE FROM recuperacion_passwords WHERE email = :email");
             $stmtDelete->execute([':email' => $email]);
 
-            // Mostrar mensaje de éxito y redirigir
+            // Mostrar mensaje de éxito y forzar la redirección en el navegador
             echo "<script>
                 alert('¡Contraseña actualizada con éxito! Ya puedes iniciar sesión.');
                 window.location.href = '/index.php?view=auth/login';
             </script>";
             exit;
+
 
         } catch (PDOException $e) {
             $this->cargarVistaConError("Ocurrió un error en el servidor. Inténtalo de nuevo.", $token);

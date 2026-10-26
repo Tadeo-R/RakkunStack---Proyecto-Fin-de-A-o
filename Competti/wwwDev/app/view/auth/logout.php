@@ -1,12 +1,6 @@
 <?php
 
-<<<<<<< HEAD
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-=======
 session_start();
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 
 // Destruir todas las variables de la sesión
 $_SESSION = array();
@@ -24,9 +18,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirigir a la página de inicio
-<<<<<<< HEAD
 header("Location: /");
-=======
-header("Location: ../../../html/index.php");
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 exit;

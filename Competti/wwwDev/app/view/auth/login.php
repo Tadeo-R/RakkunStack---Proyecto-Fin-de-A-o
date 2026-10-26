@@ -4,13 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <link rel="stylesheet" href="/css/auth.css">
     <link rel="stylesheet" href="/css/global.css">
-=======
-    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/auth.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>html/css/global.css">
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
     <title>Iniciar Sesión - COMPETTI</title>
 </head>
 
@@ -18,33 +13,20 @@
 
     <div class="auth-bg-overlay" id="dynamicBg"></div>
 
-<<<<<<< HEAD
     <a href="/" class="back-home-btn" title="Volver al inicio">
-=======
-    <a href="<?= BASE_URL ?>html/index.php" class="back-home-btn" title="Volver al inicio">
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
         <i class="fa-solid fa-arrow-left"></i> <span>Volver</span>
     </a>
 
     <main class="auth-container">
-        
+
         <div class="auth-brand">
-<<<<<<< HEAD
             <img class="logoRueda" src="/img/LogoRueda.svg" alt="logo">
             <img class="logoTrebol" src="/img/LogoTrebol.svg" alt="logo">
-=======
-            <img class="logoRueda" src="<?= BASE_URL ?>html/img/LogoRueda.svg" alt="logo">
-            <img class="logoTrebol" src="<?= BASE_URL ?>html/img/LogoTrebol.svg" alt="logo">
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
             <h1 class="brand-name">COMPETTI</h1>
         </div>
 
         <section class="reg-card">
-<<<<<<< HEAD
             <form action="index.php?action=login" method="POST">
-=======
-            <form action="<?= BASE_URL ?>app/index.php?action=login" method="POST">
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                 <h2>Iniciar Sesión</h2>
                 <p class="subtitle">Ingresa tus datos para gestionar tus torneos</p>
 
@@ -59,17 +41,27 @@
                 <div class="input-group">
                     <div class="label-row">
                         <label for="password">Contraseña</label>
-<<<<<<< HEAD
                         <a href="index.php?view=auth/forgotPassw" class="forgot-link">¿La olvidaste?</a>
-=======
-                        <a href="<?= BASE_URL ?>view/auth/forgetPassw.php" class="forgot-link">¿La olvidaste?</a>
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
                     </div>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-lock input-icon"></i>
                         <input type="password" id="password" name="password" placeholder="••••••••" required>
                     </div>
                 </div>
+
+                <?php
+                // Capturamos el error guardado en la sesión por el controlador
+                $errorLogin = $_SESSION['error_login'] ?? null;
+                unset($_SESSION['error_login']); // Lo borramos de inmediato para que no se quede pegado al refrescar
+                ?>
+
+                <!-- Si existe un error, lo pintamos en pantalla -->
+                <?php if ($errorLogin): ?>
+                    <div
+                        style="color: #ff4d4d; margin-bottom: 15px; font-size: 14px; font-weight: bold; text-align: center;">
+                        <?php echo htmlspecialchars($errorLogin); ?>
+                    </div>
+                <?php endif; ?>
 
                 <button type="submit" class="btn-auth-submit">
                     <span>Entrar a mi cuenta</span>
@@ -78,21 +70,14 @@
             </form>
 
             <div class="card-footer">
-<<<<<<< HEAD
-                <p class="account">¿Aún no tienes cuenta? <a href="index.php?view=auth/register">Regístrate gratis</a></p>
-=======
-                <p class="account">¿Aún no tienes cuenta? <a href="<?= BASE_URL ?>view/auth/register.php">Regístrate gratis</a></p>
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
+                <p class="account">¿Aún no tienes cuenta? <a href="index.php?view=auth/register">Regístrate gratis</a>
+                </p>
             </div>
         </section>
 
     </main>
 
-<<<<<<< HEAD
     <script src="/js/auth-bg.js"></script>
-=======
-    <script src="<?= BASE_URL ?>html/js/auth-bg.js"></script>
->>>>>>> b05b45f0b213ff829fee4907509413abf0f5e569
 </body>
 
 </html>

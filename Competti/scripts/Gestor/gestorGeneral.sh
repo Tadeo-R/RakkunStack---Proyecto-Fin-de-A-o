@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Validar ejecución como con ./
+if [[ "$0" != "./"* ]]; then
+    echo "Error: Este script solo se puede ejecutar usando './'" >&2
+    exit 1
+fi
+
 # Mensaje bienvenida y opciones del panel de control
 echo "Bienvenido al panel de control del servidor."
 
@@ -28,20 +34,10 @@ case $option in
         echo "Uso de disco:"
         df -h
         
-        echo "=========================================="
-        # Volver al panel de control o salir
-        while true; do
-            read -p "Presione 0 para volver al panel de control: " volver
-            
-            if [[ "$volver" == "0" ]]; then
-                clear
-                echo "Volviendo al panel de control..."
-                ./gestorGeneral.sh
-                exit 0
-            else
-                echo "Error: Entrada no válida. Ingrese '0' para volver al panel de control."
-            fi
-        done
+        # Esperar a que el usuario presione una tecla antes de volver al menú
+        read -p "Presione [Enter] para continuar..."
+        ./monitoreoBD.sh
+        exit 0
     ;;
     2)
         # Abrir menú de gestión de servicios

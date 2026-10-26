@@ -32,6 +32,7 @@ lista_usuarios=(
     "gahel:G4h3l?dev"
 )
 
+
 # Crear usuarios y asignar contraseñas
 for elemento in "${lista_usuarios[@]}"; do
     
@@ -64,6 +65,32 @@ usermod -aG dbadmin, security alan
 # Gahel: webdev
 usermod -aG webdev gahel
 
+
+# Crear instancias de trabajo
+echo "Creando instancias de trabajo..."
+
+# Instancia de trabajo sysadmin 
+mkdir -p /var/sysadmin/Gestor
+chown -R uits:sysadmin /var/sysadmin
+chmod -R 770 /var/sysadmin
+
+# 2. Instancia de trabajo para security
+mkdir -p /var/security
+chown -R uits:security /var/security
+chmod -R 770 /var/security
+
+# Directorio de auditoría
+mkdir -p /var/log/auditor
+chown -R uits:security /var/log/auditor
+chmod -R 770 /var/log/auditor
+
+#  Instancia de trabajo para DBAdmin
+mkdir -p /var/db-manager
+chown -R uits:dbadmin /var/db-manager
+chmod -R 770 /var/db-manager
+
+
+
 # Instalar y configurar apache HTTPD
 echo "Actualizando paquetes e instalando Apache HTTPD..."
 dnf update -y
@@ -80,8 +107,6 @@ firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --reload
-
-echo "=== Proceso finalizado con éxito ==="
 
 echo "Estado actual del servicio Apache:"
 systemctl status httpd --no-pager
@@ -141,3 +166,5 @@ systemctl enable docker
 usermod -aG docker tadeo
 usermod -aG docker benja
 usermod -aG docker mati
+
+echo "=== Proceso finalizado con éxito ==="

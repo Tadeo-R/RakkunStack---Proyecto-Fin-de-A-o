@@ -1,11 +1,6 @@
 #!/bin/bash
 
-# Validar ejecución del script con Bash y usando './'
-if [ -z "$BASH_VERSION" ]; then
-    echo "Error: Este script debe ser ejecutado exclusivamente con Bash." >&2
-    exit 1
-fi
-
+# Validar ejecución con ./
 if [[ "$0" != "./"* ]]; then
     echo "Error: Este script solo se puede ejecutar usando './'" >&2
     exit 1
@@ -16,7 +11,6 @@ if [ "$EUID" -ne 0 ]; then
     echo "Error: Este script requiere privilegios de administrador (sudo)." >&2
     exit 1
 fi
-
 
 echo "Creando directorios de respaldo..."
 
@@ -70,7 +64,7 @@ cp /var/backup/daily_backup/Infraestructura/infraestructura.tar.gz /var/backup/c
 echo "[3/5] Realizando respaldo de archivos de la aplicación"
 
 # Empaquetar respaldo de la aplicación web
-tar -czf /var/backup/daily_backup/web/www.tar.gz -C /var/ www
+tar -czf /var/backup/daily_backup/web/www.tar.gz -C /var www/html
 
 # Copiar el empaquetado en las carpetas de backup externo y de la nube
 cp /var/backup/daily_backup/web/www.tar.gz /var/backup/external_backup/web/www.tar.gz
@@ -82,10 +76,11 @@ cp /var/backup/daily_backup/web/www.tar.gz /var/backup/cloud_backup/web/www.tar.
 echo "[4/5] Realizando respaldo de scripts de respaldo y Cron table"
 
 # Copia la tabla de cron a la carpeta de backup diario
-crontab -l > /var/backup/daily_backup/Scripts/crontab_backup
+crontab -l > /var/scripts/crontab_backup 2>/dev/null
 
 # Empaquetar respaldo de los scripts de respaldo y cron table
-tar -czf /var/backup/daily_backup/Scripts/scripts.tar.gz -C /var/backup/daily_backup/Scripts crontab_backup -C /var/ scripts
+tar -czf /var/backup/daily_backup/Scripts/scripts.tar.gz -C /var scripts
+rm -f /var/scripts/crontab_backup
 
 # Copiar el empaquetado en las carpetas de backup externo y de la nube
 cp /var/backup/daily_backup/Scripts/scripts.tar.gz /var/backup/external_backup/Scripts/scripts.tar.gz
@@ -111,9 +106,6 @@ rm -r /var/backup/external_backup/Otros/opt
 
 # ==============
 
-# Asignar permisos otros
-chmod -R o+rx /var/backup/
-
 # Asignar permisos 660 a los archivos .tar.gz generados
 chmod 660 /var/backup/daily_backup/*/*.tar.gz
 chmod 660 /var/backup/external_backup/*/*.tar.gz
@@ -131,8 +123,19 @@ cat << 'EOF' > /etc/sudoers.d/backup
 %backup ALL=(ALL) NOPASSWD: /var/backup/cloud_backup.sh
 EOF
 
-# Aplicar permisos estrictos de lectura (requeridos por sudoers: root r-- r-- ---)
-chmod 440 /etc/sudoers.d/backup
+# Establecer propietario y grupo de forma recursiva en la carpeta de backup
+chown -R uits:backup /var/backup/
+
+# Asignar permisos 770 a directorios principales y subcarpetas
+chmod 770 /var/backup
+chmod 770 /var/backup/daily_backup /var/backup/external_backup /var/backup/cloud_backup
+chmod 770 /var/backup/daily_backup/*
+chmod 770 /var/backup/external_backup/*
+chmod 770 /var/backup/cloud_backup/*
+
+# Asignar permisos 660 a archivos comprimidos
+chmod 660 /var/backup/*/*/*.tar.gz 2>/dev/null
+chmod 660 /var/backup/*/*/*/*.tar.gz 2>/dev/null
 
 # Validar la sintaxis de la regla sudoers para evitar bloquear el sistema sudo
 if visudo -c -f /etc/sudoers.d/backup > /dev/null 2>&1; then

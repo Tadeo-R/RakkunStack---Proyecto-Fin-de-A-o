@@ -1,0 +1,42 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Docker/mysql/Dockerfile
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: CompettiDB
+      MARIADB_USER: ${DB_USER:-dbadmin}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-Dbadmin}
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Define MYSQL_ROOT_PASSWORD en .env}
+    volumes:
+      - database_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping --host=127.0.0.1 --user=root --password=\"$$MARIADB_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_NAME: CompettiDB
+      DB_USER: ${DB_USER:-dbadmin}
+      DB_PASSWORD: ${DB_PASSWORD:-Dbadmin}
+    group_add:
+      - "${HOST_GID:-1000}"
+    ports:
+      - "${WEB_PORT:-8080}:80"
+    volumes:
+      - .:/var/www/competti:z
+
+volumes:
+  database_data:

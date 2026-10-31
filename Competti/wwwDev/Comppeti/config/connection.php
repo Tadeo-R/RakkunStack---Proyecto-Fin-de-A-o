@@ -2,11 +2,10 @@
 
 class Conexion {
     public static function conectar() {
-        // Datos por defecto si usas XAMPP
-        $host = "localhost";
-        $db_name = "CompettiDB";          // El nombre que pusiste en phpMyAdmin
-        $username = "root";           // Usuario por defecto en local
-        $password = "";               // Contraseña por defecto (vacía en XAMPP)
+        $host = getenv('DB_HOST') ?: 'localhost';
+        $db_name = getenv('DB_NAME') ?: 'CompettiDB';
+        $username = getenv('DB_USER') ?: 'root';
+        $password = getenv('DB_PASSWORD') ?: '';
 
         try {
             $link = new PDO("mysql:host=$host;dbname=$db_name;charset=utf8mb4", $username, $password);

@@ -55,13 +55,13 @@ done
 echo "Asignando grupos a cada usuario..."
 
 # Tadeo: sysadmin, backup, security
-usermod -aG sysadmin, backup, security tadeo
-# Benjamin: sysadmin
-usermod -aG sysadmin, webdev benja
+usermod -aG sysadmin,backup,security tadeo
+# Benjamin: sysadmin, webdev
+usermod -aG sysadmin,webdev benja
 # Matías: sysadmin, backup, webdev
-usermod -aG sysadmin, backup, webdev mati
+usermod -aG sysadmin,backup,webdev mati
 # Alan: dbadmin, security
-usermod -aG dbadmin, security alan
+usermod -aG dbadmin,security alan
 # Gahel: webdev
 usermod -aG webdev gahel
 
@@ -71,7 +71,7 @@ echo "Creando instancias de trabajo..."
 
 # Instancia de trabajo sysadmin 
 mkdir -p /var/sysadmin/Gestor
-chown -R uits:sysadmin /var/sysadmin
+chown -R uits:sysadmin /var/scripts
 chmod -R 770 /var/sysadmin
 
 # 2. Instancia de trabajo para security
@@ -89,12 +89,14 @@ mkdir -p /var/db-manager
 chown -R uits:dbadmin /var/db-manager
 chmod -R 770 /var/db-manager
 
-
-
 # Instalar y configurar apache HTTPD
-echo "Actualizando paquetes e instalando Apache HTTPD..."
-dnf update -y
+echo "Instalando Apache (HTTPD)..."
 dnf install httpd -y
+
+# Configurar permisos en la carpeta www
+sudo chown -R apache:apache /var/www/html/
+sudo chmod -R 755 /var/www/html/
+
 
 # Habilitar e iniciar el servicio Apache
 echo "Iniciando y habilitando el servicio Apache..."

@@ -12,10 +12,8 @@ $etiquetasTipo = [
     'mentales' => ['Mesa', 'badge-mesa'],
 ];
 
-$pageTitle = 'Disciplinas';
-$pageCss   = ['pages.css'];
-require VIEW_PATH . '/include/page_start.php';
 ?>
+<link rel="stylesheet" href="/css/pages.css">
 
     <main class="container">
 
@@ -59,5 +57,3 @@ require VIEW_PATH . '/include/page_start.php';
             </div>
         <?php endif; ?>
     </main>
-
-<?php require VIEW_PATH . '/include/page_end.php'; ?>

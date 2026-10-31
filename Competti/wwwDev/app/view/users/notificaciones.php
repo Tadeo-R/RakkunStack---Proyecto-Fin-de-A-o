@@ -31,10 +31,8 @@ $pestanas = [
     'sistema'  => 'Sistema',
 ];
 
-$pageTitle = 'Notificaciones';
-$pageCss   = ['pages.css'];
-require VIEW_PATH . '/include/page_start.php';
 ?>
+<link rel="stylesheet" href="/css/pages.css">
 
     <main class="container">
 
@@ -145,4 +143,3 @@ require VIEW_PATH . '/include/page_start.php';
 
     </main>
 
-<?php require VIEW_PATH . '/include/page_end.php'; ?>

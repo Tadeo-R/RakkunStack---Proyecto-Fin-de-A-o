@@ -1,17 +1,3 @@
-<?php
-
-require_once __DIR__ . '/../../../config/config.php';
-
-// Enlaces compartidos para mantener consistencia entre mobile y desktop
-$nav_links = [
-    ['href' => BASE_URL . 'html/index.php', 'text' => 'Inicio', 'icon' => 'fa-home'],
-    ['href' => BASE_URL . '/torneos.php', 'text' => 'Torneos', 'icon' => 'fa-trophy'],
-    ['href' => BASE_URL . '/equipos.php', 'text' => 'Equipos', 'icon' => 'fa-users'],
-    ['href' => BASE_URL . '/resultados.php', 'text' => 'Resultados', 'icon' => 'fa-chart-bar'],
-    ['href' => BASE_URL . '/calendario.php', 'text' => 'Calendario', 'icon' => 'fa-calendar-alt'],
-    ['href' => BASE_URL . '/quienesSomos.php', 'text' => 'Quiénes somos', 'icon' => 'fa-info-circle']
-];
-?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css">
 <script src="https://kit.fontawesome.com/3bd97052d9.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/navigation.css">
@@ -29,21 +15,21 @@ $nav_links = [
         </div>
         <nav class="desktop-nav">
             <a class="a-btn" href="/">Inicio</a>
-            <a class="a-btn" href="<?= BASE_URL ?>torneos.php">Torneos</a>
-            <a class="a-btn" href="<?= BASE_URL ?>equipos.php">Equipos</a>
-            <a class="a-btn" href="<?= BASE_URL ?>resultados.php">Resultados</a>
-            <a class="a-btn" href="<?= BASE_URL ?>calendario.php">Calendario</a>
-            <a class="a-btn" href="<?= BASE_URL ?>quienesSomos.php">Quienes Somos</a>
+            <a class="a-btn" href="/index.php?view=torneos/torneos">Torneos</a>
+            <a class="a-btn" href="/index.php?view=equipos/equipos">Equipos</a>
+            <a class="a-btn" href="/index.php?view=partidos/resultados">Resultados</a>
+            <a class="a-btn" href="/index.php?view=partidos/calendario">Calendario</a>
+            <a class="a-btn" href="/index.php?view=pages/quienesSomos">Quienes Somos</a>
         </nav>
         <div class="header-actions">
-            <a href="<?= BASE_URL ?>search.php">
+            <a href="/index.php?view=torneos/search">
                 <button class="icon-btn search-trigger"><i class="fa-solid fa-magnifying-glass"></i></button>
             </a>
             <button class="icon-btn theme-trigger" id="theme-toggle"><i class="fa-solid fa-moon"
                     id="theme-icon"></i></button>
             <!-- CONDICIONAL DE AUTENTICACIÓN DESKTOP -->
             <?php if (isset($_SESSION['usuario_id'])): ?>
-                <a href="<?= BASE_URL ?>notificaciones.php">
+                <a href="/index.php?view=users/notificaciones">
                     <button class="icon-btn notification-btn"><i class="fa-regular fa-bell"></i></button>
                 </a>
                 <a href="/index.php?view=users/profile">
@@ -53,7 +39,7 @@ $nav_links = [
                 <div class="user-logged-info">
                     <span style="color: white; font-weight: bold;">Hola,
                         <?= htmlspecialchars($_SESSION['usuario_nombre']) ?>!</span>
-                    <a href="/index.php?view=auth/logout" class="btn-secondary"
+                    <a href="/index.php?action=logout" class="btn-secondary"
                         style="background-color: rgba(220, 53, 69, 0.5); color: white;">Salir</a>
                 </div>
             <?php else: ?>

@@ -1,3 +1,20 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Obtener los torneos activos reales desde el modelo
+$torneosDestacados = [];
+try {
+    // Traemos los últimos torneos creados para destacarlos en el home
+    $stmtHome = $pdo->prepare("SELECT * FROM TORNEO ORDER BY id_torneo DESC LIMIT 3");
+    $stmtHome->execute();
+    $torneosDestacados = $stmtHome->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $torneosDestacados = [];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,8 +33,6 @@
 
 <body>
 
-    <?php require_once VIEW_PATH . '/include/nav.php'; ?>
-
     <main>
 
         <section class="hero">
@@ -27,8 +42,8 @@
                 <p>La plataforma integral para la gesti&oacute;n de torneos deportivos, mentales y electr&oacute;nicos.
                 </p>
                 <div class="hero-buttons">
-                    <a href="torneos.html" class="btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
-                    <a href="crearTorneo.html" class="btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
+                    <a href="/index.php?view=torneos/torneos" class="btn-primary"><i class="fa-solid fa-trophy"></i> Explorar Torneos</a>
+                    <a href="/index.php?view=torneos/crear" class="btn-secondary"><i class="fa-solid fa-plus"></i> Crear Torneo</a>
                 </div>
             </div>
             <div class="hero-gallery">
@@ -47,7 +62,7 @@
         <section class="disciplines-section">
             <div class="section-header">
                 <h2>Disciplinas</h2>
-                <a href="disciplinas.html" class="view-all">Ver todas las disciplinas &rarr;</a>
+                <a href="/index.php?view=torneos/disciplinas" class="view-all">Ver todas las disciplinas &rarr;</a>
             </div>
             <div class="disciplines-grid">
                 <div class="discipline-card"><i class="fa-solid fa-soccer-ball"></i><span>F&uacute;tbol</span></div>
@@ -64,7 +79,7 @@
 
         <section class="search-filter-section">
             <div class="search-wrapper">
-                <a href="search.html">
+                <a href="/index.php?view=torneos/search">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 </a>
                 <input type="search" placeholder="Buscar torneos, equipos o deportes...">
@@ -85,7 +100,7 @@
                 <section class="matches-section">
                     <div class="section-header">
                         <h2>Pr&oacute;ximos partidos</h2>
-                        <a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
+                        <a href="/index.php?view=partidos/calendario" class="view-all">Ver calendario &rarr;</a>
                     </div>
                     <div class="matches-list">
                         <div class="match-row">
@@ -117,41 +132,48 @@
                 <section class="featured-tournaments">
                     <div class="section-header">
                         <h2>Torneos destacados</h2>
-                        <a href="torneos.html" class="view-all">Ver todos los torneos &rarr;</a>
+                        <a href="/index.php?view=torneos/torneos" class="view-all">Ver todos los torneos &rarr;</a>
                     </div>
-                    <div class="tournaments-grid">
-                        <div class="tournament-card">
-                            <div class="card-img" style="background-image: url('/img/pibble.jpg');">
-                                <span class="badge badge-live">En curso</span>
-                            </div>
-                            <div class="card-body">
-                                <h3>Liga Apertura 2024</h3>
-                                <p><i class="fa-solid fa-soccer-ball"></i> F&uacute;tbol | <i
-                                        class="fa-solid fa-users"></i> 16 Equipos</p>
-                                <p><i class="fa-solid fa-calendar"></i> Inicio: 12/05/2024</p>
-                                <a href="#" class="btn-details">Ver detalles</a>
-                            </div>
+                    
+                    <?php if (empty($torneosDestacados)): ?>
+                        <div style="text-align: center; padding: 40px; color: #94a3b8; background: rgba(15, 23, 42, 0.4); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06);">
+                            <p>No hay torneos activos en este momento. ¡Crea el primero!</p>
+                            <a href="/index.php?view=torneos/crear" class="btn-primary" style="margin-top: 12px; display: inline-block;">Crear Torneo</a>
                         </div>
-                        <div class="tournament-card">
-                            <div class="card-img" style="background-image: url('/img/joystickPS5.png');">
-                                <span class="badge badge-upcoming">Pr&oacute;ximo</span>
-                            </div>
-                            <div class="card-body">
-                                <h3>Torneo Gamer X</h3>
-                                <p><i class="fa-solid fa-gamepad"></i> E-Sports | <i class="fa-solid fa-user"></i> 32
-                                    Jugadores</p>
-                                <p><i class="fa-solid fa-calendar"></i> Inicio: 01/06/2024</p>
-                                <a href="#" class="btn-details">Ver detalles</a>
-                            </div>
+                    <?php else: ?>
+                        <div class="tournaments-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                            <?php foreach ($torneosDestacados as $t): 
+                                $iconoCat = ($t['categoria'] ?? '') === 'esports' ? 'fa-gamepad' : 'fa-trophy';
+                                $estadoClase = $t['estado'] === 'inscripciones' ? 'badge-open' : 'badge-live';
+                                $estadoTexto = $t['estado'] === 'inscripciones' ? 'Inscripciones Abiertas' : ucfirst(str_replace('_', ' ', $t['estado']));
+                            ?>
+                                <div class="tournament-card" style="background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
+                                    <div class="card-img" style="height: 140px; background: linear-gradient(135deg, rgba(30, 27, 75, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%); display: flex; align-items: center; justify-content: center; position: relative;">
+                                        <i class="fa-solid <?= $iconoCat ?>" style="font-size: 2.5rem; color: rgba(192, 132, 252, 0.5);"></i>
+                                        <span class="badge <?= $estadoClase ?>" style="position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; background: #22c55e; color: #fff;"><?= htmlspecialchars($estadoTexto) ?></span>
+                                    </div>
+                                    <div class="card-body" style="padding: 18px; display: flex; flex-direction: column; flex-grow: 1; gap: 10px;">
+                                        <h3 style="color: #fff; margin: 0; font-size: 1.15rem; font-weight: 700;"><?= htmlspecialchars($t['nombreTorneo']) ?></h3>
+                                        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">
+                                            <i class="fa-solid <?= $iconoCat ?>" style="color: #c084fc;"></i> <?= htmlspecialchars($t['juego']) ?> | 
+                                            <i class="fa-solid <?= $t['modalidad'] === 'equipos' ? 'fa-users' : 'fa-user' ?>"></i> <?= htmlspecialchars(ucfirst($t['modalidad'])) ?>
+                                        </p>
+                                        <p style="color: #94a3b8; font-size: 0.85rem; margin: 0;">
+                                            <i class="fa-regular fa-calendar"></i> Inicio: <?= htmlspecialchars($t['fechaInicio'] ?? 'Próximamente') ?>
+                                        </p>
+                                        <a href="/index.php?view=torneos/detalles&id=<?= (int)$t['id_torneo'] ?>" class="btn-details" style="margin-top: auto; text-align: center; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); color: #c084fc; padding: 10px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 0.85rem;">Ver detalles</a>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </section>
             </div>
             <aside class="secondary-column">
                 <section class="matches-section">
                     <div class="section-header">
                         <h2>Pr&oacute;ximos partidos</h2>
-                        <a href="calendario.html" class="view-all">Ver calendario &rarr;</a>
+                        <a href="/index.php?view=partidos/calendario" class="view-all">Ver calendario &rarr;</a>
                     </div>
                     <div class="matches-list">
                         <div class="match-row">
@@ -236,8 +258,6 @@
         </section>
 
     </main>
-
-    <?php require_once VIEW_PATH . '/include/footer.php'; ?>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {

@@ -4,7 +4,7 @@
     --primary-color: light-dark(#1ac894, #4c1d95); /* Color primario */
     --secondary-color: light-dark(#c084fc, #9d174d); /* Color secundario */
     --bg: light-dark( #989999, #030712 ); /* Fondos oscuros */
-    --text-main: light-dark(#ffffff, #ffffff); /* Textos principales */
+    --text-main: light-dark(#1a1a1a, #ffffff); /* Textos principales */
     --text-muted: light-dark(#2a2a2a, #a3a3a3); /* Texto "muteado" */
     --button-primary: rgba(255, 255, 255, 0.15); /* Botón primario */
     --button-secondary: rgba(255, 255, 255, 0.07); /* Botón secundario */

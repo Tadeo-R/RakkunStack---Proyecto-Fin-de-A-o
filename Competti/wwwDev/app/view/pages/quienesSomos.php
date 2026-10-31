@@ -1,8 +1,5 @@
-<?php
-$pageTitle = 'Quiénes Somos';
-$pageCss   = ['pages.css', 'special-pages.css'];
-require VIEW_PATH . '/include/page_start.php';
-?>
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" href="/css/special-pages.css">   
 
     <main class="about-container">
         <section class="about-hero">
@@ -36,5 +33,3 @@ require VIEW_PATH . '/include/page_start.php';
             </div>
         </section>
     </main>
-
-<?php require VIEW_PATH . '/include/page_end.php'; ?>

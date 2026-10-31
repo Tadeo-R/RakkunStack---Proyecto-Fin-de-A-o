@@ -4,7 +4,7 @@ class Conexion {
     public static function conectar() {
         // Datos por defecto si usas XAMPP
         $host = "localhost";
-        $db_name = "prueba";          // El nombre que pusiste en phpMyAdmin
+        $db_name = "CompettiDB";          // El nombre que pusiste en phpMyAdmin
         $username = "root";           // Usuario por defecto en local
         $password = "";               // Contraseña por defecto (vacía en XAMPP)
 

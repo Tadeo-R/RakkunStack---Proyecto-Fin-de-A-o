@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
         'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=1920&auto=format&fit=crop', // Vóley
         'https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=1920&auto=format&fit=crop', // Básquet
         'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1920&auto=format&fit=crop',  // Casino / Cartas
-        'https://imagenes2.eltiempo.com/files/image_1200_535/uploads/2024/06/07/66639c764f7f0.jpeg'
+        'https://unsplash.com/es/fotos/hombre-en-el-campo-de-atletismo-9HI8UJMSdZA?q=80&w=1920&auto=format&fit=crop', // Atletismo
+        'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1920&auto=format&fit=crop', // Natación
+        'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=1920&auto=format&fit=crop', // Ciclismo
+        'https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?q=80&w=1920&auto=format&fit=crop'  // Boxeo
     ];
 
     // 1. Elegir imagen al azar
@@ -22,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
     imgLoader.onload = function () {
         if (bgContainer) {
             // Aplicar el fondo
-            bgContainer.style.backgroundImage = `linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 58, 138, 0.82) 100%), url('${selectedImageUrl}')`;
+            bgContainer.style.backgroundImage = `linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(45, 16, 63, 0.82) 100%), url('${selectedImageUrl}')`;
             // Hacerlo visible con fundido suave
             bgContainer.style.opacity = '1';
         }

@@ -1,7 +1,8 @@
 <?php
-// Si no está logueado o no se envió un archivo válido, rebotarlo a la vista de perfil
+// 1. Validar seguridad e inicio de sesión
 if (!isset($_SESSION['usuario_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_FILES['profile_picture'])) {
-    header("Location: view/users/profile.php"); // Medido desde 'app/'
+    // CORREGIDO: Redirección unificada a través del enrutador central index.php
+    header("Location: /index.php?view=users/profile");
     exit();
 }
 
@@ -13,10 +14,10 @@ if ($file['error'] === UPLOAD_ERR_OK) {
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
 
     if (in_array($fileType, $allowedTypes)) {
-        // Buscamos la carpeta subiendo un nivel para salir de 'app/' e ir a la raíz donde está 'html/'
+        // Carpeta física real en el disco del servidor Linux (/opt/lampp/htdocs/.../html/uploads/)
         $uploadDir = dirname(__DIR__, 2) . '/html/uploads/';
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            mkdir($uploadDir, 0755, true); // Permisos seguros de lectura/escritura para LAMPP
         }
 
         $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -25,27 +26,28 @@ if ($file['error'] === UPLOAD_ERR_OK) {
 
         if (move_uploaded_file($file['tmp_name'], $destination)) {
             
-            // Ruta de acceso web que consumirá la etiqueta <img>
-            $relativePath = 'html/uploads/' . $newFileName;
+            // CORREGIDO: Ruta relativa web limpia. Como htdocs/html es tu raíz, 
+            // el navegador accederá directamente desde '/uploads/nombre_archivo.jpg'
+            $webPath = '/uploads/' . $newFileName;
 
             try {
-                // $pdo funciona heredado desde index.php
-                $stmt = $pdo->prepare("UPDATE usuarios SET avatar = :avatar WHERE id = :id");
+                // CORREGIDO: Ajustado a las mayúsculas de la tabla 'USUARIO' y columnas de tu nueva BD
+                $stmt = $pdo->prepare("UPDATE USUARIO SET avatar = :avatar WHERE id_usuario = :id_usuario");
                 $stmt->execute([
-                    ':avatar' => $relativePath,
-                    ':id' => $userId
+                    ':avatar'     => $webPath,
+                    ':id_usuario' => $userId
                 ]);
 
-                // Sincronizamos de inmediato el avatar de la sesión activa
-                $_SESSION['usuario_avatar'] = $relativePath;
+                // Sincronizar la variable de sesión para que el <header> actualice el avatar al instante
+                $_SESSION['usuario_avatar'] = $webPath;
 
             } catch (Exception $e) {
-                // Manejo de errores
+                // El error se silencia para continuar con la redirección limpia
             }
         }
     }
 }
 
-// Redirección final segura medida desde el contexto de 'app/'
-header("Location: view/users/profile.php");
+// CORREGIDO: Regresar de forma segura al perfil usando el enrutador unificado
+header("Location: /index.php?view=users/profile");
 exit();
